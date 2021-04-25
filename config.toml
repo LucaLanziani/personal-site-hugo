@@ -1,0 +1,43 @@
+baseURL = "https://lanziani.com/"
+languageCode = "en-us"
+title = "Luca Lanziani"
+theme = "noteworthy"
+paginate = 5
+
+[params]
+math = true
+description = "Stories from an Italian Software Engineer"
+profilePicture = "images/profile.jpg"
+showReadMore = true
+email = "mailto:luca+site@lanziani.com"
+twitter = "https://twitter.com/lucalanziani"
+github = "https://github.com/LucaLanziani"
+linkedin = "https://www.linkedin.com/in/lucalanziani/"
+
+[taxonomies]
+tag = "tags"
+
+[[menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
+weight = 1
+
+# Menu links along the sidebar navigation.
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 2 # Weight is an integer used to sort the menu items. The sorting goes from smallest to largest numbers. If weight is not defined for each menu entry, Hugo will sort the entries alphabetically.
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 3
+
+[[menu.main]]
+name = "Archives"
+identifier = "archives"
+url = "/archives/"
+weight = 4
