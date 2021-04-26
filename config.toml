@@ -2,7 +2,7 @@ baseURL = "https://lanziani.com/"
 languageCode = "en-us"
 title = "Luca Lanziani"
 theme = "noteworthy"
-paginate = 5
+paginate = 4
 
 [params]
 math = true
