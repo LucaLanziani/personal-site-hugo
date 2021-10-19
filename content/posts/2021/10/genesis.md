@@ -53,7 +53,7 @@ terraform apply
  
 Or so I thought 😂...
 
-Obviously, as usual, that couldn't be further from the truth.
+Obviously, as usual, that couldn't be further from the truth.  
 The [terraform.io](https://terraform.io) website, even nowadays, presents you with an oversimplification of what's needed to manage your infrastructure with Terraform.
 
 Don't get me wrong, I liked Terraform back then, and I still like it today, especially given all the improvements Hashicorp has pushed and is still pushing.
@@ -89,14 +89,15 @@ Remote state...  I need first an S3 bucket for that state
 
 
 I suppose you get my point.  
-Yet, after multiple heads scratches, at least I had my stack ready, and I could deploy and destroy it reliably.
+Yet, after multiple painful iterations, at least I had my stack ready, and I could deploy and destroy it reliably.
 
-That is if Terraform wouldn't fail because of some provider's bug, or the state didn't end up corrupted by a `CTRL^C` at the wrong time 😂.
+That was if Terraform wouldn't fail because of some provider's bug, or the state didn't end up corrupted by a `CTRL^C` at the wrong time 😂.
 
-But hey, it was five years ago, we were using Terraform 0.7.x,  and we felt pretty happy about it.
+But hey, it was five years ago, we were using Terraform 0.7.x, and we were pretty happy about it.
 
-Then the second request came in, let's build another Jenkins!!!
+Then the second request came in, **let's build another Jenkins!!!**
 
 And the path started...
+
 
 #### If you want to talk about the content of this post or if you want to know when the next post is coming out, you can find me on Twitter [@lucalanziani](https://twitter.com/lucalanziani).
