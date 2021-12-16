@@ -15,7 +15,7 @@ It seems evident that you would want to use the same terraform stack on multiple
 
 When I first started using Terraform I don't believe there was anything there to solve this problem; the solution that my team found was to write a "simple" bash script that would build a terraform command like this:
 
-```
+```bash
 terraform plan \
     -var-file="${config_dir}/common.tfvars.json" \
     -var-file="${config_dir}/${env}/common.tfvars.json" \
@@ -32,7 +32,7 @@ It soon became evident that this method wasn't going to scale. We were building 
 <details>
   <summary>56 directories, 57 files</summary>
 
-```
+```bash
 terraform-configs > tree
 .
 ├── common.tfvars.json
@@ -129,7 +129,7 @@ Of course, these weren't the only issues that this model was posing:
 
 Looking at the first two terragrunt commits this is what you get:
 
-```
+```bash
 commit 493637bc77831a119f3083b9a45f6275d5792fd7
 Author: Yevgeniy Brikman <brikis98@gmail.com>
 Date:   Tue May 24 00:18:06 2016 +0200
@@ -150,7 +150,7 @@ The tool brought a breath of fresh air to the team; we could finally use a more 
 <details>
   <summary>56 directories, 57 files</summary>
 
-```
+```bash
 terragrunt-config > tree
 .
 ├── common.tfvars.json
@@ -215,7 +215,7 @@ terragrunt-config > tree
 
 The environment `/<env>/terragrunt.hcl` file would contain something like:
 
-```
+```hcl
 terragrunt = {  
   remote_state {
     backend = "s3"
@@ -231,7 +231,7 @@ terragrunt = {
 
 And each instance of each component will have something like:
 
-```
+```hcl
 terragrunt = {
   terraform {
     source = "git::git@github.com:<org>/<repo>//<stack-folder>?ref=<git-tag>"
