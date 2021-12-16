@@ -4,6 +4,13 @@ date: 2021-12-14T21:50:00+02:00
 category: general, terraform, devops
 tags: [devops, terraform]
 email: luca@lanziani.com
+
+twitter:
+  card: "summary"
+  site: "lanziani.com"
+  title: "Terrafom: from bash to Terragrunt"
+  description: "How we managed multiple stacks with bash and moved to Terragrunt"
+  image: "https://lanziani.com/static/terraform-terragrunt.png"
 ---
 We left the previous post of the series with a single Jenkins stack and the task of creating a second service out of it.
 
