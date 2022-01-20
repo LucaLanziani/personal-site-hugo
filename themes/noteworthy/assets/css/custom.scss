@@ -11,3 +11,12 @@ img.about-me {
 .post a {
     color: $twitter-link;
 }
+
+#main-content {
+    display: flex;
+    justify-content: center;
+}
+
+.content-container {
+    width: 1000px;
+}

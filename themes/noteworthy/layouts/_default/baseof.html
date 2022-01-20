@@ -4,10 +4,12 @@
     {{ partial "head.html" . }}
     <body>
         {{ partial "nav.html" . }}
-        <div id="content" class="content-container">
-        {{ block "main" . }}
-        {{ end }}
-        {{ partial "math.html" . }}
+        <div id="main-content">
+            <div id="content" class="content-container">
+            {{ block "main" . }}
+            {{ end }}
+            {{ partial "math.html" . }}
+            </div>
         </div>
         {{ partial "footer-mobile.html" . }}
     </body>
