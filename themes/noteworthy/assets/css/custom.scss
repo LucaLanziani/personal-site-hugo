@@ -20,14 +20,14 @@ time {
     text-align: center;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 900px) {
     .post-title {
         font-size: 44px;
     }
     /* Target devices narrower than 768px. */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
     .nav-menu {
         font-size: 16px;
     }
