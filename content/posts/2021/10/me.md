@@ -13,5 +13,5 @@ I'm not Developer or Architect.
 I love software in any shape or form.  
 I love the fact that I can "materialize" ideas with it.  
 I love problems and I love challenges.  
-  
+<!--more-->
 ❤👨‍💻
