@@ -1,6 +1,6 @@
 ---
 title: "Control your monitors settings via software"
-date: 2021-12-14T21:50:00+02:00
+date: 2022-03-06T14:45:10+02:00
 category: general, ddcutil, monitors, software, utils
 tags: [ddcutil, linux, monitors]
 email: luca@lanziani.com
