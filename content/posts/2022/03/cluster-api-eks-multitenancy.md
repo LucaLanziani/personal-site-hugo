@@ -1,6 +1,6 @@
 ---
 title: "Cluster Api - multi-tenancy EKS implementation"
-date: 2021-03-12T20:54:00+02:00
+date: 2022-03-12T20:54:00+02:00
 category: general, kubernetes, EKS, Multi-tenancy, AWS
 tags: [AWS, Kubernetes, cluster-api, K8S]
 email: luca@lanziani.com
