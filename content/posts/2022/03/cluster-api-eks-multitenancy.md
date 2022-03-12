@@ -12,7 +12,7 @@ twitter:
   description: "How to manage multiple EKS clusters on different accounts with Cluster Api"
 ---
 
-[Cluster Api](https://cluster-api.sigs.k8s.io) in case you don't know it is:
+[Cluster API](https://cluster-api.sigs.k8s.io) in case you don't know it is:
 
 > a Kubernetes sub-project focused on providing declarative APIs and tooling to simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
 
@@ -20,11 +20,9 @@ Today we want to see how to use it to manage multiple EKS clusters.
 
 <!-- more -->
 
-Cluster api supports multiple Providers and the one we want to fucus on today is the [Provider AWS](https://cluster-api-aws.sigs.k8s.io/).
+Cluster API supports multiple Providers, and the one we want to focus on today is the [Provider AWS](https://cluster-api-aws.sigs.k8s.io/).
 
-Specifically we want to use it to provision EKS cluster with managed nodes.
-
-Without spending too much time on describing what the tool can do let's just right into the tutorial.
+Specifically, we want to use it to provision EKS clusters with managed nodes.
 
 ## Prerequisites
 
@@ -53,7 +51,7 @@ We want to export some environment variables
 
 ## Prepare the manager account
 
-As Cluster Api EKS prerequisites [page](https://cluster-api-aws.sigs.k8s.io/topics/eks/prerequisites.html) explains we need a couple of roles in the account in order to build the cluster and this can be done with `clusterawsadm` cli.
+As Cluster API EKS prerequisites [page](https://cluster-api-aws.sigs.k8s.io/topics/eks/prerequisites.html) explains, we need a couple of roles in the account to build the cluster and this can be done with `clusterawsadm` cli.
 
 In order to allow for cross account assume role we are going to change the clusterawsadm configuration to add an extra inline policy to the `controllers.cluster-api-provider-aws.sigs.k8s.io` role.
 
@@ -96,7 +94,7 @@ We can then use the above configuration to bootstrap the Manager cluster
 clusterawsadm bootstrap iam create-cloudformation-stack --config bootstrap-manager-account.yaml
 ```
 
-## Install cluster api provider in the bootstrap cluster
+## Install cluster API provider in the bootstrap cluster
 
 ```bash
 export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm bootstrap credentials encode-as-profile)
@@ -141,9 +139,9 @@ kubectl --namespace=default get secret manager-user-kubeconfig \
    > manager.kubeconfig
 ```
 
-## Install the cluster api provider in the manager cluster
+## Install the Cluster API provider in the manager cluster
 
-This will install the cluster api providers into the manager cluster and create a service account to use the `controllers.cluster-api-provider-aws.sigs.k8s.io` role for the Management Components.
+This will install the Cluster API providers into the manager cluster and create a service account to use the `controllers.cluster-api-provider-aws.sigs.k8s.io` role for the Management Components.
 
 ```bash
 export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm bootstrap credentials encode-as-profile)
