@@ -40,7 +40,7 @@ Specifically, we want to use it to provision EKS clusters with managed nodes.
 - [clusterctl](https://github.com/kubernetes-sigs/cluster-api/releases)
 
 
-## Manager account
+### Set variables
 
 We want to export some environment variables
 
@@ -53,14 +53,14 @@ We want to export some environment variables
 - OIDC_PROVIDER_ID="weresetthislater"
 
 
-## Prepare the manager account
+### Prepare the manager account
 
 As Cluster API EKS prerequisites [page](https://cluster-api-aws.sigs.k8s.io/topics/eks/prerequisites.html) explains, we need a couple of roles in the account to build the cluster and this can be done with `clusterawsadm` cli.
 
 In order to allow for cross account assume role we are going to change the clusterawsadm configuration to add an extra inline policy to the `controllers.cluster-api-provider-aws.sigs.k8s.io` role.
 
 ```bash
-cat | envsubst >> bootstrap-manager-account.yaml << EOL
+envsubst > bootstrap-manager-account.yaml << EOL
 apiVersion: bootstrap.aws.infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSIAMConfiguration
 spec:
@@ -98,7 +98,7 @@ We can then use the above configuration to bootstrap the Manager cluster
 clusterawsadm bootstrap iam create-cloudformation-stack --config bootstrap-manager-account.yaml
 ```
 
-## Install cluster API provider in the bootstrap cluster
+### Install cluster API provider in the bootstrap cluster
 
 ```bash
 export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm bootstrap credentials encode-as-profile)
@@ -107,7 +107,7 @@ export EXP_MACHINE_POOL=true
 clusterctl init --infrastructure aws --target-namespace capi-providers
 ```
 
-## Generate the manager cluster
+### Generate the manager cluster
 
 ```bash
 export AWS_SSH_KEY_NAME=default
@@ -121,11 +121,11 @@ Apply the cluster to the bootstrap cluster
 kubectl apply -f manager-cluster.yaml
 ```
 
-## Create an IAM OIDC identity provider for your cluster with the AWS Management Console
+### Create an IAM OIDC identity provider for your cluster with the AWS Management Console
 
 You can follow the instruction on this page to create an OIDC provider https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 
-## Update the IAM role to use this OIDC ID
+### Update the IAM role to use this OIDC ID
 
 ```bash
 export OIDC_PROVIDER_ID=<OIDC_ID_OF_THE_CLUSTER>
@@ -135,7 +135,7 @@ run the `Prepare the manager account` step again.
 
 This will update the `controllers.cluster-api-provider-aws.sigs.k8s.io` role.
 
-## Get the manager cluster credentials
+### Get the manager cluster credentials
 
 ```bash
 kubectl --namespace=default get secret manager-user-kubeconfig \
@@ -143,7 +143,7 @@ kubectl --namespace=default get secret manager-user-kubeconfig \
    > manager.kubeconfig
 ```
 
-## Install the Cluster API provider in the manager cluster
+### Install the Cluster API provider in the manager cluster
 
 This will install the Cluster API providers into the manager cluster and create a service account to use the `controllers.cluster-api-provider-aws.sigs.k8s.io` role for the Management Components.
 
@@ -155,7 +155,7 @@ export AWS_CONTROLLER_IAM_ROLE=arn:aws:iam::${AWS_MANAGER_ACCOUNT_ID}:role/contr
 clusterctl init --kubeconfig manager.kubeconfig --infrastructure aws --target-namespace capi-providers
 ```
 
-## Generate the managed cluster
+### Generate the managed cluster
 
 ```bash
 export AWS_SSH_KEY_NAME=default
@@ -174,7 +174,7 @@ identityRef:
 And the following resources:
 
 ```bash
-cat | envsubst >> cluster-role-identity.yaml << EOL
+envsubst > cluster-role-identity.yaml << EOL
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSClusterRoleIdentity
 metadata:
@@ -195,12 +195,12 @@ spec:
 EOL
 ```
 
-## Prepare the managed account
+### Prepare the managed account
 
-Export the managed aws account credentials
+**With the managed aws account credentials**
 
 ```bash
-cat | envsubst >> bootstrap-managed-account.yaml << EOL
+envsubst > bootstrap-managed-account.yaml << EOL
 apiVersion: bootstrap.aws.infrastructure.cluster.x-k8s.io/v1beta1
 kind: AWSIAMConfiguration
 spec:
@@ -226,7 +226,9 @@ EOL
 clusterawsadm bootstrap iam create-cloudformation-stack --config bootstrap-managed-account.yaml
 ```
 
-## Deploy the managed cluster
+### Deploy the managed cluster
+
+**Back to the manager account credentials**
 
 ```bash
 kubectl --kubeconfig manager.kubeconfig apply -f cluster-role-identity.yaml
