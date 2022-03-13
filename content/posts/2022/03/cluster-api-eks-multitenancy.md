@@ -12,13 +12,17 @@ twitter:
   description: "How to manage multiple EKS clusters on different accounts with Cluster Api"
 ---
 
-[Cluster API](https://cluster-api.sigs.k8s.io) in case you don't know it is:
+[Cluster API](https://cluster-api.sigs.k8s.io) in case you don't know it is: 
 
 > a Kubernetes sub-project focused on providing declarative APIs and tooling to simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
 
-Today we want to see how to use it to manage multiple EKS clusters.
+Multi-tenancy is defined by the project itself:
 
-<!-- more -->
+> Starting from v0.6.5, single controller multi-tenancy is supported that allows using a different AWS Identity for each workload cluster. For details, see the [multi-tenancy proposal](https://github.com/kubernetes-sigs/cluster-api-provider-aws/blob/main/docs/proposal/20200506-single-controller-multitenancy.md).
+
+That is exactly what we are going to see in this post.
+
+<!--more-->
 
 Cluster API supports multiple Providers, and the one we want to focus on today is the [Provider AWS](https://cluster-api-aws.sigs.k8s.io/).
 
