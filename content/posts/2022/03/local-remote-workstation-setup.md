@@ -125,7 +125,7 @@ Then with any vnc client, you can connect to `localhost:9901` to have the remote
 
 #### OSX
 
-Open Finder, press `⌘+k` and enter `localhost:9901`
+Open Finder, press `⌘+k` and enter `vnc://localhost:9901`
 
 ---
 
