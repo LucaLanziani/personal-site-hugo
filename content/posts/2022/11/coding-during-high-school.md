@@ -4,12 +4,7 @@ date: 2022-11-20T14:13:10+02:00
 category: Coding, highschool, software
 tags: [coding, highschool, pascal, delphi, z80]
 email: luca@lanziani.com
-
-twitter:
-  card: "summary"
-  site: "lanziani.com"
-  title: "Coding during high school"
-  description: "I started coding seriusly during high school, this is what they taught us"
+description: "I started coding seriusly during high school, this is what they taught us"
 ---
 
 I started coding seriously during high school. I went to ITIS Leonardo Da Vinci in Viterbo (https://www.ittvt.edu.it/), a professional school meant to teach you a job, and it does.

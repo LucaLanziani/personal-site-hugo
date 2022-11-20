@@ -4,12 +4,7 @@ date: 2022-03-06T14:45:10+02:00
 category: general, ddcutil, monitors, software, utils
 tags: [ddcutil, linux, monitors]
 email: luca@lanziani.com
-
-twitter:
-  card: "summary"
-  site: "lanziani.com"
-  title: "A software to manage your monitors"
-  description: "How to switch monitors settings via a linux software"
+description: "How to switch monitors settings via a linux software"
 ---
 
 Did you know that you can control monitor settings on your terminal from Linux?  

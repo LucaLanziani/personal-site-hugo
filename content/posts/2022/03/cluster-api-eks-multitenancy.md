@@ -4,15 +4,10 @@ date: 2022-03-12T20:54:00+02:00
 category: general, kubernetes, EKS, Multi-tenancy, AWS
 tags: [AWS, Kubernetes, cluster-api, K8S]
 email: luca@lanziani.com
-
-twitter:
-  card: "summary"
-  site: "lanziani.com"
-  title: "Multi-tenancy EKS with Cluster Api"
-  description: "How to manage multiple EKS clusters on different accounts with Cluster Api"
+description: "How to manage multiple EKS clusters on different accounts with Cluster Api"
 ---
 
-[Cluster API](https://cluster-api.sigs.k8s.io) in case you don't know it is: 
+[Cluster API](https://cluster-api.sigs.k8s.io) in case you don't know it is:
 
 > a Kubernetes sub-project focused on providing declarative APIs and tooling to simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
 
@@ -39,7 +34,6 @@ Specifically, we want to use it to provision EKS clusters with managed nodes.
   - https://cluster-api-aws.sigs.k8s.io/topics/eks/prerequisites.html
 - [clusterctl](https://github.com/kubernetes-sigs/cluster-api/releases)
 
-
 ### Set variables
 
 We want to export some environment variables
@@ -51,7 +45,6 @@ We want to export some environment variables
 - AWS_MANAGER_ACCOUNT_ID
 - AWS_MANAGED_ACCOUNT_ID
 - OIDC_PROVIDER_ID="weresetthislater"
-
 
 ### Prepare the manager account
 

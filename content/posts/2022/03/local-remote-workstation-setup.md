@@ -4,13 +4,9 @@ date: 2022-03-27T11:48:00+02:00
 category: general, development, remote, homelab,
 tags: [development, homelab, remote]
 email: luca@lanziani.com
-
-twitter:
-  card: "summary"
-  site: "lanziani.com"
-  title: "My new remote-local workstation setup"
-  description: "Use my laptops as a light interface to a local workstation"
-  image: "https://lanziani.com/static/remote_local_setup.png"
+description: "Use my laptops as a light interface to a local workstation"
+images:
+  - "https://lanziani.com/static/remote_local_setup.png"
 ---
 
 I always wanted to solve the problem of moving from laptop 1 to laptop X while continuing to work on a task.
@@ -36,7 +32,7 @@ Text editing was the easier to solve, in the past, my usual workflow on each lap
 
 This process is suboptimal. I often forgot to push the changes or set the post in draft, causing it to be erroneously published.
 
-It also meant every laptop had to have the same set of tools, not just the language runtime but also any other tool needed to debug/test. 
+It also meant every laptop had to have the same set of tools, not just the language runtime but also any other tool needed to debug/test.
 In this case, Hugo installed.
 
 ## Remote desktop

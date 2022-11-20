@@ -4,7 +4,7 @@ date: 2012-03-05T17:20:00+02:00
 category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
-series: NodeInPillole
+series: [NodeInPillole]
 lang: it
 ---
 

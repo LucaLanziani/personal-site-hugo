@@ -16,6 +16,7 @@ linkedin = "https://www.linkedin.com/in/lucalanziani/"
 
 [taxonomies]
 tag = "tags"
+series = "series"
 
 [[menu.main]]
 identifier = "home"

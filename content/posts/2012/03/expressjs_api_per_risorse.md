@@ -4,7 +4,7 @@ date: 2012-03-30T18:45:00+02:00
 category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
-series: NodeInPillole
+series: [NodeInPillole]
 lang: it
 ---
 
@@ -15,7 +15,7 @@ Vediamo come è possibile combinare quanto visto fin'ora per creare 5 semplici r
 {{< youtube muzYrOJFEuw >}}
 <br/>
 
-Capiamo  inoltre come simulare una PUT o una DELETE in caso in cui il client non supporti tali metodi.
+Capiamo inoltre come simulare una PUT o una DELETE in caso in cui il client non supporti tali metodi.
 
 [1]: http://expressjs.com/2x/guide.html#route-param%20pre-conditions
 
