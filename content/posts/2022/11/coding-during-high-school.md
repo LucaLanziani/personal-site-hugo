@@ -50,13 +50,13 @@ The light-emitting diodes in the breadboard we added to the breadboard provided 
 
 Turbo pascal was there for algorithms. We learned the differences between, while, for, and repeat until loops. We learned all the sorting algorithms, how to manipulate matrix, and recursion with the infamous [Tower of Hanoi](https://en.wikipedia.org/wiki/Tower_of_Hanoi) exercise.
 
-![Lazarus image, the interface is very similar to Borland Delphi](/static/Windows_2000.png)
-
 We would write code on paper during exams, and the teacher would also check and rate them on paper.
 
 ## Delphi and Visual Basic
 
 With Borland Delphi and Visual Basic we introduced OOP, and visual interface programming. Drag and drop together a quick interface to do basic things was straightforward.
+
+![Lazarus image, the interface is very similar to Borland Delphi](/static/Windows_2000.png)
 
 We learned about databases and SQL, how to write an ER diagram, and model data.
 
