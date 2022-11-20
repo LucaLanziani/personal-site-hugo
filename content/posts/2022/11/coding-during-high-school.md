@@ -12,7 +12,7 @@ twitter:
   description: "I started coding seriusly during high school, this is what they taught us"
 ---
 
-I started coding seriously during high school. I went to ITIS Leonardo Da Vinci in Viterbo (https://www.ittvt.edu.it/). It is a professional school meant to teach you a job, and it does.
+I started coding seriously during high school. I went to ITIS Leonardo Da Vinci in Viterbo (https://www.ittvt.edu.it/), a professional school meant to teach you a job, and it does.
 
 It taught us about physics, chemistry, system theory, advanced math, computer science, and electronics.
 
