@@ -21,7 +21,7 @@ I remember calculating system stability, how mixing sodium and water will cause 
 
 I went to that school because it was the only one having a computer programming class. We already had computer access during math hours in the first two years.
 
-We would get to the lab, take three 5.25 inches, insert the first two and use the first to start MS-DOS and the second to run turbo pascal; then we would remove the MS-DOS disk and insert the third to load and save our software.
+We would get to the lab, take three 5.25 inches floppy disks, insert the first two and use the first to start MS-DOS and the second to run turbo pascal; then we would remove the MS-DOS disk and insert the third to load and save our software.
 
 ![Floppy disk](/static/Floppy_disk_2009_G1.jpg)
 
