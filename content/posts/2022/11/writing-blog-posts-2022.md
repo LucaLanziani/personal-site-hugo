@@ -13,6 +13,8 @@ Every year, I promise to write at least one blog post a month, but EVERY SINGLE 
 
 It's not that I don't try; for example, I published four blog posts last year, and this is the fifth this year, but sooner or later, I give up.
 
+<!--more-->
+
 ## Excuses
 
 I found multiple excuses for this:
