@@ -59,3 +59,13 @@ time {
 .content-container {
     width: 1000px;
 }
+
+.post-navigation {
+    display: flex;
+    padding: 0 5%;
+}
+
+.previous-post {
+    margin-left: auto; 
+    margin-right: 0;
+}
