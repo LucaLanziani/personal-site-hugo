@@ -13,6 +13,9 @@ email = "mailto:luca+site@lanziani.com"
 twitter = "https://twitter.com/lucalanziani"
 github = "https://github.com/LucaLanziani"
 linkedin = "https://www.linkedin.com/in/lucalanziani/"
+mastodon = "https://mastodon.uno/@lucalanziani"
+youtube = "https://www.youtube.com/c/lucalanziani"
+
 
 [taxonomies]
 tag = "tags"

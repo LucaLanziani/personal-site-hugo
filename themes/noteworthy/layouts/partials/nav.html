@@ -1,6 +1,7 @@
 <!-- Sidebar navigation -->
 <nav>
   {{ partial "header.html" . }}
+  
   <div class="nav-menu">
   {{ range .Site.Menus.main }}
     <a class="color-link nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>

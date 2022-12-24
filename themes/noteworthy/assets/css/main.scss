@@ -471,6 +471,40 @@ nav {
     }
 }
 
+.social-header {
+    text-align: center;
+
+    .social-icons {
+        margin: 0 0 1.25em -.5em;
+    }
+
+    .social-icon {
+        padding: 0.3em 0.5em;
+        margin: 0.32em 0.1em;
+        display: inline-block;
+        height: 2em;
+        position: relative;
+    }
+
+    .social-icon>svg:hover {
+        fill: $gray-medium;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 0.95rem;
+        color: $gray-light;
+    }
+
+    a:visited {
+        color: $gray-light;
+    }
+
+    a:hover {
+        color: $gray-medium;
+    }
+}
+
 footer {
     text-align: center;
 
