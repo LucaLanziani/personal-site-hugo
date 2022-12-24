@@ -13,7 +13,7 @@ In my [latest post](https://lanziani.com/posts/2022/12/adventures-in-kubeland/) 
 
 As part of the process, I uploaded all the streams on Youtube. I uploaded the first video without thinking it through. Still, for the second, I decided that it would be good to have a thumbnail for the video, and **why would I do it manually if there is a way to automate it**?
 
-<!-- more -->
+<!--more-->
 
 I first designed the thumbnail using Inkscape and saved it as `thumbnail.svg`, the output is the image below:
 
