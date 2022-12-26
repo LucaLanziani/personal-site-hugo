@@ -6,7 +6,7 @@ Hello, I'm Luca, nice to meet you.
 
 {{< resize-image src="profile.jpg" alt="A picture of me" class="about-me" >}}
 
-I'm a Software Engineer based in Italy juggling being a dad and a Technical Director at [NearForm](https://nearform.com).
+I'm a Software Engineer based in Italy, a dad and the Head of DevOps and Platform Engineering at [NearForm](https://nearform.com).
 
 - Born as a Software Developer with a real passion for Linux.
 - I got interested in infrastructure and processes soon after the start of my professional career.
