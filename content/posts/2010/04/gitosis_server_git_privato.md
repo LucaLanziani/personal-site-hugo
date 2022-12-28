@@ -11,25 +11,25 @@ Ho necessita qualche volta di gestire in maniera flessibile lo sviluppo del soft
 
 <!--more-->
 
->Git is a free & open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+> Git is a free & open source, distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 Spesso per fare ciò mi affido a qualche servizio esterno ma avendo a disposizione un server personale mi sono chiesto, perché non sfruttarlo anche a questo scopo?
 
 Cercando ho trovato [gittosis] [2],
 
->gitosis aims to make hosting git repos easier and safer. It manages multiple repositories under one user account, using SSH keys to identify users. End users do not need shell accounts on the server, they will talk to one shared account that will not let them run arbitrary commands.
+> gitosis aims to make hosting git repos easier and safer. It manages multiple repositories under one user account, using SSH keys to identify users. End users do not need shell accounts on the server, they will talk to one shared account that will not let them run arbitrary commands.
 
 Ho distillato qui i passi per la configurazione prendendo spunto da questa [guida][3].
 
-Installare
-----------
+## Installare
 
 ### Archlinux way
 
 Per installare il software basterà lanciare sul server il semplice comando:
 
-	:::bash
-	yaourt -S gitosis-git gitosis-scripts
+```bash
+yaourt -S gitosis-git gitosis-scripts
+```
 
 In questo modo verranno installati il software con alcuni script aggiuntivi e inoltre verrà creato un utente “git” ed un gruppo omonimo.
 
@@ -37,32 +37,35 @@ In questo modo verranno installati il software con alcuni script aggiuntivi e in
 
 E' necessario installare il software e creare utente e gruppo a mano (l’utente deve avere una shell e una home ma non una password)
 
-Configurare
------------
+## Configurare
 
-__Sul vostro Client__ (il computer da cui sviluppate) create le chiavi ssh per il vostro utente con il comando:
+**Sul vostro Client** (il computer da cui sviluppate) create le chiavi ssh per il vostro utente con il comando:
 
-	:::bash
-	ssh-keygen -t rsa
+```bash
+ssh-keygen -t rsa
+```
 
 e copiate il file `~/.ssh/id_rsa.pub`, creato da quel comando, sul server.
 
-__Sul server__ tramite l’utente “git” (basterà diventare root e usare il comando su git, oppure usare sudo) lanceremo il comando:
+**Sul server** tramite l’utente “git” (basterà diventare root e usare il comando su git, oppure usare sudo) lanceremo il comando:
 
-	:::bash
-	gitosis-init < /tmp/id_rsa.pub
+```bash
+gitosis-init < /tmp/id_rsa.pub
+```
 
 Questo comando creerà le directory "gitosis" e "repositories" nella home dell'utente "git" e aggiungerà la chiave pubblica del client tra quelle autorizzate.
 
 Per una maggiore sicurezza è anche consigliato settare i permessi di esecuzione al file "post-update" con il comando:
 
-	:::bash
-	chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+```bash
+chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update
+```
 
 basterà ora lanciare sul client il comando:
 
-	:::bash
-	git clone git@YOUR_SERVER_HOSTNAME:gitosis-admin.git
+```bash
+git clone git@YOUR_SERVER_HOSTNAME:gitosis-admin.git
+```
 
 e dovreste trovarvi la directory "gitosis-admin" sincronizzata in locale.
 

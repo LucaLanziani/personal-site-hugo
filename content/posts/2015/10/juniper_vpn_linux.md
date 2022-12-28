@@ -12,10 +12,10 @@ Are you running a 64bit linux flavor and you are having problem to connect to a 
 
 I have the solution for you, it is [openconnect][1]:
 
-```
+```bash
 sudo openconnect --juniper https://endpoint
 ```
 
 that is it, wasn't it simple? ;).
- 
+
 [1]: http://www.infradead.org/openconnect/index.html
