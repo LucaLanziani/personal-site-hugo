@@ -1,19 +1,19 @@
 ---
-title: "My English"
+title: "English"
 date: 2023-01-15T23:20:00+02:00
 category: Language, English, UK
 tags: [Language, English, UK]
 email: luca@lanziani.com
 description: "How I learnt English"
 images:
-  - "https://lanziani.com/static/kubectl.png"
+  - "https://lanziani.com/static/RomeToLondon.png"
 ---
 
 TL;DR I move to London for a year.
 
 It has been more than nine years since I moved to London in November 2013.
 
-It was a couple of years since I got out of university and one of my biggest regrets was not knowing English as much as I wanted.
+It was a couple of years after I got out of university and one of my biggest regrets was not knowing English as much as I wanted.
 
 <!--more-->
 
@@ -52,7 +52,7 @@ I was lucky enough that the people in the office had no issue correcting me when
 
 ### Culture
 
-There were, this is not a joke, an American (the founder), a Portuguese, a German-Italian, a Polish, a Finish, a Greek, a French, and a bunch of English people in the office. It was crazy for me to experience all these cultures and accents; that was the other fantastic part of the experience.
+There were, this is not a joke, an American (the founder), a Portuguese, a German-Italian, a Polish, a Finish, a Greek, a French, and a bunch of English people in the office. It was crazy to experience all these cultures and accents; that was the other fantastic part of the experience.
 
 Communication aside from the language was also a challenge; everyone had different humor, and communication needed to be candid with someone but very different with others.
 
@@ -66,7 +66,7 @@ I spent more than a year in London. After six months, my English was good enough
 
 That was a clear signal that I had achieved what I wanted, I don't know when I started dreaming in English (many say that is the signal that you got it), but I was happy with my level. I could speak to people over the phone and go on with my life in London without significant impediments.
 
-I decided that it was time to move back to Italy, and luckily enough, [Matteo](https://nodeland.dev/) reached out to me to ask if I wanted to join [NearForm](https://nearform.com), the same company where I still work today.
+I decided it was time to move back to Italy, and luckily enough, [Matteo](https://nodeland.dev/) reached out to me to ask if I wanted to join [NearForm](https://nearform.com), the same company where I still work today.
 
 ## Nine years later
 
@@ -74,4 +74,4 @@ My English kept improving. I still spend most of my days reading, writing, speak
 
 At the same time, last week, I was in London and realized that I went back to having issues understanding people in a noisy environment; I believe that not traveling for the past two years and microphones and conference call software getting better made my brain regress on that.
 
-I suppose you cannot get it all, but I'm pleased with where I got, and I'll keep pushing to get better at it.
+I suppose you cannot get it all, but I'm pleased with where I got, and I'll keep pushing to get better at it. That is also one of the reasons I'm writing this blog post.
