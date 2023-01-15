@@ -17,7 +17,7 @@ It was a couple of years after I got out of university and one of my biggest reg
 
 <!--more-->
 
-In Italy, we study English in school; I did study English since middle school, but even if I like to think my understanding was pretty good (later, I realized that that was just true for movies and with the ideal environment), I wouldn't say the same for my speaking and writing.
+In Italy, we study English in school; I did study English from middle school to high school, but even if I like to think my understanding was pretty good (later, I realized that that was just true for movies and with the ideal environment), I wouldn't say the same for my speaking and writing.
 
 So in 2013 when the adventure in a small startup was over, I decided it was time to fix that.
 
