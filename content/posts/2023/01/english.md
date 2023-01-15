@@ -4,20 +4,20 @@ date: 2023-01-15T23:20:00+02:00
 category: Language, English, UK
 tags: [Language, English, UK]
 email: luca@lanziani.com
-description: "How I learnt English"
+description: "How I learned English"
 images:
   - "https://lanziani.com/static/RomeToLondon.png"
 ---
 
-TL;DR I move to London for a year.
-
 It has been more than nine years since I moved to London in November 2013.
 
-It was a couple of years after I got out of university and one of my biggest regrets was not knowing English as much as I wanted.
+It was a couple of years after I got out of university and one of my biggest regrets was not knowing English as well as I wanted.
+
+TL;DR I move to London for a year.
 
 <!--more-->
 
-In Italy, we study English in school; I did study English from middle school to high school, but even if I like to think my understanding was pretty good (later, I realized that that was just true for movies and with the ideal environment), I wouldn't say the same for my speaking and writing.
+In Italy, we study English in school; I studied English from middle school to high school, but even if I like to think my understanding was pretty good (later, I realized that that was just true for movies and with the ideal environment), I wouldn't say the same for my speaking and writing.
 
 So in 2013 when the adventure in a small startup was over, I decided it was time to fix that.
 
