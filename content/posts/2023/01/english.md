@@ -13,8 +13,6 @@ It has been more than nine years since I moved to London in November 2013.
 
 It was a couple of years after I got out of university and one of my biggest regrets was not knowing English as well as I wanted.
 
-TL;DR I move to London for a year.
-
 <!--more-->
 
 In Italy, we study English in school; I did English from middle school to high school, but even if I like to think my understanding was pretty good (later, I realized that that was just true for movies and with the ideal environment), I couldn't say the same for my speaking and writing.
