@@ -15,6 +15,10 @@ Let's look together at the functionalities that make Helm a package manager.
 
 <!--more-->
 
+During my [Adventures in Kubeland video series](https://youtube.com/playlist?list=PLZwNchkg1AfsdrZev2bH9B_4KXHxvJxJt), I'm going through the CNCF landscape tools; in one of the last episodes (full video below) I looked at Helm and was surprised to see the above definition on their website.
+
+{{< youtube vo5EQgIZCjU >}}
+
 ## Registries
 
 [Artifacthub](https://artifacthub.io/) is the central hub where one can find most Charts.
