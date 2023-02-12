@@ -17,7 +17,7 @@ A team or multiple teams deploy their applications in one of the environments, w
 
 The evolution I’ve seen is:
 
-> This is the first of a series of blog posts about Monitoring Dashboards; If you want to talk about this with me, you can find me on Twitter (Twitter post link) or LinkedIn (LinkedIn post Link).
+> This is the first of a series of blog posts about Monitoring Dashboards; If you want to talk about this with me, you can find me on [Twitter](https://twitter.com/lucalanziani/status/1624892620303466503) or [LinkedIn](https://www.linkedin.com/posts/activity-7030658527555694592-TVFg).
 
 At first, the team will install the provided Agent(s) in each component of the System (Applications, Platform, Cloud, OS, Mobile, etc), collect all possible metrics, and consume them using the default Dashboards provided by the Monitoring Software.
 
@@ -55,7 +55,7 @@ Like everything else in your System, they will evolve in time, what is relevant 
 
 One last thing, we can assume that the same metrics used in Status Dashboards can be used for alerting almost without changes.
 
-> Did I forget something? Reach out on Twitter or Linkedin and let's talk about it.
+> Did I forget something? Reach out on [Twitter](https://twitter.com/lucalanziani/status/1624892620303466503) or [LinkedIn](https://www.linkedin.com/posts/activity-7030658527555694592-TVFg) and let's talk about it.
 
 ### Bonus
 
@@ -63,4 +63,4 @@ Status dashboards can go beyond standard widgets. Below is one section of my hou
 
 ![home-monitoring](/static/monitoring/home-monitoring.png)
 
-> How many “Types” of dashboards do you think your team needs? Share your thoughts with me on Twitter (Twitter post link) or LinkedIn (LinkedIn post Link)
+> How many “Types” of dashboards do you think your team needs? Share your thoughts with me on [Twitter](https://twitter.com/lucalanziani/status/1624892620303466503) or [LinkedIn](https://www.linkedin.com/posts/activity-7030658527555694592-TVFg)
