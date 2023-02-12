@@ -43,7 +43,7 @@ Status dashboards will mostly contain simple widgets like Stats or Gauges (or so
 
 ![Grafana Stats and Gauges](/static/monitoring/simple-widgets.png)
 
-Metrics in the status pages should indicate the overall status of the system based on the KPI that you and the business consider necessary. Sometimes, if not most of the times, the default metrics are too low level to use in the status dashboard, and you’ll have to combine multiple metrics in a meaningful way.
+Metrics in the status pages should indicate the overall status of the system based on the KPI that you and the business consider necessary. Sometimes, if not most of the times, the default metrics are too low level to use in a Status Dashboard, and you’ll have to combine multiple metrics in a meaningful way.
 
 Also, the widgets above need tweaking to get the maximum out of them. Here is an example from my home automation dashboard where you can see two of the values (Max value and Thresholds) that you need to set:
 
