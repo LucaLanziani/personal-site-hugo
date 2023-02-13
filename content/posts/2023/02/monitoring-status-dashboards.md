@@ -17,6 +17,8 @@ A team or multiple teams deploy their applications in one of the environments, w
 
 The evolution I’ve seen is:
 
+<!--more-->
+
 > This is the first of a series of blog posts about Monitoring Dashboards; If you want to talk about this with me, you can find me on [Twitter](https://twitter.com/lucalanziani/status/1624892620303466503) or [LinkedIn](https://www.linkedin.com/posts/activity-7030658527555694592-TVFg).
 
 At first, the team will install the provided Agent(s) in each component of the System (Applications, Platform, Cloud, OS, Mobile, etc), collect all possible metrics, and consume them using the default Dashboards provided by the Monitoring Software.
