@@ -5,6 +5,7 @@ category: Status, Dashboards, Monitoring, Observability
 tags: [Status, Dashboards, Monitoring, Observability]
 email: luca@lanziani.com
 description: "How many types of Dashboards do you need?"
+series: [Monitoring, Dashboards]
 images:
   - "https://lanziani.com/static/monitoring/dashboards.jpg"
 ---
