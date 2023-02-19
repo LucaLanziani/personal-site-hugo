@@ -46,7 +46,7 @@ Naturally, Grafana [supports](https://grafana.com/docs/grafana/latest/panels-vis
 
 ---
 
-> **Do you have something like this in your company?** If so, please reach out to me; I would love to chat about it; you can find me on [Twitter](https://twitter.com/lucalanziani/status/1627440041843630081), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_a-new-blog-post-just-dropped-monitoring-activity-7033205738420211712-rBMW) or [Mastodon](https://mastodon.uno/@lucalanziani/109893839771327639).
+> **Do you have something like this in your company?** If so, please reach out to me; I would love to chat about it; you can find me on [Twitter](https://twitter.com/lucalanziani/status/1627441308867391492), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_monitoring-tt-dashboards-activity-7033207439365746688-VshX) or [Mastodon](https://mastodon.uno/@lucalanziani/109893839771327639).
 
 While it should be clear how the two examples above can be considered Troubleshooting dashboards, it’s also pretty clear how you don’t have any trends in there.
 
@@ -70,7 +70,7 @@ For the example above, we can test the hypothesis that it's us opening the windo
 
 Do you see it? It's pretty clear that we were correct in our assumption 😄.
 
-More complicated would prove why the humidity dropped in the last 10 days. Any guess? You can find me on [Twitter](https://twitter.com/lucalanziani/status/1627440041843630081), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_a-new-blog-post-just-dropped-monitoring-activity-7033205738420211712-rBMW) or [Mastodon](https://mastodon.uno/@lucalanziani/109893839771327639).
+More complicated would prove why the humidity dropped in the last 10 days. Any guess? You can find me on [Twitter](https://twitter.com/lucalanziani/status/1627441308867391492), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_monitoring-tt-dashboards-activity-7033207439365746688-VshX) or [Mastodon](https://mastodon.uno/@lucalanziani/109893839771327639)..
 
 Trend dashboards can be used for Troubleshooting, like finding the root cause of the problem but are also very useful for understanding how different parts of the system affect each other and how changes affect the system.
 
