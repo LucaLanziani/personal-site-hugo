@@ -32,7 +32,7 @@ After some time, they realize they might need different types of dashboards depe
 In time I identified at least three main types of dashboards
 
 1. Status dashboards
-2. Troubleshooting or Trends dashboards
+2. Troubleshooting and Trends dashboards
 3. Alerting dashboards
 
 Let’s look at them and see what it should be in each one of them and when you should use them.
