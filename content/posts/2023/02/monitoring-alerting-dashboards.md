@@ -53,7 +53,7 @@ My view for Alerting Dashboards is the following; they should:
 - (BONUS) Allow smart notifications.
 - (BONUS) Integrate with external systems and keep track of all the actions happening.
 
-Should I include something else in the above list? Let me know via [Twitter](https://twitter.com/lucalanziani/status/1624892620303466503), [LinkedIn](https://www.linkedin.com/posts/activity-7030658527555694592-TVFg) and Mastodon.
+Should I include something else in the above list? Let me know via [Twitter](https://twitter.com/lucalanziani/status/1629978419885752322), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_bloggingatmidnight-activity-7035744111638814720-lUgF) and [Mastodon](https://mastodon.uno/@lucalanziani/109933501753792579).
 
 ## Why?
 
@@ -75,4 +75,4 @@ Imagine for a second you have a dashboard with the above capabilities. Wouldn't 
 
 I’ll leave you with a question, should alerts disappear if the condition that triggered them is not met anymore, or should they stay visible until an operator decides to remove them?
 
-> if you want to talk more about Alerts you can find me on Twitter, LinkedIn and Mastodon.
+> if you want to talk more about Alerts you can find me on [Twitter](https://twitter.com/lucalanziani/status/1629978419885752322), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_bloggingatmidnight-activity-7035744111638814720-lUgF) and [Mastodon](https://mastodon.uno/@lucalanziani/109933501753792579).
