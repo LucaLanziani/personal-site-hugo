@@ -7,7 +7,7 @@ email: luca@lanziani.com
 description: "Path to Production - start of a new series"
 series: ["Path to Production"]
 images:
-  - "https://lanziani.com/static/pathtoproduction/PathToProduction.png"
+  - "https://lanziani.com/static/pathtoproduction/pathToProdColored.jpg"
 ---
 
 You may have heard of Release Management, which refers to the process of managing, planning, scheduling, and controlling software builds through various stages and environments. This includes testing and deploying software releases.
