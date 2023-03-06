@@ -45,3 +45,5 @@ These are almost exactly the topics we will be covering, so get ready for an int
 Next week, we will discuss the local development environment (i.e., your workstation).
 
 ![BrainToLaptop](/static/pathtoproduction/BrainToLaptop.png)
+
+> You want to talk about this? You can find me on [Twitter](https://twitter.com/lucalanziani/status/1632720255641432064), [LinkedIn](https://www.linkedin.com/posts/lucalanziani_path-to-production-intro-activity-7038550696211738624-gR2p) or [Mastodon](https://mastodon.uno/@lucalanziani/109976766506300937).
