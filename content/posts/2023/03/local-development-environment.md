@@ -92,7 +92,7 @@ We should be able to move from one to another depending on how many projects we 
 
 Now let's assume we are working on the Frontend code. We might need to run the rest of the components to test new functionalities, which implies replicating one of the above environments as much as possible.
 
-But how do you run the other components?
+But how do we run the other components?
 
 - Serverless framework
 - Kubernetes (Kind)
@@ -126,7 +126,7 @@ Easy you’ll say, we’ll write some tests and use [Test Driven Development](ht
 
 Are we done?
 
-Can we be sure that what we just did in your workstation will work the same on CI?
+Can we be sure that what we just did in our workstation will work the same on CI?
 
 How many times have we said, “it works in my machine”?
 
@@ -136,7 +136,7 @@ Getting close includes the version of the code, tools, extra components, platfor
 
 ## Ok then, what do we do?
 
-There is no silver bullet, this post is only here to make us realize that we might spend most of your team's effort setting up the perfect CI/Staging/Production environment. Still, someone joining our team will have to figure out all the above themselves if no one focuses on making local development easy.
+There is no silver bullet, this post is only here to make us realize that we might spend most of our team's effort setting up the perfect CI/Staging/Production environment. Still, someone joining our team will have to figure out all the above themselves if no one focuses on making local development easy.
 
 Some companies approach the problem with remote development environments like gitpod, github codespaces, etc.
 They remove the burden from the developers to keep up to date the environments and shift the responsibility to different teams that will keep these remote environments updated for us.
