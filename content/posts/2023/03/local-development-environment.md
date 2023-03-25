@@ -147,4 +147,4 @@ Every person will have their preferred way of building, and "We want to remove m
 
 ## Next
 
-In the next post we will explore talk about moving our code from Developer Environment to CVS. Stay tuned.
+In the next post we will explore talk about moving our code from Developer Environment to VCS. Stay tuned.
