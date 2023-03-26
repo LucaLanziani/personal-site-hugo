@@ -22,29 +22,27 @@ Move forward 22 years, and we are in complete different environment.
 
 The machine I’m writing this blog post from is from 2017; specs below:
 
-```bash
-                   -`                    lucalanziani@thinarch470 
-                  .o+`                   ------------------------ 
-                 `ooo/                   OS: Arch Linux x86_64 
-                `+oooo:                  Host: 20HDCTO1WW ThinkPad T470 
-               `+oooooo:                 Kernel: 6.2.2-arch1-1 
-               -+oooooo+:                Uptime: 3 days, 12 hours, 33 mins 
-             `/:-:++oooo+:               Packages: 1843 (pacman), 33 (flatpak) 
-            `/++++/+++++++:              Shell: zsh 5.9 
-           `/++++++++++++++:             Resolution: 1920x1080 
-          `/+++ooooooooooooo/`           WM: i3 
-         ./ooosssso++osssssso+`          Theme: Breeze [GTK2/3] 
-        .oossssso-````/ossssss+`         Icons: breeze [GTK2/3] 
-       -osssssso.      :ssssssso.        Terminal: terminator 
-      :osssssss/        osssso+++.       CPU: Intel i7-7600U (4) @ 3.900GHz 
-     /ossssssss/        +ssssooo/-       GPU: Intel HD Graphics 620 
-   `/ossssso+/:-        -:/+osssso+-     Memory: 6019MiB / 31849MiB 
+`````bash
+                   -`                    lucalanziani@thinarch470
+                  .o+`                   ------------------------
+                 `ooo/                   OS: Arch Linux x86_64
+                `+oooo:                  Host: 20HDCTO1WW ThinkPad T470
+               `+oooooo:                 Kernel: 6.2.2-arch1-1
+               -+oooooo+:                Uptime: 3 days, 12 hours, 33 mins
+             `/:-:++oooo+:               Packages: 1843 (pacman), 33 (flatpak)
+            `/++++/+++++++:              Shell: zsh 5.9
+           `/++++++++++++++:             Resolution: 1920x1080
+          `/+++ooooooooooooo/`           WM: i3
+         ./ooosssso++osssssso+`          Theme: Breeze [GTK2/3]
+        .oossssso-````/ossssss+`         Icons: breeze [GTK2/3]
+       -osssssso.      :ssssssso.        Terminal: terminator
+      :osssssss/        osssso+++.       CPU: Intel i7-7600U (4) @ 3.900GHz
+     /ossssssss/        +ssssooo/-       GPU: Intel HD Graphics 620
+   `/ossssso+/:-        -:/+osssso+-     Memory: 6019MiB / 31849MiB
   `+sso+:-`                 `.-/+oso:
- `++:.                           `-/+/                           
+ `++:.                           `-/+/
  .`                                 `/
-```
-
- 
+`````
 
 This machine served me well for the past five years, and it still going strong, [but I had to adapt](https://lanziani.com/posts/2022/03/local-remote-workstation-setup/).
 

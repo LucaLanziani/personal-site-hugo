@@ -8,6 +8,10 @@ img.about-me {
     border: 4px solid rgb(100, 100, 100);
 }
 
+strong {
+    color: rgb(51, 51, 51);
+}
+
 time {
     display: block;
     text-align: center;
@@ -24,6 +28,7 @@ time {
     .post-title {
         font-size: 44px;
     }
+
     /* Target devices narrower than 768px. */
 }
 
@@ -35,6 +40,7 @@ time {
     .description {
         margin-bottom: 0.5em;
     }
+
     /* Target devices narrower than 768px. */
 }
 
@@ -66,7 +72,7 @@ time {
 }
 
 .previous-post {
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: 0;
 }
 
