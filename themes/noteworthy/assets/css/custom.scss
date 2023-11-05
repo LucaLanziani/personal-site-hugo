@@ -58,6 +58,12 @@ time {
 
 }
 
+@media (max-width: 460px) {
+    #main-content {
+        padding: 0 20px;
+    }
+}
+
 
 .post {
     font-size: 19.9px;
