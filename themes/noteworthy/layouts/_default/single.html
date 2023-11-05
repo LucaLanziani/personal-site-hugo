@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ partial "social.html" . }}
 {{ if .Date }}
 <time>{{ .Date.Format "January 2, 2006" }}</time>
 {{ end }}

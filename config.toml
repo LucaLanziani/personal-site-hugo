@@ -9,13 +9,13 @@ math = true
 description = "Stories from an Italian Software Engineer"
 profilePicture = "images/profile.jpg"
 showReadMore = true
+linkedin = "https://www.linkedin.com/in/lucalanziani/"
 email = "mailto:luca+site@lanziani.com"
 twitter = "https://twitter.com/lucalanziani"
 github = "https://github.com/LucaLanziani"
-linkedin = "https://www.linkedin.com/in/lucalanziani/"
-mastodon = "https://mastodon.uno/@lucalanziani"
-youtube = "https://www.youtube.com/c/lucalanziani"
-twitch = "https://www.twitch.tv/lucalanziani"
+#mastodon = "https://mastodon.uno/@lucalanziani"
+#youtube = "https://www.youtube.com/c/lucalanziani"
+# twitch = "https://www.twitch.tv/lucalanziani"
 
 
 [taxonomies]
@@ -30,8 +30,8 @@ weight = 1
 
 # Menu links along the sidebar navigation.
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
+identifier = "blog"
+name = "Blog"
+url = "/posts/"
 weight = 2 # Weight is an integer used to sort the menu items. The sorting goes from smallest to largest numbers. If weight is not defined for each menu entry, Hugo will sort the entries alphabetically.
 

@@ -1,11 +1,17 @@
 $twitter-link: rgb(26, 138, 212);
 
 img.about-me {
-    float: right;
-    width: 5em;
-    // border-radius: 50%;
-    margin: 2px 1px 2px 5px;
-    border: 4px solid rgb(100, 100, 100);
+    width: 6.5em;
+    border-radius: 50%;
+    margin: 1.2em auto;
+    transition: transform .3s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img.about-me:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 24px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20%;
 }
 
 strong {
@@ -17,6 +23,9 @@ time {
     text-align: center;
 }
 
+.align-center {
+    text-align: center;
+}
 
 .post-title {
     padding-top: 0;
