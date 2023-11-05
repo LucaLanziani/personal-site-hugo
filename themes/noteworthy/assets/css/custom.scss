@@ -38,7 +38,9 @@ time {
         font-size: 44px;
     }
 
-    /* Target devices narrower than 768px. */
+    .about-content {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -50,8 +52,12 @@ time {
         margin-bottom: 0.5em;
     }
 
-    /* Target devices narrower than 768px. */
+    .list-title {
+        text-align: center;
+    }
+
 }
+
 
 .post {
     font-size: 19.9px;

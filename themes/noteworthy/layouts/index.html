@@ -1,11 +1,12 @@
 {{ define "main" }}
 <div class = "article-content">
     {{ with .Site.GetPage "page" "about" }}
-    <h1 class="post-title">{{ .Title }}</h1>
-    <div class="post align-center">
+    <div class="about align-center">
         <img class="about-me" src="/about/profile.jpg" alt="A picture of me">
         {{ partial "social.html" . }}
-        <p>{{ .Content }}</p>
+        <div class="about-content">
+            <p>{{ .Content }}</p>
+        </div>
     </div>
     {{ end }}
 </div>
