@@ -107,3 +107,19 @@ img {
 .twitter-tweet {
     margin: 1.0rem auto;
 }
+
+.social-icon[title="LinkedIn"] > svg:hover {
+    fill: #0077B5;
+}
+
+.social-icon[title="GitHub"] > svg:hover {
+    fill: black;
+}
+
+.social-icon[title="Twitter"] > svg:hover {
+    fill: #1DA1F2;
+}
+
+.social-icon[title="Email"] > svg:hover {
+    fill: #8a90c7;
+}
