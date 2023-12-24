@@ -2,7 +2,7 @@
 title: "Monitoring - T&T Dashboards"
 date: 2023-02-19T23:50:00+02:00
 category: Status, Dashboards, Monitoring, Observability
-tags: [Status, Dashboards, Monitoring, Observability]
+tags: [Status, Dashboards, Monitoring, Observability, SRE]
 email: luca@lanziani.com
 description: "T&T Dashboards, get a deeper understanding of your system"
 series: [Monitoring, Dashboards]

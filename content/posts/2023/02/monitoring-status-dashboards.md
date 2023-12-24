@@ -2,7 +2,7 @@
 title: "Monitoring - Status Dashboards"
 date: 2023-02-12T23:00:00+02:00
 category: Status, Dashboards, Monitoring, Observability
-tags: [Status, Dashboards, Monitoring, Observability]
+tags: [Status, Dashboards, Monitoring, Observability, SRE]
 email: luca@lanziani.com
 description: "How many types of Dashboards do you need?"
 series: [Monitoring, Dashboards]

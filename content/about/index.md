@@ -6,6 +6,6 @@ Working remotely since 2015
 
 Head of DevOps and Platform Engineering
 
-DevOps | Platform Engineering | Site Reliability
+[DevOps](/tags/devops/) | Platform Engineering | [Site Reliability](/tags/SRE)
 
 
