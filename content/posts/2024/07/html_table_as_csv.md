@@ -1,10 +1,10 @@
 ---
-title: "Copy an HTML table as csv"
+title: "Copy an HTML table as CSV"
 date: 2024-07-04T11:24:44+02:00
 category: automation, general
 tags: [html, bookmarklet]
 email: luca@lanziani.com
-description: "Get an HTML table values as csv"
+description: "Get an HTML table values as CSV"
 series: []
 ---
 
