@@ -1,0 +1,3 @@
+/github https://github.dev/LucaLanziani
+/github/* https://github.dev/LucaLanziani/:splat
+/go/* https://github.dev/LucaLanziani/:splat
