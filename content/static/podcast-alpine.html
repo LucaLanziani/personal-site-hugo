@@ -1079,6 +1079,7 @@ header p {
                                     <div class="segment-controls">
                                         <button @click="playSegment(segment.id)" class="btn btn-tiny">▶️</button>
                                         <button @click="downloadSegment(segment.id)" class="btn btn-tiny">💾</button>
+                                        <button @click="deleteSegment(segment.id)" class="btn btn-tiny" title="Delete this segment">🗑️</button>
                                     </div>
                                 </div>
                             </template>
@@ -2653,6 +2654,73 @@ document.addEventListener('alpine:init', () => {
             } catch (error) {
                 console.error('Error downloading segment:', error);
                 alert('Error downloading segment. Please try again.');
+            }
+        },
+
+        async deleteSegment(segmentId) {
+            if (!this.currentEpisode || !this.currentEpisode.segments) {
+                alert('No episode or segments found');
+                return;
+            }
+
+            // Find the segment to get its details for confirmation
+            const segment = this.currentEpisode.segments.find(s => s.id === segmentId);
+            if (!segment) {
+                alert('Segment not found');
+                return;
+            }
+
+            const segmentIndex = this.currentEpisode.segments.indexOf(segment) + 1;
+            const confirmMessage = `Are you sure you want to delete Segment ${segmentIndex}?\n\nDuration: ${segment.duration}\nSize: ${(segment.size / (1024 * 1024)).toFixed(1)}MB\n\nThis action cannot be undone.`;
+            
+            if (!confirm(confirmMessage)) {
+                return;
+            }
+
+            try {
+                // Remove segment from storage
+                const segmentKey = `${this.currentEpisode.id}_segment_${segmentId}`;
+                await this.recordingStorage.deleteRecording(segmentKey);
+                console.log(`Deleted segment recording: ${segmentKey}`);
+
+                // Remove segment from episode data
+                const segmentIndex = this.currentEpisode.segments.findIndex(s => s.id === segmentId);
+                if (segmentIndex !== -1) {
+                    this.currentEpisode.segments.splice(segmentIndex, 1);
+                }
+
+                // Recalculate episode duration and size
+                if (this.currentEpisode.segments.length > 0) {
+                    // Calculate total size across remaining segments
+                    const totalSize = this.currentEpisode.segments.reduce((sum, seg) => sum + seg.size, 0);
+                    const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
+                    const segmentCount = this.currentEpisode.segments.length;
+                    
+                    this.recordingSize = `${segmentCount} segment${segmentCount > 1 ? 's' : ''} | Total size: ${sizeInMB} MB`;
+                    
+                    // Episode still has recording if segments remain
+                    this.currentEpisode.hasRecording = true;
+                } else {
+                    // No segments left, episode has no recording
+                    this.currentEpisode.hasRecording = false;
+                    this.recordingSize = '';
+                    
+                    // Hide audio preview if no segments remain
+                    const audioPreview = document.getElementById('audioPreview');
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    if (audioPreview) audioPreview.style.display = 'none';
+                    if (downloadBtn) downloadBtn.classList.add('hidden');
+                }
+
+                // Save updated episode
+                this.saveEpisode();
+                
+                console.log(`Successfully deleted segment ${segmentId}`);
+                alert(`Segment ${segmentIndex + 1} has been deleted successfully.`);
+
+            } catch (error) {
+                console.error('Error deleting segment:', error);
+                alert('Error deleting segment. Please try again.');
             }
         },
 
