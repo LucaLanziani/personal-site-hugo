@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast Recorder</title>
+    <style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+}
+
+.btn-record {
+    background: #dc3545;
+    color: white;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+}
+
+.btn-record:hover {
+    background: #c82333;
+}
+
+.btn-pause {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-pause:hover {
+    background: #e0a800;
+}
+
+.btn-resume {
+    background: #28a745;
+    color: white;
+}
+
+.btn-resume:hover {
+    background: #1e7e34;
+}
+
+.btn-stop {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-stop:hover {
+    background: #545b62;
+}
+
+.btn-timestamp {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-timestamp:hover {
+    background: #138496;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #1e7e34;
+}
+
+/* Sections */
+.episode-section,
+.recording-section {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Episode Controls */
+.episode-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.episode-name,
+#episodeName {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.episode-name:focus,
+#episodeName:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Episodes List */
+.episodes-list {
+    display: grid;
+    gap: 15px;
+}
+
+.episode-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    transition: all 0.3s ease;
+}
+
+.episode-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.episode-info h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.episode-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.episode-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Current Episode */
+.current-episode {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.current-episode h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.episode-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Recording Controls */
+.recording-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* Recording Status */
+.recording-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.recording-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6c757d;
+    transition: all 0.3s ease;
+}
+
+.status-dot.recording {
+    background: #dc3545;
+    animation: pulse 1.5s infinite;
+}
+
+.status-dot.paused {
+    background: #ffc107;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.recording-timer {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Audio Meter */
+.audio-meter {
+    margin-bottom: 20px;
+}
+
+.audio-meter label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+.meter-container {
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.meter-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745 0%, #ffc107 70%, #dc3545 100%);
+    width: 0%;
+    transition: width 0.1s ease;
+    border-radius: 10px;
+}
+
+/* Audio Controls */
+.audio-controls {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.audio-input-section,
+.audio-volume-section {
+    margin-bottom: 15px;
+}
+
+.audio-input-section label,
+.audio-volume-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.audio-input-select {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: white;
+    margin-right: 10px;
+    min-width: 200px;
+}
+
+.audio-input-select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.audio-input-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+}
+
+.audio-input-section label {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    background: #0056b3;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    background: #0056b3;
+}
+
+.volume-value {
+    font-weight: 600;
+    color: #333;
+    min-width: 45px;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.audio-info {
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.audio-source-info {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Timestamps Section */
+.timestamps-section {
+    margin-bottom: 30px;
+}
+
+.timestamps-section h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.timestamp-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+#timestampNote {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px 14px;
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+#timestampNote:focus {
+    outline: none;
+    border-color: #17a2b8;
+}
+
+.timestamps-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.timestamp-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+    transition: background 0.3s ease;
+}
+
+.timestamp-item:last-child {
+    border-bottom: none;
+}
+
+.timestamp-item:hover {
+    background: #e9ecef;
+}
+
+.timestamp-time {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #17a2b8;
+    min-width: 80px;
+}
+
+.timestamp-note {
+    flex: 1;
+    margin-left: 15px;
+    color: #333;
+}
+
+.timestamp-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+/* Recording Preview */
+.recording-preview {
+    margin-bottom: 30px;
+}
+
+.recording-preview h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.recording-info {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Episode Actions */
+.episode-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .recording-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .recording-status {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .episode-controls,
+    .timestamp-controls {
+        flex-direction: column;
+    }
+    
+    #episodeName,
+    #timestampNote {
+        min-width: 100%;
+    }
+    
+    .episode-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .episode-actions {
+        justify-content: flex-start;
+    }
+    
+    .audio-input-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .audio-input-select {
+        margin-right: 0;
+        margin-bottom: 10px;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .episode-section,
+    .recording-section {
+        padding: 20px;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-record {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for smooth transitions */
+.recording-section,
+.episode-section {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Recording Segments Visualization */
+.segments-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.segments-container h4 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.segments-container h4::before {
+    content: "🎵";
+    font-size: 1.2rem;
+}
+
+.segments-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.segment-track {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 60px;
+}
+
+.segment-track:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.segment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 120px;
+    margin-right: 15px;
+}
+
+.segment-number {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.segment-duration {
+    font-size: 0.8rem;
+    color: #666;
+    font-family: 'Courier New', monospace;
+}
+
+.segment-size {
+    font-size: 0.75rem;
+    color: #888;
+    font-style: italic;
+}
+
+.segment-waveform {
+    flex: 1;
+    height: 40px;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waveform-bars {
+    display: flex;
+    align-items: end;
+    gap: 2px;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+}
+
+.wave-bar {
+    flex: 1;
+    background: linear-gradient(to top, 
+        rgba(255, 255, 255, 0.8) 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0.4) 100%);
+    border-radius: 1px;
+    min-height: 4px;
+    animation: wave-pulse 2s ease-in-out infinite;
+}
+
+@keyframes wave-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.segment-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.btn-tiny {
+    padding: 6px 8px;
+    font-size: 0.8rem;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.btn-tiny:hover {
+    background: white;
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-ruler {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+}
+
+.time-mark {
+    font-size: 0.75rem;
+    color: #666;
+    font-family: 'Courier New', monospace;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+}
+
+.audio-preview-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design for segments */
+@media (max-width: 768px) {
+    .segment-track {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .segment-info {
+        margin-right: 0;
+        min-width: auto;
+    }
+    
+    .segment-waveform {
+        margin: 8px 0;
+        height: 30px;
+    }
+    
+    .waveform-bars {
+        max-width: none;
+    }
+    
+    .segment-controls {
+        justify-content: center;
+    }
+    
+    .timeline-ruler {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+    </style>
+    <!-- Alpine.js for reactive data binding -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="$store.podcastRecorder" x-init="init()">
+    <div class="container">
+        <header>
+            <h1>🎙️ Podcast Recorder</h1>
+            <p>Record your podcast episodes with timestamp markers</p>
+        </header>
+
+        <main>
+            <!-- Episode Selection/Creation -->
+            <section class="episode-section" x-show="!showRecordingSection">
+                <h2>Episodes</h2>
+                <div class="episode-controls">
+                    <input 
+                        type="text"
+                        class="episode-name"
+                        x-model="episodeName"
+                        @keyup.enter="startNewEpisode()"
+                        placeholder="Episode name (e.g., Episode 1: Introduction)" 
+                        maxlength="100">
+                    <button @click="startNewEpisode()" class="btn btn-primary">Start New Episode</button>
+                </div>
+                
+                <div class="episodes-list">
+                    <template x-if="episodes.length === 0">
+                        <p style="text-align: center; color: #666; padding: 20px;">
+                            No episodes recorded yet. Start your first episode!
+                        </p>
+                    </template>
+                    
+                    <template x-for="episode in episodes" :key="episode.id">
+                        <div class="episode-item">
+                            <div class="episode-info">
+                                <h3 x-text="episode.name"></h3>
+                                <p>
+                                    <span x-text="new Date(episode.date).toLocaleDateString()"></span>
+                                    • Duration: <span x-text="formatTime(episode.duration || 0)"></span>
+                                    • <span x-text="(episode.timestamps || []).length"></span> timestamps
+                                </p>
+                            </div>
+                            <div class="episode-actions">
+                                <button @click="continueEpisode(episode.id)" class="btn btn-small btn-primary">Continue</button>
+                                <button @click="viewEpisode(episode.id)" class="btn btn-small btn-secondary">View</button>
+                                <button @click="deleteEpisode(episode.id)" class="btn btn-small">Delete</button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </section>
+
+            <!-- Recording Interface -->
+            <section class="recording-section" x-show="showRecordingSection" x-transition>
+                <div class="current-episode">
+                    <h2 x-text="currentEpisode?.name || 'Current Episode'"></h2>
+                    <p class="episode-date" x-text="currentEpisodeDate"></p>
+                </div>
+
+                <!-- Recording Controls -->
+                <div class="recording-controls">
+                    <button 
+                        x-show="recordingControls.showStart" 
+                        @click="startRecording()" 
+                        class="btn btn-record">
+                        <span class="icon">⏺️</span>
+                        Start Recording
+                    </button>
+                    <button 
+                        x-show="recordingControls.showPause" 
+                        @click="pauseRecording()" 
+                        class="btn btn-pause">
+                        <span class="icon">⏸️</span>
+                        Pause
+                    </button>
+                    <button 
+                        x-show="recordingControls.showResume" 
+                        @click="resumeRecording()" 
+                        class="btn btn-resume">
+                        <span class="icon">▶️</span>
+                        Resume
+                    </button>
+                    <button 
+                        x-show="recordingControls.showStop" 
+                        @click="stopRecording()" 
+                        class="btn btn-stop">
+                        <span class="icon">⏹️</span>
+                        Stop Recording
+                    </button>
+                </div>
+
+                <!-- Recording Status -->
+                <div class="recording-status">
+                    <div class="recording-indicator">
+                        <span :class="statusDotClass"></span>
+                        <span x-text="statusText"></span>
+                    </div>
+                    <div class="recording-timer" x-text="recordingTimer"></div>
+                </div>
+
+                <!-- Audio Level Meter -->
+                <div class="audio-meter">
+                    <label>Audio Level:</label>
+                    <div class="meter-container">
+                        <div class="meter-bar" :style="`width: ${audioLevel}%`"></div>
+                    </div>
+                    <span class="audio-level-text" x-text="audioLevelPercentage"></span>
+                </div>
+
+                <!-- Audio Input Controls -->
+                <div class="audio-controls">
+                    <div class="audio-input-section">
+                        <label for="audioInputSelect">Audio Input Source:</label>
+                        <select 
+                            x-model="selectedDeviceId"
+                            @change="changeAudioInput()"
+                            class="audio-input-select">
+                            <option value="">Select microphone...</option>
+                            <template x-for="device in availableDevices" :key="device.id">
+                                <option :value="device.id" x-text="device.label"></option>
+                            </template>
+                        </select>
+                        <button 
+                            @click="refreshAudioInputs()"
+                            :disabled="isRefreshingDevices"
+                            class="btn btn-small btn-secondary"
+                            x-text="isRefreshingDevices ? '🔄 Loading...' : '🔄 Refresh'">
+                        </button>
+                    </div>
+                    
+                    <div class="audio-volume-section">
+                        <label for="inputVolume">Input Volume:</label>
+                        <div class="volume-control">
+                            <input 
+                                type="range" 
+                                x-model="inputVolume"
+                                @input="updateInputVolume()"
+                                class="volume-slider" 
+                                min="0" 
+                                max="100" 
+                                step="1">
+                            <span class="volume-value" x-text="volumeDisplay"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-info">
+                        <span class="audio-source-info" x-text="currentDeviceName"></span>
+                    </div>
+                </div>
+
+                <!-- Timestamps -->
+                <div class="timestamps-section">
+                    <h3>Timestamps</h3>
+                    <div class="timestamp-controls">
+                        <input 
+                            type="text"
+                            id="timestampNote"
+                            @keyup.enter="addTimestamp()"
+                            placeholder="Add a note for this timestamp..." 
+                            maxlength="200">
+                        <button 
+                            @click="addTimestamp()" 
+                            :disabled="!recordingControls.showTimestamp"
+                            class="btn btn-secondary"
+                            :class="{ 'hidden': !recordingControls.showTimestamp }">
+                            Add Timestamp
+                        </button>
+                    </div>
+                    <div class="timestamps-list">
+                        <template x-if="timestamps.length === 0">
+                            <p style="text-align: center; color: #666; padding: 20px;">
+                                No timestamps added yet.
+                            </p>
+                        </template>
+                        
+                        <template x-for="timestamp in timestamps" :key="timestamp.id">
+                            <div class="timestamp-item">
+                                <span class="timestamp-time" x-text="timestamp.timeString"></span>
+                                <span class="timestamp-note" x-text="timestamp.note"></span>
+                                <div class="timestamp-actions">
+                                    <button @click="editTimestamp(timestamp.id)" class="btn btn-small btn-secondary">Edit</button>
+                                    <button @click="deleteTimestamp(timestamp.id)" class="btn btn-small">Delete</button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Recording Preview -->
+                <div class="recording-preview">
+                    <h3>Recording Preview</h3>
+                    
+                    <!-- Segments Visualization -->
+                    <div class="segments-container" x-show="currentEpisode && currentEpisode.segments && currentEpisode.segments.length > 0">
+                        <h4>Recording Segments</h4>
+                        <div class="segments-timeline">
+                            <template x-for="(segment, index) in (currentEpisode?.segments || [])" :key="segment.id">
+                                <div class="segment-track" 
+                                     :style="`background: linear-gradient(45deg, hsl(${(index * 60) % 360}, 70%, 85%), hsl(${(index * 60 + 30) % 360}, 70%, 75%));`">
+                                    <div class="segment-info">
+                                        <span class="segment-number" x-text="`Segment ${index + 1}`"></span>
+                                        <span class="segment-duration" x-text="segment.duration"></span>
+                                        <span class="segment-size" x-text="`${(segment.size / (1024 * 1024)).toFixed(1)}MB`"></span>
+                                    </div>
+                                    <div class="segment-waveform">
+                                        <!-- Visual representation of audio -->
+                                        <div class="waveform-bars">
+                                            <template x-for="bar in 20" :key="bar">
+                                                <div class="wave-bar" 
+                                                     :style="`height: ${Math.random() * 80 + 20}%; animation-delay: ${bar * 0.1}s;`">
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                    <div class="segment-controls">
+                                        <button @click="playSegment(segment.id)" class="btn btn-tiny">▶️</button>
+                                        <button @click="downloadSegment(segment.id)" class="btn btn-tiny">💾</button>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        
+                        <!-- Timeline ruler -->
+                        <div class="timeline-ruler">
+                            <template x-for="mark in Math.ceil((currentEpisode?.duration || 0) / 60000)" :key="mark">
+                                <div class="time-mark">
+                                    <span x-text="`${mark}m`"></span>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <!-- Traditional audio preview (for single recordings or latest segment) -->
+                    <div class="audio-preview-section">
+                        <audio id="audioPreview" controls style="display: none; width: 100%;"></audio>
+                        <div class="recording-info" x-text="recordingSize"></div>
+                    </div>
+                </div>
+
+                <!-- Episode Actions -->
+                <div class="episode-actions">
+                    <button 
+                        id="downloadBtn" 
+                        @click="downloadRecording()" 
+                        class="btn btn-success hidden">
+                        <span class="icon">💾</span>
+                        Download Recording
+                    </button>
+                    <button @click="backToEpisodes()" class="btn btn-secondary">
+                        <span class="icon">📋</span>
+                        Back to Episodes
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Permission Modal -->
+        <div 
+            class="modal" 
+            :class="{ 'hidden': !showPermissionModal }"
+            x-show="showPermissionModal" 
+            x-transition>
+            <div class="modal-content">
+                <h3>Microphone Permission Required</h3>
+                <p>This app needs access to your microphone to record audio. Please allow microphone access when prompted.</p>
+                <button @click="audioManager.requestMicrophonePermission()" class="btn btn-primary">Request Permission</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+class RecordingStorage {
+    constructor() {
+        this.dbName = 'PodcastRecorderDB';
+        this.dbVersion = 1;
+        this.db = null;
+    }
+
+    async initialize() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(this.dbName, this.dbVersion);
+
+            request.onerror = () => {
+                console.error('Failed to open IndexedDB:', request.error);
+                reject(request.error);
+            };
+
+            request.onsuccess = () => {
+                this.db = request.result;
+                console.log('IndexedDB initialized successfully');
+                resolve();
+            };
+
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                
+                // Create object store for recordings
+                if (!db.objectStoreNames.contains('recordings')) {
+                    const recordingsStore = db.createObjectStore('recordings', { keyPath: 'episodeId' });
+                    recordingsStore.createIndex('episodeId', 'episodeId', { unique: true });
+                }
+            };
+        });
+    }
+
+    async saveRecording(episodeId, audioBlob) {
+        if (!this.db) {
+            console.warn('IndexedDB not initialized, cannot save recording');
+            return false;
+        }
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['recordings'], 'readwrite');
+            const store = transaction.objectStore('recordings');
+            
+            const recordingData = {
+                episodeId: episodeId,
+                audioBlob: audioBlob,
+                savedAt: new Date().toISOString(),
+                size: audioBlob.size
+            };
+
+            const request = store.put(recordingData);
+
+            request.onsuccess = () => {
+                console.log(`Recording saved for episode ${episodeId}, size: ${(audioBlob.size / 1024 / 1024).toFixed(2)} MB`);
+                resolve(true);
+            };
+
+            request.onerror = () => {
+                console.error('Failed to save recording:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    async getRecording(episodeId) {
+        if (!this.db) {
+            console.warn('IndexedDB not initialized, cannot get recording');
+            return null;
+        }
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['recordings'], 'readonly');
+            const store = transaction.objectStore('recordings');
+            const request = store.get(episodeId);
+
+            request.onsuccess = () => {
+                if (request.result) {
+                    console.log(`Recording retrieved for episode ${episodeId}`);
+                    resolve(request.result.audioBlob);
+                } else {
+                    console.log(`No recording found for episode ${episodeId}`);
+                    resolve(null);
+                }
+            };
+
+            request.onerror = () => {
+                console.error('Failed to get recording:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    async deleteRecording(episodeId) {
+        if (!this.db) {
+            console.warn('IndexedDB not initialized, cannot delete recording');
+            return false;
+        }
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['recordings'], 'readwrite');
+            const store = transaction.objectStore('recordings');
+            const request = store.delete(episodeId);
+
+            request.onsuccess = () => {
+                console.log(`Recording deleted for episode ${episodeId}`);
+                resolve(true);
+            };
+
+            request.onerror = () => {
+                console.error('Failed to delete recording:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    async getAllRecordings() {
+        if (!this.db) {
+            console.warn('IndexedDB not initialized, cannot get all recordings');
+            return [];
+        }
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['recordings'], 'readonly');
+            const store = transaction.objectStore('recordings');
+            const request = store.getAll();
+
+            request.onsuccess = () => {
+                resolve(request.result);
+            };
+
+            request.onerror = () => {
+                console.error('Failed to get all recordings:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    async getAllRecordingKeys() {
+        if (!this.db) {
+            console.warn('IndexedDB not initialized, cannot get recording keys');
+            return [];
+        }
+
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['recordings'], 'readonly');
+            const store = transaction.objectStore('recordings');
+            const request = store.getAllKeys();
+
+            request.onsuccess = () => {
+                resolve(request.result);
+            };
+
+            request.onerror = () => {
+                console.error('Failed to get all recording keys:', request.error);
+                reject(request.error);
+            };
+        });
+    }
+
+    async getStorageUsage() {
+        if (!this.db) {
+            return { totalSize: 0, recordingCount: 0 };
+        }
+
+        try {
+            const recordings = await this.getAllRecordings();
+            const totalSize = recordings.reduce((sum, recording) => sum + (recording.size || 0), 0);
+            
+            return {
+                totalSize: totalSize,
+                totalSizeMB: (totalSize / 1024 / 1024).toFixed(2),
+                recordingCount: recordings.length
+            };
+        } catch (error) {
+            console.error('Failed to get storage usage:', error);
+            return { totalSize: 0, recordingCount: 0 };
+        }
+    }
+
+    // Cleanup old recordings (optional utility method)
+    async cleanupOldRecordings(maxAge = 30) {
+        if (!this.db) return;
+
+        try {
+            const recordings = await this.getAllRecordings();
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - maxAge);
+
+            for (const recording of recordings) {
+                const savedDate = new Date(recording.savedAt);
+                if (savedDate < cutoffDate) {
+                    await this.deleteRecording(recording.episodeId);
+                    console.log(`Cleaned up old recording for episode ${recording.episodeId}`);
+                }
+            }
+        } catch (error) {
+            console.error('Failed to cleanup old recordings:', error);
+        }
+    }
+}
+    </script>
+    <script>
+class AudioManager {
+    constructor() {
+        // Audio-related properties
+        this.audioStream = null;
+        this.audioContext = null;
+        this.analyser = null;
+        this.microphone = null;
+        this.dataArray = null;
+        this.gainNode = null;
+        this.audioDevices = [];
+        this.processedStream = null;
+
+        // Alpine.js reactive state
+        this.state = Alpine.reactive({
+            // Audio visualization
+            audioLevel: 0,
+            audioLevelPercentage: '0%',
+            
+            // Device management
+            availableDevices: [],
+            selectedDeviceId: null,
+            currentDeviceName: 'No audio source selected',
+            
+            // Volume control
+            inputVolume: 100,
+            volumeDisplay: '100%',
+            
+            // UI state
+            isRefreshingDevices: false,
+            showPermissionModal: false,
+            
+            // Status
+            statusText: 'Ready',
+            statusState: 'ready'
+        });
+
+        // Event handlers for external callbacks
+        this.onStatusUpdate = null;
+        this.onPermissionGranted = null;
+        this.onStateUpdate = null;
+    }
+
+    // Initialize with Alpine.js integration
+    initialize(callbacks = {}) {
+        // Store callback functions
+        this.onStatusUpdate = callbacks.onStatusUpdate;
+        this.onPermissionGranted = callbacks.onPermissionGranted;
+        this.onStateUpdate = callbacks.onStateUpdate;
+
+        // Setup audio visualization
+        this.setupAudioVisualization();
+
+        // Make methods available to Alpine.js templates
+        this.bindAlpineMethods();
+    }
+
+    bindAlpineMethods() {
+        // Bind methods to preserve 'this' context when called from Alpine.js
+        this.changeAudioInput = this.changeAudioInput.bind(this);
+        this.refreshAudioInputs = this.refreshAudioInputs.bind(this);
+        this.updateInputVolume = this.updateInputVolume.bind(this);
+        this.requestMicrophonePermission = this.requestMicrophonePermission.bind(this);
+    }
+
+    async setupAudioVisualization() {
+        try {
+            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            this.analyser = this.audioContext.createAnalyser();
+            this.analyser.fftSize = 256;
+            this.analyser.smoothingTimeConstant = 0.8;
+            this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+            
+            // Create gain node for volume control
+            this.gainNode = this.audioContext.createGain();
+            
+            console.log('Audio visualization setup successful');
+            
+            // Load available audio input devices
+            await this.loadAudioInputDevices();
+        } catch (error) {
+            console.warn('Audio visualization not available:', error);
+            this.updateStatus('Audio visualization not available', 'warning');
+        }
+    }
+
+    async requestMicrophonePermission() {
+        try {
+            // Use selected device or default
+            const audioConstraints = {
+                echoCancellation: true,
+                noiseSuppression: true,
+                autoGainControl: true
+            };
+
+            this.audioStream = await navigator.mediaDevices.getUserMedia({ 
+                audio: audioConstraints
+            });
+
+            // 2. Get actual device ID from the stream
+            const audioTrack = this.audioStream.getAudioTracks()[0];
+            const actualDeviceId = audioTrack?.getSettings()?.deviceId;
+            
+            // 3. Load devices AFTER permission (so labels are available)
+            await this.loadAudioInputDevices();
+            
+            // 4. Set the selected device to match the actual stream
+            if (actualDeviceId && actualDeviceId !== 'default') {
+                // Find the device in our loaded list
+                const matchingDevice = this.audioDevices.find(device => 
+                    device.deviceId === actualDeviceId
+                );
+                
+                if (matchingDevice) {
+                    this.state.selectedDeviceId = actualDeviceId;
+                    console.log('Set selectedDeviceId to actual device:', matchingDevice.label);
+                }
+            }
+        
+            this.updateCurrentAudioSourceDisplay();
+
+            // Update reactive state
+            this.updateStatus('Ready to record', 'ready');
+
+            // Setup audio visualization
+            if (this.audioContext && this.analyser && this.gainNode) {
+                console.log('Setting up audio visualization...');
+                
+                // Resume audio context if suspended (required by browser policies)
+                if (this.audioContext.state === 'suspended') {
+                    console.log('Resuming suspended audio context...');
+                    await this.audioContext.resume();
+                }
+                
+                console.log('Audio context state:', this.audioContext.state);
+                
+                this.microphone = this.audioContext.createMediaStreamSource(this.audioStream);
+                this.microphone.connect(this.gainNode);
+                this.gainNode.connect(this.analyser);
+                
+                // Set initial volume and create processed stream
+                this.updateInputVolume();
+                this.visualizeAudio();
+                
+                console.log('Audio visualization started');
+                
+                // Update display with actual device info
+                await this.loadAudioInputDevices();
+                // this.updateCurrentAudioSourceDisplay();
+            } else {
+                console.warn('Audio context, analyser, or gain node not available');
+            }
+
+            // Notify parent component that permission was granted
+            if (this.onPermissionGranted) {
+                this.onPermissionGranted();
+            }
+
+        } catch (error) {
+            console.error('Error accessing microphone:', error);
+            this.updateStatus('Microphone access denied', 'error');
+            alert('Unable to access microphone. Please check your browser permissions and try again.');
+        }
+    }
+
+    visualizeAudio() {
+        if (!this.analyser || !this.dataArray) {
+            console.warn('Audio analyser not available for visualization');
+            return;
+        }
+
+        const visualize = () => {
+            try {
+                this.analyser.getByteFrequencyData(this.dataArray);
+                
+                // Calculate average volume
+                let sum = 0;
+                for (let i = 0; i < this.dataArray.length; i++) {
+                    sum += this.dataArray[i];
+                }
+                const average = sum / this.dataArray.length;
+                const percentage = Math.min(100, (average / 255) * 100);
+                
+                // Update reactive state for audio level
+                this.state.audioLevel = percentage;
+                this.state.audioLevelPercentage = `${percentage.toFixed(1)}%`;
+                this.notifyStateUpdate();
+                
+                // Continue visualization if audio context is running
+                if (this.audioContext && this.audioContext.state === 'running') {
+                    requestAnimationFrame(visualize);
+                }
+            } catch (error) {
+                console.warn('Error in audio visualization:', error);
+            }
+        };
+        
+        visualize();
+    }
+
+    // Audio Input Management
+    async loadAudioInputDevices() {
+        try {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            this.audioDevices = devices.filter(device => device.kind === 'audioinput');
+            
+            // Update reactive state
+            this.state.availableDevices = this.audioDevices.map(device => ({
+                id: device.deviceId,
+                label: device.label || `Microphone ${device.deviceId.slice(0, 8)}...`
+            }));
+
+            // Select the first available device if none selected
+            if (this.audioDevices.length > 0 && !this.state.selectedDeviceId) {
+                this.state.selectedDeviceId = this.audioDevices[0].deviceId;
+                this.updateCurrentAudioSourceDisplay();
+            }
+            
+            this.notifyStateUpdate();
+        } catch (error) {
+            console.error('Error loading audio input devices:', error);
+            this.updateStatus('Error loading audio devices', 'error');
+        }
+    }
+
+    async refreshAudioInputs() {
+        this.state.isRefreshingDevices = true;
+        this.notifyStateUpdate();
+        
+        try {
+            await this.loadAudioInputDevices();
+            this.updateStatus('Audio devices refreshed', 'ready');
+        } catch (error) {
+            this.updateStatus('Error refreshing devices', 'error');
+        } finally {
+            this.state.isRefreshingDevices = false;
+            this.notifyStateUpdate();
+        }
+    }
+
+    async changeAudioInput() {
+        const selectedDeviceId = this.state.selectedDeviceId;
+        if (!selectedDeviceId) return;
+
+        this.updateCurrentAudioSourceDisplay();
+
+        // If we already have an audio stream, restart it with the new device
+        if (this.audioStream) {
+            await this.restartAudioStreamWithDevice(selectedDeviceId);
+        }
+    }
+
+    async restartAudioStreamWithDevice(deviceId) {
+        try {
+            this.updateStatus('Switching audio input...', 'pending');
+
+            // Stop the current stream
+            if (this.audioStream) {
+                this.audioStream.getTracks().forEach(track => track.stop());
+            }
+
+            // Get new stream with selected device
+            this.audioStream = await navigator.mediaDevices.getUserMedia({
+                audio: {
+                    deviceId: deviceId ? { exact: deviceId } : undefined,
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true
+                }
+            });
+
+            // Reconnect audio visualization
+            if (this.audioContext && this.analyser) {
+                if (this.microphone) {
+                    this.microphone.disconnect();
+                }
+
+                if (this.audioContext.state === 'suspended') {
+                    await this.audioContext.resume();
+                }
+
+                this.microphone = this.audioContext.createMediaStreamSource(this.audioStream);
+                this.microphone.connect(this.gainNode);
+                this.gainNode.connect(this.analyser);
+                
+                // Update processed stream for recording
+                this.updateProcessedStream();
+            }
+
+            this.updateStatus('Audio input changed', 'ready');
+        } catch (error) {
+            console.error('Error changing audio input:', error);
+            this.updateStatus('Error changing audio input', 'error');
+            alert('Error changing audio input. Please try again.');
+        }
+    }
+
+    updateInputVolume() {
+        const volume = this.state.inputVolume / 100;
+        this.state.volumeDisplay = `${this.state.inputVolume}%`;
+        
+        if (this.gainNode) {
+            this.gainNode.gain.setValueAtTime(volume, this.audioContext.currentTime);
+        }
+
+        // Update processed stream for recording
+        this.updateProcessedStream();
+        this.notifyStateUpdate();
+    }
+
+    async updateProcessedStream() {
+        if (!this.audioContext || !this.gainNode || !this.microphone) return;
+
+        try {
+            // Create a destination node for the processed audio
+            const destination = this.audioContext.createMediaStreamDestination();
+            
+            // Connect the gain node to the destination
+            this.gainNode.connect(destination);
+            
+            // Store the processed stream for recording
+            this.processedStream = destination.stream;
+            
+            console.log('Processed stream updated with volume:', this.state.volumeDisplay);
+        } catch (error) {
+            console.warn('Error updating processed stream:', error);
+        }
+    }
+
+    updateCurrentAudioSourceDisplay() {
+        const selectedDevice = this.audioDevices.find(device => device.deviceId === this.state.selectedDeviceId);
+        if (selectedDevice) {
+            this.state.currentDeviceName = `Using: ${selectedDevice.label || 'Unknown microphone'}`;
+        } else {
+            this.state.currentDeviceName = 'No audio source selected';
+        }
+        this.notifyStateUpdate();
+    }
+
+    // Utility methods for external access
+    getAudioStream() {
+        return this.audioStream;
+    }
+
+    getProcessedStream() {
+        return this.processedStream;
+    }
+
+    async ensureAudioContextResumed() {
+        if (this.audioContext && this.audioContext.state === 'suspended') {
+            await this.audioContext.resume();
+        }
+    }
+
+    async prepareForRecording() {
+        // Ensure audio context is resumed
+        await this.ensureAudioContextResumed();
+
+        // Ensure gain node is properly connected and processed stream is available
+        if (this.gainNode && this.microphone && this.analyser) {
+            this.microphone.connect(this.gainNode);
+            this.gainNode.connect(this.analyser);
+            this.updateProcessedStream();
+        }
+    }
+
+    isAudioAvailable() {
+        return !!this.audioStream;
+    }
+
+    getCurrentVolume() {
+        return this.state.inputVolume;
+    }
+
+    showPermissionModal() {
+        this.state.showPermissionModal = true;
+    }
+
+    // Helper method to notify Alpine store of state changes
+    notifyStateUpdate() {
+        if (this.onStateUpdate) {
+            this.onStateUpdate(this.state);
+        }
+    }
+
+    // Helper method to call the status update callback and update reactive state
+    updateStatus(text, state) {
+        this.state.statusText = text;
+        this.state.statusState = state;
+        
+        if (this.onStatusUpdate) {
+            this.onStatusUpdate(text, state);
+        }
+    }
+
+    // Alpine.js reactive getters for computed properties
+    get audioMeterStyle() {
+        return `width: ${this.state.audioLevel}%`;
+    }
+
+    get refreshButtonText() {
+        return this.state.isRefreshingDevices ? '🔄 Loading...' : '🔄 Refresh';
+    }
+
+    get refreshButtonDisabled() {
+        return this.state.isRefreshingDevices;
+    }
+
+    // Method to get reactive state for Alpine.js
+    getReactiveState() {
+        return this.state;
+    }
+
+    // Cleanup method
+    cleanup() {
+        // Stop audio stream
+        if (this.audioStream) {
+            this.audioStream.getTracks().forEach(track => track.stop());
+            this.audioStream = null;
+        }
+
+        // Stop processed stream
+        if (this.processedStream) {
+            this.processedStream.getTracks().forEach(track => track.stop());
+            this.processedStream = null;
+        }
+
+        // Disconnect audio nodes
+        if (this.microphone) {
+            this.microphone.disconnect();
+            this.microphone = null;
+        }
+
+        if (this.gainNode) {
+            this.gainNode.disconnect();
+            this.gainNode = null;
+        }
+
+        if (this.analyser) {
+            this.analyser.disconnect();
+            this.analyser = null;
+        }
+
+        // Close audio context
+        if (this.audioContext && this.audioContext.state !== 'closed') {
+            this.audioContext.close();
+            this.audioContext = null;
+        }
+
+        // Clear devices and reset reactive state
+        this.audioDevices = [];
+        
+        // Reset reactive state
+        Object.assign(this.state, {
+            audioLevel: 0,
+            audioLevelPercentage: '0%',
+            availableDevices: [],
+            selectedDeviceId: null,
+            currentDeviceName: 'No audio source selected',
+            inputVolume: 100,
+            volumeDisplay: '100%',
+            isRefreshingDevices: false,
+            showPermissionModal: false,
+            statusText: 'Ready',
+            statusState: 'ready'
+        });
+    }
+}
+    </script>
+    <script>
+// Modern Podcast Recorder using Alpine.js
+document.addEventListener('alpine:init', () => {
+    Alpine.store('podcastRecorder', {
+        // Core state
+        mediaRecorder: null,
+        audioChunks: [],
+        isRecording: false,
+        isPaused: false,
+        startTime: null,
+        pausedTime: 0,
+        currentEpisode: null,
+        timestamps: [],
+        timerInterval: null,
+
+        // UI state
+        showRecordingSection: false,
+        showPermissionModal: false,
+        recordingTimer: '00:00:00',
+        recordingSize: '',
+        statusText: 'Ready to record',
+        statusState: 'ready',
+        
+        // URL state management
+        currentRoute: 'episodes', // 'episodes', 'recording', 'viewing'
+        routeEpisodeId: null,
+
+        // Episode management
+        episodeName: '',
+        episodes: [],
+        
+        // Managers
+        audioManager: null,
+        recordingStorage: new RecordingStorage(),
+
+        // Audio Manager reactive state (exposed for template access)
+        audioLevel: 0,
+        audioLevelPercentage: '0%',
+        availableDevices: [],
+        selectedDeviceId: null,
+        currentDeviceName: 'No audio source selected',
+        inputVolume: 100,
+        volumeDisplay: '100%',
+        isRefreshingDevices: false,
+
+                // Initialize components
+        async init() {
+            console.log('Initializing Podcast Recorder with Alpine.js...');
+            
+            // Create and initialize AudioManager
+            this.audioManager = new AudioManager();
+            
+            // Load existing episodes
+            await this.loadEpisodes();
+            
+            // Initialize audio manager with Alpine.js integration
+            this.audioManager.initialize({
+                onStatusUpdate: (text, state) => {
+                    console.log('Status update:', text, state);
+                },
+                onPermissionGranted: () => {
+                    console.log('Microphone permission granted');
+                    this.showPermissionModal = false;
+                },
+                onStateUpdate: (state) => {
+                    // Sync AudioManager state changes with Alpine store
+                    this.audioLevel = state.audioLevel;
+                    this.audioLevelPercentage = state.audioLevelPercentage;
+                    this.availableDevices = state.availableDevices;
+                    this.selectedDeviceId = state.selectedDeviceId;
+                    this.currentDeviceName = state.currentDeviceName;
+                    this.inputVolume = state.inputVolume;
+                    this.volumeDisplay = state.volumeDisplay;
+                    this.isRefreshingDevices = state.isRefreshingDevices;
+                }
+            });
+            
+            // Initialize recording storage
+            await this.recordingStorage.initialize();
+            
+            // Clean up any orphaned segments from previous sessions
+            await this.cleanupOrphanedSegments();
+            
+            // Setup URL state management
+            this.setupRouting();
+            
+            // Restore state from URL
+            this.restoreStateFromURL();
+            
+            console.log('Podcast Recorder initialized successfully');
+        },
+
+        // Audio control methods (proxy to AudioManager but update local state)
+        changeAudioInput() {
+            if (this.audioManager) {
+                this.audioManager.state.selectedDeviceId = this.selectedDeviceId;
+                this.audioManager.changeAudioInput();
+            }
+        },
+
+        refreshAudioInputs() {
+            if (this.audioManager) {
+                this.audioManager.refreshAudioInputs();
+            }
+        },
+
+        updateInputVolume() {
+            if (this.audioManager) {
+                this.audioManager.state.inputVolume = this.inputVolume;
+                this.audioManager.updateInputVolume();
+            }
+        },
+
+        // URL State Management
+        setupRouting() {
+            // Listen for browser back/forward button
+            window.addEventListener('popstate', () => {
+                this.restoreStateFromURL();
+            });
+        },
+
+        updateURL(route, episodeId = null) {
+            const url = new URL(window.location);
+            
+            if (route === 'episodes') {
+                url.searchParams.delete('view');
+                url.searchParams.delete('episode');
+            } else if (route === 'recording' || route === 'viewing') {
+                url.searchParams.set('view', route);
+                if (episodeId) {
+                    url.searchParams.set('episode', episodeId);
+                } else {
+                    url.searchParams.delete('episode');
+                }
+            }
+            
+            // Update URL without triggering page reload
+            window.history.pushState({ route, episodeId }, '', url);
+            
+            this.currentRoute = route;
+            this.routeEpisodeId = episodeId;
+        },
+
+        restoreStateFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const view = urlParams.get('view');
+            const episodeId = urlParams.get('episode');
+            
+            this.currentRoute = view || 'episodes';
+            this.routeEpisodeId = episodeId;
+            
+            if (view === 'recording' && episodeId) {
+                // Restore recording session
+                this.continueEpisodeFromURL(episodeId);
+            } else if (view === 'viewing' && episodeId) {
+                // Restore viewing mode
+                this.viewEpisodeFromURL(episodeId);
+            } else {
+                // Show episodes list
+                this.showEpisodesList();
+            }
+        },
+
+        async continueEpisodeFromURL(episodeId) {
+            const episode = this.episodes.find(ep => ep.id === episodeId);
+            if (episode) {
+                await this.continueEpisode(episodeId, false); // false = don't update URL again
+            } else {
+                // Episode not found, go back to episodes list
+                this.showEpisodesList();
+            }
+        },
+
+        async viewEpisodeFromURL(episodeId) {
+            const episode = this.episodes.find(ep => ep.id === episodeId);
+            if (episode) {
+                await this.viewEpisode(episodeId, false); // false = don't update URL again
+            } else {
+                // Episode not found, go back to episodes list
+                this.showEpisodesList();
+            }
+        },
+
+        showEpisodesList() {
+            this.showRecordingSection = false;
+            this.currentRoute = 'episodes';
+            this.routeEpisodeId = null;
+        },
+
+        async setupAudioManager() {
+            // Audio manager is already initialized with Alpine.js reactive state
+            // No additional setup needed for Alpine.js version
+            console.log('Audio manager setup completed');
+        },
+
+        async initializeStorage() {
+            try {
+                await this.recordingStorage.initialize();
+                console.log('Recording storage initialized');
+            } catch (error) {
+                console.error('Failed to initialize recording storage:', error);
+            }
+        },
+
+        onAudioPermissionGranted() {
+            this.updateStatus('Ready to record', 'ready');
+            this.showPermissionModal = false;
+        },
+
+        // Episode Management
+        startNewEpisode() {
+            if (!this.episodeName.trim()) {
+                alert('Please enter an episode name');
+                return;
+            }
+
+            this.currentEpisode = {
+                id: Date.now().toString(),
+                name: this.episodeName.trim(),
+                date: new Date().toISOString(),
+                timestamps: [],
+                recordingData: null,
+                duration: 0,
+                hasRecording: false
+            };
+
+            this.timestamps = [];
+            this.audioChunks = [];
+            this.pausedTime = 0;
+            this.recordingTimer = '00:00:00';
+            this.recordingSize = '';
+
+            this.showRecordingSection = true;
+            this.episodeName = '';
+            
+            // Update URL to recording view
+            this.updateURL('recording', this.currentEpisode.id);
+            
+            if (!this.audioManager.isAudioAvailable()) {
+                this.showPermissionModal = true;
+            } else {
+                this.updateStatus('Ready to record', 'ready');
+            }
+        },
+
+        async continueEpisode(episodeId, updateURL = true) {
+            const episode = this.episodes.find(ep => ep.id === episodeId);
+            if (!episode) return;
+
+            this.currentEpisode = { ...episode };
+            this.timestamps = episode.timestamps || [];
+            this.audioChunks = [];
+            this.pausedTime = episode.duration || 0;
+            this.recordingTimer = this.formatTime(this.pausedTime);
+            this.recordingSize = '';
+
+            this.showRecordingSection = true;
+            
+            // Update URL to recording view (unless called from URL restoration)
+            if (updateURL) {
+                this.updateURL('recording', episodeId);
+            }
+            
+            // Try to load existing recording for preview
+            if (episode.hasRecording) {
+                try {
+                    const audioBlob = await this.recordingStorage.getRecording(episodeId);
+                    if (audioBlob) {
+                        this.currentEpisode.recordingData = audioBlob;
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        
+                        // Update preview
+                        const audioPreview = document.getElementById('audioPreview');
+                        const downloadBtn = document.getElementById('downloadBtn');
+                        
+                        audioPreview.src = audioUrl;
+                        audioPreview.style.display = 'block';
+                        downloadBtn.classList.remove('hidden');
+                        
+                        // Show segment information if available
+                        if (episode.segments && episode.segments.length > 0) {
+                            const totalSize = episode.segments.reduce((sum, seg) => sum + seg.size, 0);
+                            const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
+                            const duration = this.formatTime(this.pausedTime);
+                            const segmentCount = episode.segments.length;
+                            this.recordingSize = `${segmentCount} segment${segmentCount > 1 ? 's' : ''} | Total size: ${sizeInMB} MB | Duration: ${duration}`;
+                        } else {
+                            const sizeInMB = (audioBlob.size / (1024 * 1024)).toFixed(2);
+                            const duration = this.formatTime(this.pausedTime);
+                            this.recordingSize = `Recording size: ${sizeInMB} MB | Duration: ${duration}`;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Failed to load existing recording:', error);
+                }
+            }
+            
+            if (!this.audioManager.isAudioAvailable()) {
+                this.showPermissionModal = true;
+            } else {
+                const segmentText = episode.segments && episode.segments.length > 0 ? 
+                    ` (will add segment ${episode.segments.length + 1})` : 
+                    '';
+                this.updateStatus(`Ready to continue recording${segmentText}`, 'ready');
+            }
+        },
+
+        backToEpisodes() {
+            this.showRecordingSection = false;
+            this.resetRecordingState();
+            this.loadEpisodes();
+            
+            // Update URL to episodes view
+            this.updateURL('episodes');
+        },
+
+        async deleteEpisode(episodeId) {
+            if (confirm('Are you sure you want to delete this episode? This action cannot be undone.')) {
+                try {
+                    // Get episode data before deletion to access segments
+                    const episode = this.episodes.find(ep => ep.id === episodeId);
+                    
+                    // Delete from storage
+                    const filteredEpisodes = this.episodes.filter(ep => ep.id !== episodeId);
+                    localStorage.setItem('podcastEpisodes', JSON.stringify(filteredEpisodes));
+                    
+                    // Delete main recording from IndexedDB
+                    await this.recordingStorage.deleteRecording(episodeId);
+                    console.log(`Main recording for episode ${episodeId} deleted`);
+                    
+                    // Delete all segment recordings if they exist
+                    if (episode && episode.segments && episode.segments.length > 0) {
+                        console.log(`Deleting ${episode.segments.length} segment recordings...`);
+                        
+                        for (const segment of episode.segments) {
+                            const segmentKey = `${episodeId}_segment_${segment.id}`;
+                            try {
+                                await this.recordingStorage.deleteRecording(segmentKey);
+                                console.log(`Segment recording ${segmentKey} deleted`);
+                            } catch (error) {
+                                console.warn(`Failed to delete segment ${segmentKey}:`, error);
+                            }
+                        }
+                        
+                        console.log(`All segment recordings for episode ${episodeId} deleted`);
+                    }
+                    
+                    this.loadEpisodes();
+                    console.log(`Episode ${episodeId} and all associated recordings deleted successfully`);
+                } catch (error) {
+                    console.error('Error deleting episode:', error);
+                    alert('Error deleting episode. Please try again.');
+                }
+            }
+        },
+
+        // Utility method to clean up orphaned segment recordings
+        async cleanupOrphanedSegments() {
+            try {
+                console.log('Starting cleanup of orphaned segments...');
+                
+                // Get all existing episode IDs
+                const existingEpisodeIds = this.episodes.map(ep => ep.id);
+                
+                // Get all recording keys from IndexedDB
+                const allRecordingKeys = await this.recordingStorage.getAllRecordingKeys();
+                
+                if (!allRecordingKeys || allRecordingKeys.length === 0) {
+                    console.log('No recordings found in IndexedDB');
+                    return;
+                }
+                
+                let orphanedCount = 0;
+                
+                for (const key of allRecordingKeys) {
+                    // Check if this is a segment recording
+                    if (key.includes('_segment_')) {
+                        const episodeId = key.split('_segment_')[0];
+                        
+                        // Check if the parent episode still exists
+                        if (!existingEpisodeIds.includes(episodeId)) {
+                            console.log(`Found orphaned segment: ${key}`);
+                            try {
+                                await this.recordingStorage.deleteRecording(key);
+                                orphanedCount++;
+                                console.log(`Deleted orphaned segment: ${key}`);
+                            } catch (error) {
+                                console.warn(`Failed to delete orphaned segment ${key}:`, error);
+                            }
+                        }
+                    } else {
+                        // Check if this is a main episode recording without a corresponding episode
+                        if (!existingEpisodeIds.includes(key)) {
+                            console.log(`Found orphaned main recording: ${key}`);
+                            try {
+                                await this.recordingStorage.deleteRecording(key);
+                                orphanedCount++;
+                                console.log(`Deleted orphaned main recording: ${key}`);
+                            } catch (error) {
+                                console.warn(`Failed to delete orphaned recording ${key}:`, error);
+                            }
+                        }
+                    }
+                }
+                
+                console.log(`Cleanup completed. Removed ${orphanedCount} orphaned recordings.`);
+                
+                if (orphanedCount > 0) {
+                    this.updateStatus(`Cleaned up ${orphanedCount} orphaned recordings`, 'ready');
+                }
+                
+            } catch (error) {
+                console.error('Error during cleanup:', error);
+            }
+        },
+
+        viewEpisode(episodeId, updateURL = true) {
+            const episode = this.episodes.find(ep => ep.id === episodeId);
+            if (!episode) return;
+
+            // Update URL to viewing mode (unless called from URL restoration)
+            if (updateURL) {
+                this.updateURL('viewing', episodeId);
+            }
+
+            const segmentInfo = episode.segments ? 
+                `\nRecording segments: ${episode.segments.length}` : 
+                '';
+
+            alert(`Episode: ${episode.name}\nDate: ${new Date(episode.date).toLocaleDateString()}\nDuration: ${this.formatTime(episode.duration || 0)}\nTimestamps: ${episode.timestamps ? episode.timestamps.length : 0}${segmentInfo}`);
+        },
+
+        // Recording Functions
+        async startRecording() {
+            if (!this.audioManager.isAudioAvailable()) {
+                this.showPermissionModal = true;
+                return;
+            }
+
+            try {
+                await this.audioManager.prepareForRecording();
+
+                this.audioChunks = [];
+                
+                const streamToRecord = this.audioManager.getProcessedStream() || this.audioManager.getAudioStream();
+                
+                this.mediaRecorder = new MediaRecorder(streamToRecord, {
+                    mimeType: 'audio/webm;codecs=opus'
+                });
+
+                this.mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        this.audioChunks.push(event.data);
+                    }
+                };
+
+                this.mediaRecorder.onstop = () => {
+                    this.processRecording();
+                };
+
+                this.mediaRecorder.start(1000);
+                this.isRecording = true;
+                this.startTime = Date.now() - this.pausedTime;
+                
+                this.updateStatus('Recording...', 'recording');
+                this.startTimer();
+
+                console.log('Recording started with volume:', this.audioManager.getCurrentVolume() + '%');
+
+            } catch (error) {
+                console.error('Error starting recording:', error);
+                alert('Error starting recording. Please try again.');
+            }
+        },
+
+        pauseRecording() {
+            if (this.mediaRecorder && this.isRecording) {
+                this.mediaRecorder.pause();
+                this.isPaused = true;
+                this.pausedTime = Date.now() - this.startTime;
+                
+                this.updateStatus('Recording paused', 'paused');
+                this.stopTimer();
+            }
+        },
+
+        resumeRecording() {
+            if (this.mediaRecorder && this.isPaused) {
+                this.mediaRecorder.resume();
+                this.isPaused = false;
+                this.startTime = Date.now() - this.pausedTime;
+                
+                this.updateStatus('Recording...', 'recording');
+                this.startTimer();
+            }
+        },
+
+        stopRecording() {
+            if (this.mediaRecorder && this.isRecording) {
+                this.mediaRecorder.stop();
+                this.isRecording = false;
+                this.isPaused = false;
+                
+                this.updateStatus('Processing recording...', 'ready');
+                this.stopTimer();
+                
+                this.currentEpisode.duration = this.pausedTime || (Date.now() - this.startTime);
+            }
+        },
+
+        async processRecording() {
+            if (this.audioChunks.length === 0) return;
+
+            const newRecordingBlob = new Blob(this.audioChunks, { type: 'audio/webm' });
+            
+            // Create a recording segment with timestamp
+            const segmentId = Date.now().toString();
+            const segment = {
+                id: segmentId,
+                startTime: this.pausedTime, // Where this segment starts in the overall episode
+                duration: this.formatTime(Date.now() - this.startTime),
+                size: newRecordingBlob.size,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Initialize segments array if it doesn't exist
+            if (!this.currentEpisode.segments) {
+                this.currentEpisode.segments = [];
+            }
+            
+            // Add new segment
+            this.currentEpisode.segments.push(segment);
+            
+            // Save the segment recording
+            try {
+                await this.recordingStorage.saveRecording(`${this.currentEpisode.id}_segment_${segmentId}`, newRecordingBlob);
+                console.log('Recording segment saved to persistent storage');
+            } catch (error) {
+                console.error('Failed to save recording segment:', error);
+            }
+            
+            // Also save/update the main recording (most recent segment for preview)
+            try {
+                await this.recordingStorage.saveRecording(this.currentEpisode.id, newRecordingBlob);
+                console.log('Main recording updated');
+            } catch (error) {
+                console.error('Failed to save main recording:', error);
+                this.currentEpisode.recordingData = newRecordingBlob;
+            }
+            
+            const audioUrl = URL.createObjectURL(newRecordingBlob);
+            
+            // Update preview with latest segment
+            const audioPreview = document.getElementById('audioPreview');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            audioPreview.src = audioUrl;
+            audioPreview.style.display = 'block';
+            downloadBtn.classList.remove('hidden');
+            
+            // Calculate total size and duration across all segments
+            const totalSize = this.currentEpisode.segments.reduce((sum, seg) => sum + seg.size, 0);
+            const sizeInMB = (totalSize / (1024 * 1024)).toFixed(2);
+            const duration = this.formatTime(this.currentEpisode.duration);
+            const segmentCount = this.currentEpisode.segments.length;
+            
+            this.recordingSize = `${segmentCount} segment${segmentCount > 1 ? 's' : ''} | Total size: ${sizeInMB} MB | Duration: ${duration}`;
+            
+            this.currentEpisode.timestamps = [...this.timestamps];
+            this.currentEpisode.hasRecording = true;
+            this.saveEpisode();
+            
+            this.updateStatus(`Recording segment ${segmentCount} complete`, 'ready');
+        },
+
+        // Timer Functions
+        startTimer() {
+            this.timerInterval = setInterval(() => {
+                const elapsed = this.pausedTime || (Date.now() - this.startTime);
+                this.recordingTimer = this.formatTime(elapsed);
+            }, 1000);
+        },
+
+        stopTimer() {
+            if (this.timerInterval) {
+                clearInterval(this.timerInterval);
+                this.timerInterval = null;
+            }
+        },
+
+        formatTime(milliseconds) {
+            const totalSeconds = Math.floor(milliseconds / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        },
+
+        // Timestamp Functions
+        addTimestamp() {
+            if (!this.isRecording && !this.isPaused) return;
+
+            const currentTime = this.isRecording && !this.isPaused ? 
+                Date.now() - this.startTime : 
+                this.pausedTime || 0;
+
+            const timestampNote = document.getElementById('timestampNote');
+            let note = timestampNote.value.trim();
+            if (!note) {
+                const timeString = this.formatTime(currentTime);
+                note = `Timestamp at ${timeString}`;
+            }
+
+            const timestamp = {
+                id: Date.now().toString(),
+                time: currentTime,
+                note: note,
+                timeString: this.formatTime(currentTime)
+            };
+
+            this.timestamps.push(timestamp);
+            timestampNote.value = '';
+            
+            // Sort timestamps by time
+            this.timestamps.sort((a, b) => a.time - b.time);
+        },
+
+        editTimestamp(timestampId) {
+            const timestamp = this.timestamps.find(t => t.id === timestampId);
+            if (!timestamp) return;
+
+            const newNote = prompt('Edit timestamp note:', timestamp.note);
+            if (newNote !== null && newNote.trim() !== '') {
+                timestamp.note = newNote.trim();
+            }
+        },
+
+        deleteTimestamp(timestampId) {
+            if (confirm('Are you sure you want to delete this timestamp?')) {
+                this.timestamps = this.timestamps.filter(t => t.id !== timestampId);
+            }
+        },
+
+        // Storage Functions
+        saveEpisode() {
+            try {
+                const episodes = this.getStoredEpisodes();
+                
+                const episodeToStore = {
+                    ...this.currentEpisode,
+                    recordingData: null
+                };
+                
+                const existingIndex = episodes.findIndex(ep => ep.id === this.currentEpisode.id);
+                if (existingIndex >= 0) {
+                    episodes[existingIndex] = episodeToStore;
+                } else {
+                    episodes.push(episodeToStore);
+                }
+                
+                localStorage.setItem('podcastEpisodes', JSON.stringify(episodes));
+                console.log('Episode metadata saved to localStorage');
+                
+            } catch (error) {
+                console.error('Error saving episode:', error);
+                alert('Error saving episode data');
+            }
+        },
+
+        getStoredEpisodes() {
+            try {
+                const stored = localStorage.getItem('podcastEpisodes');
+                return stored ? JSON.parse(stored) : [];
+            } catch (error) {
+                console.error('Error loading episodes:', error);
+                return [];
+            }
+        },
+
+        loadEpisodes() {
+            const episodes = this.getStoredEpisodes();
+            this.episodes = episodes.sort((a, b) => new Date(b.date) - new Date(a.date));
+        },
+
+        // Download Function
+        async downloadRecording() {
+            if (!this.currentEpisode) {
+                alert('No episode selected');
+                return;
+            }
+
+            try {
+                // Check if episode has segments to combine
+                if (this.currentEpisode.segments && this.currentEpisode.segments.length > 1) {
+                    console.log(`Combining ${this.currentEpisode.segments.length} segments for download...`);
+                    await this.downloadCombinedSegments();
+                } else {
+                    // Single recording or segment
+                    await this.downloadSingleRecording();
+                }
+
+            } catch (error) {
+                console.error('Error downloading recording:', error);
+                alert('Error downloading recording. Please try again.');
+            }
+        },
+
+        async downloadSingleRecording() {
+            let audioBlob = this.currentEpisode.recordingData;
+            
+            if (!audioBlob) {
+                audioBlob = await this.recordingStorage.getRecording(this.currentEpisode.id);
+            }
+
+            if (!audioBlob) {
+                alert('No recording available to download. The recording may have been lost.');
+                return;
+            }
+
+            this.downloadBlob(audioBlob, `${this.currentEpisode.name.replace(/[^a-z0-9]/gi, '_')}_${new Date().toISOString().split('T')[0]}.webm`);
+        },
+
+        async downloadCombinedSegments() {
+            try {
+                const segments = [];
+                
+                // Load all segment recordings
+                for (const segment of this.currentEpisode.segments) {
+                    const segmentBlob = await this.recordingStorage.getRecording(`${this.currentEpisode.id}_segment_${segment.id}`);
+                    if (segmentBlob) {
+                        segments.push(segmentBlob);
+                    } else {
+                        console.warn(`Segment ${segment.id} not found in storage`);
+                    }
+                }
+
+                if (segments.length === 0) {
+                    alert('No segment recordings found to download.');
+                    return;
+                }
+
+                // Combine all segments into one blob
+                const combinedBlob = new Blob(segments, { type: 'audio/webm' });
+                
+                // Download the combined file
+                const filename = `${this.currentEpisode.name.replace(/[^a-z0-9]/gi, '_')}_combined_${new Date().toISOString().split('T')[0]}.webm`;
+                this.downloadBlob(combinedBlob, filename);
+                
+                console.log(`Combined ${segments.length} segments into single download`);
+
+            } catch (error) {
+                console.error('Error combining segments:', error);
+                alert('Error combining recording segments. Falling back to single recording download.');
+                await this.downloadSingleRecording();
+            }
+        },
+
+        downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        },
+
+        // Segment Management Functions
+        async playSegment(segmentId) {
+            try {
+                const segmentKey = `${this.currentEpisode.id}_segment_${segmentId}`;
+                const audioBlob = await this.recordingStorage.getRecording(segmentKey);
+                
+                if (!audioBlob) {
+                    alert('Segment recording not found');
+                    return;
+                }
+
+                // Stop any currently playing audio
+                const audioPreview = document.getElementById('audioPreview');
+                if (audioPreview) {
+                    audioPreview.pause();
+                }
+
+                // Create temporary audio element for segment playback
+                const tempAudio = new Audio();
+                const audioUrl = URL.createObjectURL(audioBlob);
+                tempAudio.src = audioUrl;
+                tempAudio.controls = true;
+                
+                // Replace the current audio preview temporarily
+                const audioPreviewSection = document.querySelector('.audio-preview-section');
+                if (audioPreviewSection) {
+                    // Store original content
+                    const originalContent = audioPreviewSection.innerHTML;
+                    
+                    // Show segment player
+                    audioPreviewSection.innerHTML = `
+                        <h4>🎵 Playing Segment</h4>
+                        <audio controls autoplay style="width: 100%; margin: 10px 0;">
+                            <source src="${audioUrl}" type="audio/webm">
+                        </audio>
+                    `;
+                }
+                
+                // Cleanup URL after playing
+                tempAudio.addEventListener('ended', () => {
+                    URL.revokeObjectURL(audioUrl);
+                });
+
+            } catch (error) {
+                console.error('Error playing segment:', error);
+                alert('Error playing segment. Please try again.');
+            }
+        },
+
+        async downloadSegment(segmentId) {
+            if (!this.currentEpisode) {
+                alert('No episode selected');
+                return;
+            }
+
+            try {
+                const segmentKey = `${this.currentEpisode.id}_segment_${segmentId}`;
+                const audioBlob = await this.recordingStorage.getRecording(segmentKey);
+                
+                if (!audioBlob) {
+                    alert('Segment recording not found');
+                    return;
+                }
+
+                // Find segment info for filename
+                const segment = this.currentEpisode.segments?.find(s => s.id === segmentId);
+                const segmentIndex = this.currentEpisode.segments?.indexOf(segment) + 1 || 'unknown';
+
+                const url = URL.createObjectURL(audioBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${this.currentEpisode.name.replace(/[^a-z0-9]/gi, '_')}_segment_${segmentIndex}_${new Date(this.currentEpisode.date).toISOString().split('T')[0]}.webm`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+            } catch (error) {
+                console.error('Error downloading segment:', error);
+                alert('Error downloading segment. Please try again.');
+            }
+        },
+
+        // Utility Functions
+        updateStatus(text, state) {
+            this.statusText = text;
+            this.statusState = state;
+        },
+
+        resetRecordingState() {
+            this.isRecording = false;
+            this.isPaused = false;
+            this.startTime = null;
+            this.pausedTime = 0;
+            this.audioChunks = [];
+            this.timestamps = [];
+            this.currentEpisode = null;
+            this.recordingTimer = '00:00:00';
+            this.recordingSize = '';
+            
+            this.stopTimer();
+            this.updateStatus('Ready to record', 'ready');
+
+            // Reset UI elements
+            const audioPreview = document.getElementById('audioPreview');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const timestampNote = document.getElementById('timestampNote');
+            
+            if (audioPreview) audioPreview.style.display = 'none';
+            if (downloadBtn) downloadBtn.classList.add('hidden');
+            if (timestampNote) timestampNote.value = '';
+        },
+
+        // Computed properties
+        get recordingControls() {
+            if (this.isRecording && !this.isPaused) {
+                return { showPause: true, showStop: true, showTimestamp: true };
+            } else if (this.isPaused) {
+                return { showResume: true, showStop: true, showTimestamp: true };
+            } else {
+                return { showStart: true };
+            }
+        },
+
+        get currentEpisodeDate() {
+            if (!this.currentEpisode) return '';
+            return new Date(this.currentEpisode.date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        },
+
+        get statusDotClass() {
+            return `status-dot ${this.statusState}`;
+        }
+    });
+});
+
+// Global functions for backward compatibility
+window.podcastRecorder = {
+    editTimestamp: (id) => Alpine.store('podcastRecorder').editTimestamp(id),
+    deleteTimestamp: (id) => Alpine.store('podcastRecorder').deleteTimestamp(id),
+    continueEpisode: (id) => Alpine.store('podcastRecorder').continueEpisode(id),
+    viewEpisode: (id) => Alpine.store('podcastRecorder').viewEpisode(id),
+    deleteEpisode: (id) => Alpine.store('podcastRecorder').deleteEpisode(id)
+};
+    </script>
+</body>
