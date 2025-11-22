@@ -1,8 +1,8 @@
 {{ define "main" }}
-<div class = "article-content">
+<div class="article-content">
     {{ with .Site.GetPage "page" "about" }}
     <div class="about align-center">
-        <img class="about-me" src="/about/profile.jpg" alt="A picture of me">
+        <img class="about-me" src="/about/profile.png" alt="A picture of me">
         {{ partial "social.html" . }}
         <div class="about-content">
             <p>{{ .Content }}</p>

@@ -7,7 +7,7 @@ paginate = 10
 [params]
 math = true
 description = "Stories from an Italian Software Engineer"
-profilePicture = "images/profile.jpg"
+profilePicture = "images/profile.png"
 showReadMore = true
 linkedin = "https://www.linkedin.com/in/lucalanziani/"
 email = "mailto:luca+site@lanziani.com"
