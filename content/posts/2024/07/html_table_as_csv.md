@@ -16,6 +16,8 @@ How does it work?
 2. Click the bookmark
 3. Paste the CSV result where you want it
 
+<!--more-->
+
 If you don't trust me, use the following code to build the bookmarklet yourself.
 
 ```javascript
