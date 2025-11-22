@@ -9,8 +9,8 @@ tags: ["digitalpulse"]
 
 This week our two themes are:
 
-- [When we say data we really mean AI](#AI)
-- [How do you manage a happy organisation?](#HappyOrg)
+- [When we say data we really mean AI](#ai)
+- [How do you manage a happy organisation?](#happy-org)
 
 Quick reminder: we're out for August because [Luca is going on Holiday, lucky him](https://www.youtube.com/watch?v=Bxauqa7rJgI). We're also changing the format: shorter runtime, more details in the footnotes and a follow-up newsletter. Why on earth don't you want to listen to us or see us? We're lovely in person and on Zoom! 
 
