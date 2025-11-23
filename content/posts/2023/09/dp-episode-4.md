@@ -4,7 +4,7 @@ date: 2023-09-15T08:30:00+00:00
 image: "/imgs/dp-episode-4.png"
 youtube: XddykeFmCEU
 spotify: "2jswcubPoCvdD2WVSj473w"
-tags: ["digitalpulse"]
+series: ["digitalpulse"]
 ---
 
 Welcome back! Short and unscripted, we're talking OpenTF and Generative AI!

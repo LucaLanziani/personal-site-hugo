@@ -4,7 +4,7 @@ date: 2023-10-20T08:30:00+00:00
 image: "/imgs/dp-episode-5.png"
 youtube: NGZ2yBGQ4OA
 spotify: "0HS8LF0IQBSFeWG-FanClQ"
-tags: ["digitalpulse"]
+series: ["digitalpulse"]
 ---
 
 Is innovation always good? In this episode:

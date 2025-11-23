@@ -6,6 +6,7 @@ image: "/imgs/dp-episode-0.png"
 youtube: "uGF-lH1XqBc"
 spotify: 0EmSxvVvqPyOekUeYuH0Oc
 tags: ["digitalpulse"]
+series: ["digitalpulse"]
 ---
 
 Welcome to the first episode of Digital Pulse.

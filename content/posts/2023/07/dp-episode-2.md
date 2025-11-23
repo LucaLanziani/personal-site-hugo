@@ -5,6 +5,7 @@ image: "/imgs/dp-episode-2.png"
 youtube: "ZybpMnlyRnk"
 spotify: 4cCPpDK0j2dvwNjyAyJ1ls
 tags: ["digitalpulse"]
+series: ["digitalpulse"]
 ---
 
 This week our three themes are:
