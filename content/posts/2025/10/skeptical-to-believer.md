@@ -1,6 +1,6 @@
 ---
 title: "I was highly skeptical, but now I'm a believer."
-date: 2024-10-17T09:27:00+02:00
+date: 2025-10-17T09:27:00+02:00
 category: general
 tags: [AI]
 email: luca@lanziani.com
