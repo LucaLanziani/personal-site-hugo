@@ -1,6 +1,6 @@
 ---
 title: "Testing the BMAD Method"
-date: 2024-10-04T10:58:44+02:00
+date: 2025-10-04T10:58:44+02:00
 category: general
 tags: [engineering]
 email: luca@lanziani.com
