@@ -1,8 +1,12 @@
 {{ define "main" }}
 <div class="article-content">
     <div class="about align-center">
-        <img class="about-me" src="/about/profile.png" alt="A picture of me">
         {{ partial "social.html" . }}
+        <a href="/about/">
+            <img class="about-me" src="/about/profile.png" alt="A picture of me">
+        </a>
+
+
         <!-- Show featured or most recent blog post -->
         {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
         {{ if .Site.Params.frontpagePost }}
