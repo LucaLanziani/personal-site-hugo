@@ -16,7 +16,7 @@ I've been working remotely since 2015, not because it was trendy, but because I 
 
 ### What I'm Passionate About
 
-**Programming**: I picked up GoLang last year because learning new languages keeps me sharp. There's always something new to discover.
+**Programming**: Despite the management responsibilities, I still write code as much as I can. It's the only way to keep my skills sharp and stay grounded in the reality of what my teams deal with every day. I picked up GoLang last year because learning new languages keeps me from getting comfortable.
 
 **DevOps & SDLC**: I'm focused on the full software development lifecycle—from planning and requirements through building, releasing, and monitoring. The unsexy stuff that makes or breaks production systems.
 
