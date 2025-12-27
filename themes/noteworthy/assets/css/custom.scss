@@ -16,7 +16,8 @@ img.about-me:hover {
 
 strong {
     color: #5F5F5F; /* Using $gray-dark from main.scss */
-    font-weight: 700; /* Keep standard bold weight to differentiate from h3 */
+    font-weight: 700; 
+    /* Inherits body font size - no explicit size needed */
 }
 
 time {
