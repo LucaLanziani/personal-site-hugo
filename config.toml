@@ -9,6 +9,7 @@ math = true
 description = "Stories from an Italian Software Engineer"
 profilePicture = "images/profile.png"
 showReadMore = true
+frontpagePost = "I was highly skeptical, but now I'm a believer."  # Set to a post title to feature it on the homepage, or leave empty for most recent
 linkedin = "https://www.linkedin.com/in/lucalanziani/"
 email = "mailto:luca+site@lanziani.com"
 twitter = "https://twitter.com/lucalanziani"
