@@ -39,3 +39,6 @@ tags
 
 # Coc configuration directory
 .vim
+.tool-versions
+.hugo_build.lock
+._*

@@ -11,9 +11,21 @@ As 2025 comes to a close, it's time to reflect on the year that was. From profes
 
 <!--more-->
 
-## January & February
+## January
 
 I started the year with a series of LinkedIn posts about DevOps, all in Italian. The title was "Let's talk about DevOps" and I covered various topics from CI/CD to Infrastructure as Code.
+
+I also took my first skiing lesson in January. It was a thrilling experience, and while I didn't become an expert overnight, I'm looking forward to going back in January 2026 for more lessons.
+
+![skiing lesson](/static/2025/skiing_lesson.jpeg)
+
+## February
+
+Quick visit to Munich for work as well, always a pleasure to be in that city even if just for a short time.
+I was there to meet a client, and of course, enjoy some Bavarian hospitality.
+
+![munich](/static/2025/munich.jpeg)
+
 
 ## March
 
@@ -21,19 +33,25 @@ At the start of March I posted the following, I still think it's one of the best
 
 > Vibe coding. We aimed at Engineering we settled for the vibes.
 
-I also promised in March I was going to contribute more to Open Source, but that didn't quite happen as I hoped. I did manage to contribute to a few projects here and there, but nothing major.
+In March, I also promised I would contribute more to Open Source, but that didn't quite happen as I had hoped. I did manage to contribute to a few projects here and there, but nothing major.
 
 ![OS contributions](/static/2025/os_contribution.jpg)
 
 ## April
 
-April was a busy month, I was at Kubecon distributing Nearform's Open Source - Is Art t-shirts. Met a lot of friends and made some new ones. The event was a blast, and it was great to see the community coming together.
+April was a busy month. I was at Kubecon distributing Nearform's Open Source - Is Art t-shirts. Met a lot of friends and made some new ones. The event was a blast, and it was great to see the community coming together.
 
 ![kubecon](/static/2025/kubecon.jpg)
 
 ## May & June
 
 Before the summer, I spent a month going deeper into Go, and I must say, it's a language that grows on you. The more I use it, the more I appreciate its simplicity and power. It's very possible that I'll be using it more in 2026 and it might even become my primary language for certain projects.
+
+## July
+
+Back in London to to meet one of our Partners, I also took the opportunity to visit the the city given the amazing weather we had that week.
+
+![london summer](/static/2025/london_summer.jpeg)
 
 ## August
 
@@ -60,11 +78,11 @@ But I wasn't done traveling yet. In October, I was in London at Observability Co
 
 ## November & December
 
-November was all about wrapping up projects and preparing for the end of the year. With a bunch of friends, we launched the [ainativeteams.com](https://ainativeteams.com) website and shared a lot of knowldge and learning both on the website and on LinkedIn.
+November was all about wrapping up projects and preparing for the end of the year. With a bunch of friends, we launched the [ainativeteams.com](https://ainativeteams.com) website and shared a lot of knowledge and learning both on the website and on LinkedIn.
 
-All of this while continuing delivering value to clients and helping them navigate the ever-evolving landscape of DevOps and AI.
+All of this while continuing to deliver value to clients and helping them navigate the ever-evolving landscape of DevOps and AI.
 
-# Reflections
+## Reflections
 
 2025 has been a year of growth and learning. I've had the opportunity to explore new technologies, deepen my understanding of AI, and connect with amazing people in the industry.
 
