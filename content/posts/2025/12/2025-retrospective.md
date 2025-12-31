@@ -15,7 +15,7 @@ As 2025 comes to a close, it's time to reflect on the year that was. From profes
 
 I started the year with a series of LinkedIn posts about DevOps, all in Italian. The title was "Let's talk about DevOps" and I covered various topics from CI/CD to Infrastructure as Code.
 
-I also took my first skiing lesson in January. It was a thrilling experience, and while I didn't become an expert overnight, I'm looking forward to going back in January 2026 for more lessons.
+I also took my first skiing lesson in January. It was a thrilling experience, and while I didn't become an expert overnight, I'm looking forward to going back next month for more lessons.
 
 ![skiing lesson](/static/2025/skiing_lesson.jpeg)
 
@@ -78,7 +78,7 @@ But I wasn't done traveling yet. In October, I was in London at Observability Co
 
 ## November & December
 
-November was all about wrapping up projects and preparing for the end of the year. With a bunch of friends, we launched the [ainativeteams.com](https://ainativeteams.com) website and shared a lot of knowledge and learning both on the website and on LinkedIn.
+November was all about wrapping up projects and preparing for the end of the year. With a bunch of friends, we launched the [ainativeteams.com](https://ainativeteams.com) website and shared a lot of knowledge and learning about BMAD, Spec Driven Development and AI in general both on the website and on LinkedIn.
 
 All of this while continuing to deliver value to clients and helping them navigate the ever-evolving landscape of DevOps and AI.
 
