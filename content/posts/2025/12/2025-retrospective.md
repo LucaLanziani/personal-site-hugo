@@ -15,7 +15,6 @@ As 2025 comes to a close, it's time to reflect on the year that was. From profes
 
 I started the year with a series of LinkedIn posts about DevOps, all in Italian. The title was "Let's talk about DevOps" and I covered various topics from CI/CD to Infrastructure as Code.
 
-
 ## March
 
 At the start of March I posted the following, I still think it's one of the best summaries of what AI was at the time:
@@ -61,7 +60,7 @@ But I wasn't done traveling yet. In October, I was in London at Observability Co
 
 November was all about wrapping up projects and preparing for the end of the year. With a bunch of friends, we launched the [ainativeteams.com](https://ainativeteams.com) website and shared a lot of knowldge and learning both on the website and on LinkedIn.
 
-
+All of this while continuing delivering value to clients and helping them navigate the ever-evolving landscape of DevOps and AI.
 
 # Reflections
 
