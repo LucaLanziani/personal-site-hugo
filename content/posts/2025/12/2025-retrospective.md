@@ -25,6 +25,8 @@ I also promised in March I was going to contribute more to Open Source, but that
 
 ![OS contributions](/static/2025/os_contribution.jpg)
 
+## April
+
 April was a busy month, I was at Kubecon distributing Nearform's Open Source - Is Art t-shirts. Met a lot of friends and made some new ones. The event was a blast, and it was great to see the community coming together.
 
 ![kubecon](/static/2025/kubecon.jpg)
