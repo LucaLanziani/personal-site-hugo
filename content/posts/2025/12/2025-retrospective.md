@@ -5,6 +5,8 @@ category: general
 tags: [retrospective, year-in-review]
 email: luca@lanziani.com
 description: "2025 has been quite a year. Let's look back at the highlights and lessons learned."
+images:
+    - "https://lanziani.com/static/2025/retro_2025.png"
 ---
 
 As 2025 comes to a close, it's time to reflect on the year that was. From professional milestones to personal growth, this year has been packed with experiences. This is my personal diary to help me remember them in years to come.
