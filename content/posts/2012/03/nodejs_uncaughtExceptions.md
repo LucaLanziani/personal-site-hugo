@@ -14,10 +14,11 @@ Meglio non dimenticarsi un:
 
 <!--more-->
 
-    :::javascript
-    process.on('uncaughtException', function (err) {
-      console.log('Caught exception: ' + err);
-    });
+```javascript
+process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
+```
 
 questo garantisce che il vostro sistema continui a funzionare anche in caso di eventi inattesi.
 Potrebbe salvarvi la vita diverse volte, soprattutto in produzione.

@@ -27,16 +27,18 @@ Soluzione…
 
 Basterà aggiungere sulla macchina 192.168.10.90 il file __/etc/xinetd.d/routerwebmin__ e all’interno di questo le seguenti righe:
 
-	service tproxy
-	{
-	        socket_type = stream
-	        protocol = tcp
-	        wait = no
-	        user = root
-	        bind = 192.168.10.90
-	        redirect = 192.168.10.1 8081
-	        disable = no
-	}
+```
+service tproxy
+{
+    socket_type = stream
+    protocol = tcp
+    wait = no
+    user = root
+    bind = 192.168.10.90
+    redirect = 192.168.10.1 8081
+    disable = no
+}
+```
 
 a questo punto avviamo xinetd con il comando /etc/rc.d/xinetd start.
 

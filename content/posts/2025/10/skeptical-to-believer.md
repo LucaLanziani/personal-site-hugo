@@ -28,4 +28,10 @@ My own perspective has evolved over the past few months due to three primary fac
 
 For those yet to fully engage with AI, consider the opportunities for discovering your own impactful applications. The journey from skeptic to believer is a powerful one.
 
-In the spirit of transparency, I even used an AI to help refine the phrasing of this very post—a small but practical example of the value I've come to appreciate.
+One thing that I subsequently realized is that yes, the models got better, Sonnet 4.5 just came out and it was a significant improvement, so much so that using SDD (Spec Driven Development) I was able to get it to solve a problem that previous models couldn't solve.
+
+But the real game changer was the fact that I stopped looking at models as the magic wizard that everyone was describing, this genie that could solve any problem, and I started looking at them as tools, a tool with quite clear limitations but also potential if wielded correctly.
+
+Drawing from my experiences, I wrote more about the [5 mistakes when starting with Agents](https://ainativeteams.com/blog/5-mistakes-with-sdd/) and I hope it can be useful for those who are just starting to explore this world. 
+
+> In the spirit of transparency, I even used an AI to help refine the phrasing of this very post—a small but practical example of the value I've come to appreciate.

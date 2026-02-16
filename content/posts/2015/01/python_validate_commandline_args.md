@@ -30,8 +30,9 @@ However **I'll leave the [docopt][3] validation example**, just to show you some
 
 Assume you have this usage string:
 
-    :::bash
-    Usage: my_program.py [--count=N] <path> <files>...
+```bash
+Usage: my_program.py [--count=N] <path> <files>...
+```
 
 That correspond to the following output of [docopt][3]:
 

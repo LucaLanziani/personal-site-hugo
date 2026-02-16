@@ -12,7 +12,7 @@ images:
 
 > I wholeheartedly agree that DevOps should not be a role. However, the current reality is that IT IS a role.
 
-During a DORA community meeting ([dora.community](dora.community)), the recurring question, "Is DevOps a role?" surfaced once again. My daughters are peacefully asleep so I've decided to delve into this topic.
+During a DORA community meeting ([dora.community](https://dora.community)), the recurring question, "Is DevOps a role?" surfaced once again. My daughters are peacefully asleep so I've decided to delve into this topic.
 
 Over the past seven years, I've dedicated five years to leading a "DevOps" team, and for the last year, I've served as the Head of DevOps and Platform Engineering.
 

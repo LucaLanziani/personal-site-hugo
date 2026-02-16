@@ -24,10 +24,10 @@ yaourt -S cgit
 che oltre a installare il man e a creare alcune cartelle utili, fornirà i seguenti file:
 
 ```bash
-    /etc/cgitrc
-    /srv/http/cgit/cgit.cgi
-    /srv/http/cgit/cgit.css
-    /srv/http/cgit/cgit.png
+/etc/cgitrc
+/srv/http/cgit/cgit.cgi
+/srv/http/cgit/cgit.css
+/srv/http/cgit/cgit.png
 ```
 
 **Nella configurazione di Apache** di Archlinux, esiste un alias che specifica che **all’url `/cgi-bin/` corrisponde il percorso fisico `/srv/http/cgi-bin`** dobbiamo quindi creare la directory in questione e copiarci all’interno il file `cgit.cgi`:

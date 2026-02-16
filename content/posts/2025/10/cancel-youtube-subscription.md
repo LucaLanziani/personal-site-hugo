@@ -1,6 +1,6 @@
 ---
 title: "Youtube not respecting my preferences"
-date: 2025-19-12T20:47:02+02:00
+date: 2025-10-12T20:47:02+02:00
 category: general
 tags: [venting]
 email: luca@lanziani.com
