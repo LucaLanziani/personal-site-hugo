@@ -12,10 +12,11 @@ Continuing my series of Friday night experiments, this Friday I was on a train f
 <!--more-->
 
 Since the models weren't working well on the train Wi-Fi, I decided to exercise my coding muscles instead.
+
 First, I implemented a simple linked list in Golang. I wanted to try a binary tree next, but a friend challenged me to implement a trie.
+
 Once I finished, I asked a model to review my code.
+
 This is what Codex 5.3 said about it 😅.
 
-
 ![Image 1](post_02_image_1.jpg)
-
