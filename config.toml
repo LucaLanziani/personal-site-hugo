@@ -36,6 +36,12 @@ name = "Blog"
 url = "/posts/"
 weight = 2 # Weight is an integer used to sort the menu items. The sorting goes from smallest to largest numbers. If weight is not defined for each menu entry, Hugo will sort the entries alphabetically.
 
+[[menu.main]]
+identifier = "social"
+name = "Social"
+url = "/social/"
+weight = 3
+
 
 [markup]
   [markup.goldmark]
