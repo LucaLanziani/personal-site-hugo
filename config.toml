@@ -6,6 +6,7 @@ paginate = 10
 
 [params]
 math = true
+mainSections = ["posts"]
 description = "Stories from an Italian Software Engineer"
 profilePicture = "images/profile.png"
 showReadMore = true
