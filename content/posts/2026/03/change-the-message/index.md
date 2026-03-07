@@ -12,6 +12,8 @@ Please Stop Force-Feeding AI FOMO to Others!
 
 Not too long ago, I wrote a post about the [AI Hype Burnout](https://ainativeteams.com/blog/ai-hype-effects/) and how it was harmful to the whole industry.
 
+<!--more-->
+
 I thought that was the end of it, but it seems like the FOMO is starting to kick in. Many people are seeing that AI is finally delivering real value and are "inviting" everyone to quickly jump on the bandwagon.
 
 I get it. It’s exciting, and I’m excited too. But please, let's not force-feed FOMO to others.
