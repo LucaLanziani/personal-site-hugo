@@ -5,7 +5,8 @@ category: general
 tags: [AI, FOMO, Hype, Pragmatism, DevCulture, Mindset]
 email: luca@lanziani.com
 description: "Please Stop Force-Feeding AI FOMO to Others!"
-image: https://lanziani.com/posts/2026/03/change-the-message/image.png
+images:
+    - https://lanziani.com/posts/2026/03/change-the-message/image.png
 ---
 
 Please Stop Force-Feeding AI FOMO to Others!
