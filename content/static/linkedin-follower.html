@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Followers Exporter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f3f2ef;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      max-width: 640px;
+      width: 100%;
+      padding: 3rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .bookmarklet-link {
+      display: inline-block;
+      background: #0a66c2;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 24px;
+      text-decoration: none;
+      cursor: grab;
+      transition: background 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+
+    .bookmarklet-link:hover {
+      background: #004182;
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+    }
+
+    .bookmarklet-link:active {
+      cursor: grabbing;
+    }
+
+    .instructions {
+      margin-top: 2.5rem;
+    }
+
+    .instructions h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .instructions ol {
+      padding-left: 1.25rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .instructions li {
+      margin-bottom: 0.25rem;
+    }
+
+    .instructions code {
+      background: #f0f0f0;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .note {
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      background: #fffbe6;
+      border-left: 4px solid #e6c200;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #665500;
+      line-height: 1.5;
+    }
+
+    .output-format {
+      margin-top: 2rem;
+    }
+
+    .output-format h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1a1a1a;
+    }
+
+    .output-format pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>LinkedIn Followers Exporter</h1>
+    <p class="subtitle">
+      Export your LinkedIn followers list as a CSV file with names, roles, and profile links.
+    </p>
+
+    <a class="bookmarklet-link" id="bookmarklet" href="#">
+      📥 Export LinkedIn Followers
+    </a>
+
+    <script>
+      function bookmarkletCode() {
+        var q = '"', rows = ['"name","role","profile_url"'];
+        document.querySelectorAll("[data-chameleon-result-urn]").forEach(function (el) {
+          var nameEl = el.querySelector('a[href*="miniProfileUrn"]:not([aria-hidden])');
+          var roleEl = el.querySelector(".t-14.t-black.t-normal");
+          var name = nameEl ? nameEl.textContent.trim() : "";
+          var role = roleEl ? roleEl.textContent.trim() : "";
+          var url = nameEl ? nameEl.href.split("?")[0] : "";
+          if (name) rows.push(q + name.replace(/"/g, '""') + q + "," + q + role.replace(/"/g, '""') + q + "," + q + url + q);
+        });
+        var csv = rows.join("\n");
+        var blob = new Blob([csv], { type: "text/csv" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "linkedin_followers.csv";
+        a.click();
+      }
+
+      var src = bookmarkletCode.toString()
+        .replace(/^function\s*bookmarkletCode\s*\(\)\s*\{/, "")
+        .replace(/\}$/, "");
+      var href = "javascript:void(function(){" + encodeURIComponent(src.trim()) + "})()";
+
+      var link = document.getElementById("bookmarklet");
+      link.href = href;
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Don't click! Drag this button to your bookmarks bar instead.");
+      });
+    </script>
+
+    <div class="instructions">
+      <h2>How to use</h2>
+      <ol>
+        <li>Drag the <strong>"Export LinkedIn Followers"</strong> button above into your bookmarks bar.</li>
+        <li>Go to your <a href="https://www.linkedin.com/mynetwork/network-manager/people-follow/followers/" target="_blank">LinkedIn followers page</a>.</li>
+        <li>Scroll down to load all the followers you want to export.</li>
+        <li>Click the bookmarklet in your bookmarks bar.</li>
+        <li>A <code>linkedin_followers.csv</code> file will download automatically.</li>
+      </ol>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> LinkedIn only renders followers visible on the page.
+      Keep scrolling to load more before running the bookmarklet.
+      For best results, scroll all the way to the bottom first.
+    </div>
+
+    <div class="output-format">
+      <h2>Output format</h2>
+      <pre>"name","role","profile_url"
+"Jane Doe","Senior Engineer @ Google","https://www.linkedin.com/in/janedoe"
+"John Smith","Product Manager @ Meta","https://www.linkedin.com/in/johnsmith"</pre>
+    </div>
+
+    <footer>
+      Works entirely in your browser &mdash; no data is sent to any server.
+    </footer>
+  </div>
+</body>
+</html>
