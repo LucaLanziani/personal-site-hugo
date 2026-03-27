@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Followers Exporter</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f3f2ef;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+      width: 100%;
+      padding: 3rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .bookmarklet-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #0a66c2;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 24px;
+      text-decoration: none;
+      cursor: grab;
+      transition: background 0.2s, box-shadow 0.2s;
+      user-select: none;
+    }
+
+    .bookmarklet-link svg {
+      width: 1.2em;
+      height: 1.2em;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .bookmarklet-link:hover {
+      background: #004182;
+      box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+    }
+
+    .bookmarklet-link:active {
+      cursor: grabbing;
+    }
+
+    .bookmarklet-link.secondary {
+      background: #2e2e2e;
+    }
+
+    .bookmarklet-link.secondary:hover {
+      background: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .bookmarklet-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .instructions {
+      margin-top: 2.5rem;
+    }
+
+    .instructions h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+
+    .instructions ol {
+      padding-left: 1.25rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .instructions li {
+      margin-bottom: 0.25rem;
+    }
+
+    .instructions code {
+      background: #f0f0f0;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    .note {
+      margin-top: 2rem;
+      padding: 1rem 1.25rem;
+      background: #fffbe6;
+      border-left: 4px solid #e6c200;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: #665500;
+      line-height: 1.5;
+    }
+
+    .output-format {
+      margin-top: 2rem;
+    }
+
+    .output-format h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1a1a1a;
+    }
+
+    .output-format pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>LinkedIn Followers Exporter</h1>
+    <p class="subtitle">
+      Export your LinkedIn followers list as a CSV file with names, roles, and profile links.
+    </p>
+
+    <div class="bookmarklet-buttons">
+      <a class="bookmarklet-link"
+         href="javascript:function%20extractFollowers(doc)%20%7B%20var%20cards%20%3D%20doc.querySelectorAll(%22%5Bdata-chameleon-result-urn%5D%22)%3B%20if%20(!cards.length)%20%7B%20return%20%7B%20error%3A%20%22no_cards%22%2C%20followers%3A%20%5B%5D%2C%20skipped%3A%200%20%7D%3B%20%7D%20var%20followers%20%3D%20%5B%5D%3B%20var%20skipped%20%3D%200%3B%20cards.forEach(function%20(el)%20%7B%20var%20nameEl%20%3D%20el.querySelector(%20'a%5Bhref*%3D%22miniProfileUrn%22%5D%3Anot(%5Baria-hidden%5D)'%20)%3B%20var%20roleEl%20%3D%20null%3B%20var%20node%20%3D%20nameEl%3B%20while%20(node%20%26%26%20node%20!%3D%3D%20el)%20%7B%20var%20sibling%20%3D%20node.nextElementSibling%3B%20if%20(sibling%20%26%26%20sibling.tagName%20%3D%3D%3D%20%22DIV%22)%20%7B%20roleEl%20%3D%20sibling%3B%20break%3B%20%7D%20node%20%3D%20node.parentElement%3B%20%7D%20if%20(!nameEl)%20%7B%20skipped%2B%2B%3B%20return%3B%20%7D%20var%20name%20%3D%20nameEl.textContent.trim()%3B%20var%20role%20%3D%20roleEl%20%3F%20roleEl.textContent.trim()%20%3A%20%22%22%3B%20var%20url%20%3D%20nameEl.href.split(%22%3F%22)%5B0%5D%3B%20if%20(name)%20%7B%20followers.push(%7B%20name%3A%20name%2C%20role%3A%20role%2C%20url%3A%20url%20%7D)%3B%20%7D%20%7D)%3B%20if%20(!followers.length)%20%7B%20return%20%7B%20error%3A%20%22no_data%22%2C%20followers%3A%20%5B%5D%2C%20skipped%3A%20skipped%20%7D%3B%20%7D%20return%20%7B%20error%3A%20null%2C%20followers%3A%20followers%2C%20skipped%3A%20skipped%20%7D%3B%20%7D%20function%20toCSV(followers)%20%7B%20var%20rows%20%3D%20%5B'%22name%22%2C%22role%22%2C%22profile_url%22'%5D%3B%20followers.forEach(function%20(f)%20%7B%20rows.push(%20'%22'%20%2B%20f.name.replace(%2F%22%2Fg%2C%20'%22%22')%20%2B%20'%22%2C%22'%20%2B%20f.role.replace(%2F%22%2Fg%2C%20'%22%22')%20%2B%20'%22%2C%22'%20%2B%20f.url%20%2B%20'%22'%20)%3B%20%7D)%3B%20return%20rows.join(%22%5Cn%22)%3B%20%7D%20if%20(typeof%20module%20!%3D%3D%20%22undefined%22%20%26%26%20module.exports)%20%7B%20module.exports%20%3D%20%7B%20extractFollowers%2C%20toCSV%20%7D%3B%20%7D%20void%20(function%20()%20%7B%20var%20result%20%3D%20extractFollowers(document)%3B%20if%20(result.error%20%3D%3D%3D%20%22no_cards%22)%20%7B%20alert(%22No%20follower%20cards%20found%20on%20this%20page.%5CnMake%20sure%20you%20are%20on%20the%20LinkedIn%20followers%20page.%22)%3B%20return%3B%20%7D%20if%20(result.error%20%3D%3D%3D%20%22no_data%22)%20%7B%20alert(%22Found%20cards%20but%20could%20not%20extract%20any%20data.%5CnLinkedIn%20may%20have%20changed%20their%20page%20structure.%22)%3B%20return%3B%20%7D%20if%20(result.skipped%20%3E%200)%20%7B%20alert(%22Exported%20%22%20%2B%20result.followers.length%20%2B%20%22%20follower(s).%5Cn%22%20%2B%20result.skipped%20%2B%20%22%20card(s)%20were%20skipped%20(could%20not%20find%20a%20profile%20link).%22)%3B%20%7D%20var%20csv%20%3D%20toCSV(result.followers)%3B%20var%20blob%20%3D%20new%20Blob(%5Bcsv%5D%2C%20%7B%20type%3A%20%22text%2Fcsv%22%20%7D)%3B%20var%20a%20%3D%20document.createElement(%22a%22)%3B%20a.href%20%3D%20URL.createObjectURL(blob)%3B%20a.download%20%3D%20%22linkedin_followers.csv%22%3B%20a.click()%3B%20%7D)()%3B"
+         onclick="event.preventDefault();alert('Don\'t click! Drag this button to your bookmarks bar instead.');">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        Download Followers
+      </a>
+      <a class="bookmarklet-link secondary"
+         href="javascript:function%20extractFollowers(doc)%20%7B%20var%20cards%20%3D%20doc.querySelectorAll(%22%5Bdata-chameleon-result-urn%5D%22)%3B%20if%20(!cards.length)%20%7B%20return%20%7B%20error%3A%20%22no_cards%22%2C%20followers%3A%20%5B%5D%2C%20skipped%3A%200%20%7D%3B%20%7D%20var%20followers%20%3D%20%5B%5D%3B%20var%20skipped%20%3D%200%3B%20cards.forEach(function%20(el)%20%7B%20var%20nameEl%20%3D%20el.querySelector(%20'a%5Bhref*%3D%22miniProfileUrn%22%5D%3Anot(%5Baria-hidden%5D)'%20)%3B%20var%20roleEl%20%3D%20null%3B%20var%20node%20%3D%20nameEl%3B%20while%20(node%20%26%26%20node%20!%3D%3D%20el)%20%7B%20var%20sibling%20%3D%20node.nextElementSibling%3B%20if%20(sibling%20%26%26%20sibling.tagName%20%3D%3D%3D%20%22DIV%22)%20%7B%20roleEl%20%3D%20sibling%3B%20break%3B%20%7D%20node%20%3D%20node.parentElement%3B%20%7D%20if%20(!nameEl)%20%7B%20skipped%2B%2B%3B%20return%3B%20%7D%20var%20name%20%3D%20nameEl.textContent.trim()%3B%20var%20role%20%3D%20roleEl%20%3F%20roleEl.textContent.trim()%20%3A%20%22%22%3B%20var%20url%20%3D%20nameEl.href.split(%22%3F%22)%5B0%5D%3B%20if%20(name)%20%7B%20followers.push(%7B%20name%3A%20name%2C%20role%3A%20role%2C%20url%3A%20url%20%7D)%3B%20%7D%20%7D)%3B%20if%20(!followers.length)%20%7B%20return%20%7B%20error%3A%20%22no_data%22%2C%20followers%3A%20%5B%5D%2C%20skipped%3A%20skipped%20%7D%3B%20%7D%20return%20%7B%20error%3A%20null%2C%20followers%3A%20followers%2C%20skipped%3A%20skipped%20%7D%3B%20%7D%20function%20toCSV(followers)%20%7B%20var%20rows%20%3D%20%5B'%22name%22%2C%22role%22%2C%22profile_url%22'%5D%3B%20followers.forEach(function%20(f)%20%7B%20rows.push(%20'%22'%20%2B%20f.name.replace(%2F%22%2Fg%2C%20'%22%22')%20%2B%20'%22%2C%22'%20%2B%20f.role.replace(%2F%22%2Fg%2C%20'%22%22')%20%2B%20'%22%2C%22'%20%2B%20f.url%20%2B%20'%22'%20)%3B%20%7D)%3B%20return%20rows.join(%22%5Cn%22)%3B%20%7D%20if%20(typeof%20module%20!%3D%3D%20%22undefined%22%20%26%26%20module.exports)%20%7B%20module.exports%20%3D%20%7B%20extractFollowers%2C%20toCSV%20%7D%3B%20%7D%20void%20(function%20()%20%7B%20var%20result%20%3D%20extractFollowers(document)%3B%20if%20(result.error%20%3D%3D%3D%20%22no_cards%22)%20%7B%20alert(%22No%20follower%20cards%20found%20on%20this%20page.%5CnMake%20sure%20you%20are%20on%20the%20LinkedIn%20followers%20page.%22)%3B%20return%3B%20%7D%20if%20(result.error%20%3D%3D%3D%20%22no_data%22)%20%7B%20alert(%22Found%20cards%20but%20could%20not%20extract%20any%20data.%5CnLinkedIn%20may%20have%20changed%20their%20page%20structure.%22)%3B%20return%3B%20%7D%20if%20(result.skipped%20%3E%200)%20%7B%20alert(%22Exported%20%22%20%2B%20result.followers.length%20%2B%20%22%20follower(s).%5Cn%22%20%2B%20result.skipped%20%2B%20%22%20card(s)%20were%20skipped%20(could%20not%20find%20a%20profile%20link).%22)%3B%20%7D%20var%20csv%20%3D%20toCSV(result.followers)%3B%20navigator.clipboard.writeText(csv).then(function%20()%20%7B%20alert(%22Copied%20%22%20%2B%20result.followers.length%20%2B%20%22%20follower(s)%20to%20clipboard.%22)%3B%20%7D)%3B%20%7D)()%3B"
+         onclick="event.preventDefault();alert('Don\'t click! Drag this button to your bookmarks bar instead.');">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        Copy Followers
+      </a>
+    </div>
+
+    <div class="instructions">
+      <h2>How to use</h2>
+      <ol>
+        <li>Drag <strong>"Download Followers"</strong> or <strong>"Copy Followers"</strong> to your bookmarks bar.</li>
+        <li>Go to your <a href="https://www.linkedin.com/mynetwork/network-manager/people-follow/followers/" target="_blank">LinkedIn followers page</a>.</li>
+        <li>Scroll down to load all the followers you want to export.</li>
+        <li>Click the bookmarklet in your bookmarks bar.</li>
+        <li><strong>Download Followers</strong> saves a <code>linkedin_followers.csv</code> file. <strong>Copy Followers</strong> copies the CSV text so you can paste it.</li>
+      </ol>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> LinkedIn only renders followers visible on the page.
+      Keep scrolling to load more before running the bookmarklet.
+      For best results, scroll all the way to the bottom first.
+    </div>
+
+    <div class="output-format">
+      <h2>Output format</h2>
+      <pre>"name","role","profile_url"
+"Jane Doe","Senior Engineer @ Google","https://www.linkedin.com/in/janedoe"
+"John Smith","Product Manager @ Meta","https://www.linkedin.com/in/johnsmith"</pre>
+    </div>
+
+    <footer>
+      Works entirely in your browser &mdash; no data is sent to any server.
+    </footer>
+  </div>
+</body>
+</html>

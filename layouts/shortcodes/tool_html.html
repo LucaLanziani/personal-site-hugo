@@ -1,0 +1,4 @@
+{{ $toolPath := printf "content/%stool.html" .Page.File.Dir }}
+{{ if fileExists $toolPath }}
+  {{ readFile $toolPath | safeHTML }}
+{{ end }}
