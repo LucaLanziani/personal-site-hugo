@@ -16,7 +16,7 @@ I wholeheartedly agree with the advice about sticking to frontier models, but wh
 The phrase *I know local models will win* has me really excited. 🤩
 
 The post:
-https://lnkd.in/dmQTW_rn
+https://crawshaw.io/blog/eight-more-months-of-agents
 
 ![Image 1](post_16_image_1.jpg)
 
