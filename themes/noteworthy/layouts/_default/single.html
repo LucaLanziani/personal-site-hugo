@@ -9,14 +9,14 @@
 </div>
 <div class="post-navigation">
   <div class="next-post">
-    {{ if .NextPage }}
-    <a class="link-reverse" href="{{ .NextPage.Permalink }}?ref=footer">« {{ .NextPage.Title | truncate 15 "..." }}</a>
+    {{ with .NextInSection }}
+    <a class="link-reverse" href="{{ .Permalink }}?ref=footer">« {{ .Title | truncate 15 "..." }}</a>
     {{ end }}
   </div>
   
   <div class="previous-post">
-    {{ if .PrevPage }}
-    <a class="link-reverse" href="{{ .PrevPage.Permalink }}?ref=footer">{{ .PrevPage.Title | truncate 15 "..."}} »</a>
+    {{ with .PrevInSection }}
+    <a class="link-reverse" href="{{ .Permalink }}?ref=footer">{{ .Title | truncate 15 "..."}} »</a>
     {{ end }}
   </div>
 </div>

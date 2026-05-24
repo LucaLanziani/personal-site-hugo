@@ -6,6 +6,8 @@
   {{ range .Site.Menus.main }}
     <a class="color-link nav-link" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
   {{ end }}
-  <a class="color-link nav-link" href="{{ .Site.RSSLink }}" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+  {{ with site.Home.OutputFormats.Get "rss" }}
+  <a class="color-link nav-link" href="{{ .Permalink }}" target="_blank" rel="noopener" type="application/rss+xml">RSS</a>
+  {{ end }}
 </div>
 </nav>
