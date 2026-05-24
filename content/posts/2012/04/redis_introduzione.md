@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 - Quali sono le particolarità di Redis?

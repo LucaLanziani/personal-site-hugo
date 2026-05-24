@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Una breve introduzione a Nodejs, non si scrive neanche una riga di codice.

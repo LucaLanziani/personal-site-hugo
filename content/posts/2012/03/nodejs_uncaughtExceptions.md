@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 **Le interruzioni di servizio potrebbe essere problematiche?**

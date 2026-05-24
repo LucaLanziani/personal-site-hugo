@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Definire le rotte in express, il pattern e i metodi che possono essere utilizzati, le etichette e le espressioni regolari

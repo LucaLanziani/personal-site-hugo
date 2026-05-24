@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Introduciamo il Read Eval Print Loop fornito da Nodejs e scriviamo il primo codice per stampare un semplice hello world.

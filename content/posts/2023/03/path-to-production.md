@@ -26,7 +26,7 @@ I plan to examine each stage of a generic path to production, assuming a generic
 
 By coincidence, I came across a tweet on Twitter last night that aligns with what we will be discussing in this series.
 
-{{< tweet user="jgallimore" id="1631797981547511816" >}}
+{{< x user="jgallimore" id="1631797981547511816" >}}
 
 [https://twitter.com/jgallimore/status/1631797981547511816?s=20](https://twitter.com/jgallimore/status/1631797981547511816?s=20)
 

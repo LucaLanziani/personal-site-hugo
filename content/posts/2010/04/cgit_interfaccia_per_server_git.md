@@ -4,7 +4,6 @@ date: 2010-04-15T17:40:00+02:00
 category: How-to
 tags: [git, server, linux, it, gitosis, cgit]
 email: luca@lanziani.com
-lang: it
 ---
 
 Dopo aver [configurato il mio server git]({filename}/posts/2010/04/gitosis_server_git_privato.md) mi sono chiesto quale fosse il modo migliore per navigare i progetti, sempre con l’aiuto di google ho scovato [cgit][1]

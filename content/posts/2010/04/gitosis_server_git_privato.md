@@ -4,7 +4,6 @@ date: 2010-04-14T14:10:00+02:00
 category: How-to
 tags: [git, server, linux, it, gitosis]
 email: luca@lanziani.com
-lang: it
 ---
 
 Ho necessita qualche volta di gestire in maniera flessibile lo sviluppo del software che scrivo utilizzando [git] [1].

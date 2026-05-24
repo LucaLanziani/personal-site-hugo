@@ -4,7 +4,6 @@ date: 2010-07-02T11:36:00+02:00
 category: Tricks
 tags: [xinetd, linux, it, redirect]
 email: luca@lanziani.com
-lang: it
 ---
 
 Ho sempre sostenuto che sia cosa buona e giusta avere amici che ne sanno più di te :D.

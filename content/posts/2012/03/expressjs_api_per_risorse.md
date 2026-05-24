@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Vediamo come è possibile combinare quanto visto fin'ora per creare 5 semplici rotte che permettano di fruire di una risorsa. Introduciamo il metodo [param][1] e testiamo l'applicazione con curl.

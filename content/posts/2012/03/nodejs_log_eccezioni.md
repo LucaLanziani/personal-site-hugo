@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Nella pillola precedente [(uncaught exception)]({filename}/posts/2012/03/nodejs_uncaughtExceptions.md) abbiamo visto come evitare interruzioni inaspettate del servizio.

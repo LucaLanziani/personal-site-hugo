@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Avevo promesso un video di approfondimento su express ma ho preferito prima presentare due strumenti che potranno esserci molto utili durante lo sviluppo.

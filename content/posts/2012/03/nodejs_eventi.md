@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Abbiamo citato il fatto che un punto di forza di nodejs è dato dal suo essere guidato da eventi.

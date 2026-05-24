@@ -5,7 +5,6 @@ category: Tutorial
 tags: [Nodejs, it]
 email: luca@lanziani.com
 series: [NodeInPillole]
-lang: it
 ---
 
 Dal semplice script hello world ad un server web che risponde hello world ad ogni richiesta in 5 righe di codice.
