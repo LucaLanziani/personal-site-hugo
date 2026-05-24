@@ -1,5 +1,5 @@
 ---
-title: "Building Jarvis: a personal lab for agents, models, and provider APIs"
+title: "Building Jarvis"
 date: 2026-05-24T10:00:00+02:00
 category: general
 tags: [AI, agents, Go, learning]
@@ -9,31 +9,25 @@ images:
     - https://lanziani.com/posts/2026/05/building-jarvis/image.png
 ---
 
-I've been spending evenings on **Jarvis** — a Go-based AI agent that gives a language model a small, controlled toolkit on my machine. It isn't meant to compete with Cursor or Claude Code. It's a private sandbox where I can touch the ideas behind those products: tool loops, provider quirks, session state, safety boundaries, and what "an agent" actually means in code.
+For the past few months I've been hacking on **Jarvis** in the evenings: a small Go agent that gives an LLM a handful of local tools (read files, run shell, spawn sub-agents, that kind of thing). I'm not trying to ship the next OpenClaw clone. I just wanted to see how the pieces fit together when you build them yourself.
 
 <!--more-->
 
-<!-- TODO: add a screenshot of the Jarvis repo or REPL as image.png in this directory -->
+![Jarvis repository overview](image.png)
 
-![Jarvis — repository overview or REPL session](image.png)
+## Why bother
 
-## Why I'm building it
+I use agentic tools every day, but most of what happens is behind a UI. The model picks a tool, something runs, I get an answer. Fine, but I kept wondering about the boring parts: the loop that caps iterations, what happens when the provider streams tokens and tool calls in the same response, why Copilot and Anthropic feel different to wire up, and whether "don't run dangerous commands" belongs in the system prompt or in actual code.
 
-Most of us interact with agents through polished UIs. That's great for productivity, but it hides the mechanics: how a model decides to call a tool, how streaming and tool calls interleave, how OpenAI, Anthropic, and GitHub Copilot differ at the HTTP layer, and where runtime safety belongs (prompt vs. code vs. OS).
+Jarvis is where I answer those questions by breaking things and fixing them.
 
-Jarvis is my way of closing that gap. Each feature forces a concrete question:
+Every feature I add comes from something I didn't understand until I coded it. How do you bound a multi-turn tool loop? What if the model fires two tool calls at once? Can you sandbox file reads with Go's `os.Root` without making edits painful? When should `shell` pause for a human yes/no? Sub-agents were another rabbit hole: useful for delegation, scary if they can spawn forever.
 
-- How do I represent a **multi-turn loop** with a max iteration budget?
-- What happens when the model returns **parallel tool calls**?
-- How do I **sandbox** file access without breaking legitimate edits?
-- When should the human **approve** `shell` or `write_file` instead of trusting the model?
-- How do **sub-agents** differ from the supervisor — and why shouldn't they recurse forever?
+On top of Jarvis I also maintain **[langchain-go](https://github.com/LucaLanziani/langchain-go)**, a thin layer for tools and providers. Working on both at once helps: if the framework API is awkward, I feel it immediately in Jarvis.
 
-I'm also dogfooding **[langchain-go](https://github.com/LucaLanziani/langchain-go)** — a small framework I maintain for agents, tools, and providers. Jarvis sits on top of it; building both together keeps the abstractions honest.
+## Rough shape
 
-## What Jarvis is
-
-At a high level, Jarvis is an LLM with tools, wrapped in a runtime that owns safety and observability instead of leaving everything to the system prompt.
+You talk to it from a REPL or from Telegram. Under the hood it loops: call the model, run whatever tools come back, feed results in, repeat until done or until it hits a limit.
 
 ```
 You (REPL or Telegram)
@@ -42,11 +36,11 @@ You (REPL or Telegram)
   → Tools (files, shell, sub-agents, skills, …)
 ```
 
-The repository stays **private** — this is a learning project, not something I'm shipping for others to clone. The goal is depth of understanding, not distribution.
+The repo is private. This is for me to learn, not for anyone to clone and run.
 
-## Current status
+## Where it's at
 
-The project is past "weekend prototype." There's a **v0.0.1** tag, CI, docs, and a real surface area:
+It's gone past the "hello world with tools" stage. There's a v0.0.1 tag, CI, and enough docs that future-me won't hate present-me.
 
 | Area | Status |
 |------|--------|
@@ -62,35 +56,28 @@ The project is past "weekend prototype." There's a **v0.0.1** tag, CI, docs, and
 | **UX** | Bubble Tea prompt with arrow-key editing; optional **tmux** layout (interactive + logs + sub-agent panes) |
 | **Observability** | Structured logging + OpenTelemetry tracing across supervisor and sub-agent runs |
 
-Recent work includes **skills support**, **config reload** without restarting the REPL, **AFK mode** (routing `ask_user` prompts to Telegram while I'm away), and hardening around shutdown, tool filtering, and bounded history.
+Lately I've been adding skills, reloading config without restarting the REPL, and an "AFK" path that forwards `ask_user` prompts to Telegram when I'm not at the laptop. Traces across supervisor and sub-agent runs saved me more than once when a tool call failed in a weird way.
 
-So today Jarvis is usable for my own local work: inspect a repo, run bounded shell commands (with approvals if I want), delegate a sub-task to a sub-agent, or chat from Telegram — with the same agent core underneath.
+I use it for real chores now: skim a repo, run a bounded shell command, hand off a smaller task to a sub-agent, or poke it from my phone. Nothing production-grade, but it works for what I built it for.
 
-## What I'm still exploring
+## Still on the list
 
-A long `features/` backlog tracks what's next: git-aware tools, an MCP server bridge, web fetch, an evaluation runner, notebook support, stronger sandbox profiles, and more. Many shipped capabilities started as numbered proposals there; the rest are deliberate experiments in "what should an agent runtime know about?"
+There's a long `features/` folder with ideas I haven't touched yet: git status/diff tools, MCP bridge, web fetch, eval runner, notebook support, tighter sandbox presets. A bunch of stuff in there already shipped; the rest is "nice to learn, not urgent."
 
-There's also a **fixes/** list — the kind of edge cases you only see once you run tool loops for real (discarded tool errors, approval races, history bounds, sub-agent timeouts). That's part of the learning too.
+Same for `fixes/`: race conditions around approvals, history growing without a cap, sub-agents hanging without a timeout. Annoying bugs, but the kind you only find when you actually run agents for hours.
 
-## Design choices I care about
+## Things I settled on
 
-A few decisions reflect what I've learned so far:
+File access goes through a sandbox rooted at `WorkDir`. Shell does not pretend to be safe; if I want guardrails, that's approvals and deny lists, maybe containers later. When I dogfood on the Jarvis repo itself, the default config blocks `shell` and `write_file` so I don't accidentally let the agent trash its own source.
 
-**Safety in the runtime, not only in the prompt.** File tools stay inside `WorkDir`. `shell` is intentionally *not* sandboxed — so approvals, deny lists, and container isolation stay honest. The default config on the repo itself even deny-lists `shell` and `write_file` for read-heavy dogfooding.
+Sub-agents copy the supervisor's workdir and tool policy but can't call `run_agent` again. That was a deliberate choice after watching one delegation turn into three.
 
-**Sub-agents are bounded.** They inherit workdir, provider, and tool policy, but they cannot spawn further sub-agents. That keeps delegation understandable and avoids runaway fan-out.
+REPL and Telegram share the same agent code. Telegram forced me to handle things the terminal didn't care about: one conversation at a time, remote approvals, timeouts, cancelling a stuck turn.
 
-**Two surfaces, one engine.** The REPL and Telegram bot share the same agent and bot packages. Messaging taught me things the REPL didn't: per-conversation serialization, remote approvals, prompt timeouts, cancelling a turn mid-flight.
+I log every tool execution and export traces. Guessing why the model called `rm -rf` is worse than reading a span.
 
-**Observability from day one.** Tool execution logs and OTEL traces aren't afterthoughts — they're how you debug "why did the model call that?" without guessing.
+## What's next
 
-## Where this is headed
+I'll keep treating it as a lab. I want to compare providers more systematically (streaming quirks, tool schema errors), plug in more tools without turning the binary into a kitchen sink, and eventually run repeatable evals so I notice regressions.
 
-Jarvis will keep growing as a **lab**, not a product pitch. I care about:
-
-- Deeper provider comparisons (streaming, tool schemas, error shapes)
-- Richer tool ecosystems (MCP, git, tests) without bloating the core binary
-- Repeatable evals so agent behavior doesn't regress silently
-- Clearer boundaries between "model reasoning" and "runtime policy"
-
-If you're also trying to understand agents by building one — not just by prompting one — I'd love to hear what you've run into. The Jarvis repo stays private, but the ideas are the same ones showing up everywhere in agentic tooling right now.
+If you're building your own agent runtime for the same reasons, I'd be curious what surprised you. My code stays private, but the problems (tool loops, safety, sessions, sub-agents) are the same ones everyone is hitting right now.
