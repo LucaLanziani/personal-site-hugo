@@ -6,7 +6,7 @@ tags: [AI, agents, Go, learning]
 email: luca@lanziani.com
 description: "A private Go project where I learn how agent runtimes, LLM providers, and tool loops actually work."
 images:
-    - https://lanziani.com/posts/2026/05/building-jarvis/image.png
+    - https://lanziani.com/posts/2026/05/building-jarvis/social_building_jarvis.png
 ---
 
 For the past few months I've been hacking on **Jarvis** in the evenings: a small Go agent that gives an LLM a handful of local tools (read files, run shell, spawn sub-agents, that kind of thing). I'm not trying to ship the next OpenClaw clone. I just wanted to see how the pieces fit together when you build them yourself.
