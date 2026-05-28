@@ -1,26 +1,32 @@
 ---
+title: "About Luca Lanziani"
+description: "Luca Lanziani works at the intersection of AI Engineering, Platform Engineering, DevOps, and software delivery."
 disableSocial: true
 ---
 
 ## Hi, I'm Luca
 
-I'm a Head of DevOps and Platform Engineering who got into this field because, as a developer, I kept running into problems that needed solving. Turns out, I enjoy working on them.
+I work at the intersection of AI Engineering, Platform Engineering, and software delivery. My focus is helping teams adopt AI-assisted development in ways that improve delivery outcomes, not just local coding speed.
 
 ### What I Do
 
-I serve as a Subject Matter Expert in DevOps and Platform Engineering and supervise teams across different clients. I'm involved in presales activities, manage client relationships, and I'm ultimately responsible for the successful delivery of our engagements.
+I'm Head of DevOps and Platform Engineering at Nearform, where I serve as a subject matter expert, supervise teams across different clients, support presales and client relationships, and stay accountable for successful delivery.
 
-My focus is on improving the full software development lifecycle, from planning and development to deployment, monitoring, and everything in between.
+That platform and DevOps background now anchors my AI Engineering work: designing the workflows, development platforms, review systems, automation, governance, and delivery ownership that make AI-assisted development useful in real engineering organizations.
 
-I've been working remotely since 2015, not because it was trendy, but because I believed in it before the world caught up. That's a decade of experience managing distributed teams and organizing work without needing someone looking over my shoulder.
+I've been working remotely since 2015, which has shaped how I think about explicit process, written context, team interfaces, and asynchronous delivery. Those same disciplines matter even more when humans collaborate with AI agents.
 
-### What I'm Passionate About
+### What I Focus On
 
-**Programming**: Despite the management responsibilities, I still write code as much as I can. It's the only way to keep my skills sharp and stay grounded in the reality of what my teams deal with every day. I picked up GoLang last year because learning new languages keeps me from getting comfortable.
+**AI-native SDLC**: I care about the full path from intent to production: planning, specs, agent workflows, code generation, review, integration, testing, deployment, monitoring, and ownership.
 
-**DevOps & SDLC**: I'm focused on the full software development lifecycle—from planning and requirements through building, releasing, and monitoring. The unsexy stuff that makes or breaks production systems.
+**Spec-driven development**: I see specs as the interface between human intent and agent execution. Better specs reduce ambiguity, improve output, and make review easier.
 
-**AI & Spec-Driven Development**: I'm particularly excited about how AI is changing the way we work and how specifications can drive better development practices. Check out my [series on Spec-Driven Development](/series/spec-driven-development/) if you want to dive deeper.
+**Platform Engineering for AI**: AI-assisted teams need golden paths, sandboxed environments, permission boundaries, CI/CD checks, observability, and deployment workflows that match how agents actually work.
+
+**DevOps and delivery systems**: The same fundamentals still matter: small batches, clear ownership, automated validation, fast feedback, secure operations, and production accountability.
+
+**Programming**: Despite management responsibilities, I still write code as much as I can. It keeps me grounded in the reality of what teams deal with every day. Recently that has meant Go, agent runtimes, LLM providers, tool loops, and AI-assisted workflow experiments.
 
 ### Beyond Code
 
@@ -28,8 +34,6 @@ I'm based in Italy, where I spend my free time playing guitar and singing when I
 
 ### Let's Connect
 
-I'm always interested connecting with others who care about making software delivery better. Whether you want to talk about platform engineering, remote work, or just share war stories from production incidents, reach out.
+I'm always interested in connecting with people who care about making AI-assisted software delivery more reliable, governable, and production-ready. Whether you want to talk about AI Engineering, platform engineering, spec-driven development, remote leadership, or production delivery, reach out.
 
 You can find me on [LinkedIn](https://www.linkedin.com/in/lucalanziani/), [GitHub](https://github.com/LucaLanziani), or [drop me an email](mailto:luca+site@lanziani.com).
-
-

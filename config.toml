@@ -7,7 +7,8 @@ paginate = 10
 [params]
 math = true
 mainSections = ["posts"]
-description = "Stories from an Italian Software Engineer"
+description = "Luca Lanziani helps engineering organizations turn AI-assisted development into reliable shipped software through platform engineering, delivery systems, and AI-native SDLC design."
+homeTitle = "Luca Lanziani | AI Engineering & Platform Engineering"
 profilePicture = "images/profile.png"
 showReadMore = true
 frontpagePost = "I was highly skeptical, but now I'm a believer."  # Set to a post title to feature it on the homepage, or leave empty for most recent
@@ -38,10 +39,16 @@ url = "/posts/"
 weight = 2 # Weight is an integer used to sort the menu items. The sorting goes from smallest to largest numbers. If weight is not defined for each menu entry, Hugo will sort the entries alphabetically.
 
 [[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 3
+
+[[menu.main]]
 identifier = "social"
 name = "Social"
 url = "/social/"
-weight = 3
+weight = 4
 
 
 [markup]
