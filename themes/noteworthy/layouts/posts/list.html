@@ -10,7 +10,12 @@
     <article>
         <h2 class="list-title">
             <a href="{{ .Permalink }}">
-                {{ .Title }}
+                {{- $t := .Title -}}
+                {{- if gt (len $t) 55 -}}
+                    {{- printf "%s…%s" (substr $t 0 32 | strings.TrimRight " ") (substr $t -18 | strings.TrimLeft " ") -}}
+                {{- else -}}
+                    {{- $t -}}
+                {{- end -}}
             </a>
         </h2>
         <div>

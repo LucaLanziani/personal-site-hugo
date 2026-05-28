@@ -10,7 +10,7 @@
     <article>
         <h2 class="list-title">
             <a href="{{ .Permalink }}">
-                {{ .Title }}
+                {{ .Title | truncate 60 "…" }}
             </a>
         </h2>
         <div>

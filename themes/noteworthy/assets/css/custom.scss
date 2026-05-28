@@ -1,5 +1,4 @@
 $twitter-link: rgb(26, 138, 212);
-
 img.about-me {
     width: 6.5em;
     border-radius: 50%;
@@ -23,6 +22,9 @@ strong {
 time {
     display: block;
     text-align: center;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .align-center {
@@ -33,11 +35,14 @@ time {
     padding-top: 0;
     margin-top: 0;
     text-align: center;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (min-width: 900px) {
     .post-title {
-        font-size: 44px;
+        font-size: 34px; /* scaled down to suit the narrower ~40rem prose measure */
     }
 
     .about-content {
@@ -70,6 +75,35 @@ time {
 .post {
     font-size: 19.9px;
     padding: 0 5%;
+    color: #333; /* darker than $gray-dark for stronger body-text contrast */
+}
+
+/* Constrain prose to a comfortable reading measure (~66ch).
+   Block-level text elements stay narrow and centered; images/tweets stay full-width. */
+.post > p,
+.post > ul,
+.post > ol,
+.post > blockquote,
+.post > h1,
+.post > h2,
+.post > h3,
+.post > h4,
+.post > h5,
+.post > h6,
+.post > pre,
+.post > .table-wrapper {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Section headings, scaled to suit the narrower measure */
+.post > h2 {
+    font-size: 1.35em;
+}
+
+.post > h3 {
+    font-size: 1.15em;
 }
 
 .post a {
