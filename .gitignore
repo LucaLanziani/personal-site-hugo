@@ -44,3 +44,6 @@ tags
 ._*
 .DS_Store
 linkedin/
+
+# Local media not published with the site
+*.mp4
