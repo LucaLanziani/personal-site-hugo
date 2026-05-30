@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="article-content">
+    {{ partial "about-intro.html" . }}
+
+    <h1 class="post-title">{{ .Title }}</h1>
+    <div class="post">
+        {{ .Content }}
+    </div>
+</div>
+{{ end }}
