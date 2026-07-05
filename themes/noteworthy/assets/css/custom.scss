@@ -1,4 +1,3 @@
-$twitter-link: rgb(26, 138, 212);
 img.about-me {
     width: 6.5em;
     border-radius: 50%;
@@ -13,18 +12,31 @@ img.about-me:hover {
     border-radius: 20%;
 }
 
+// Post readability palette (light theme, inspired by ainativeteams.com)
+$post-text: #334155;
+$post-heading: #0f172a;
+$post-muted: #64748b;
+$post-accent: #3b82f6;
+$post-accent-dark: #2563eb;
+$post-bg-secondary: #f5f7fa;
+$post-border: #e2e8f0;
+$post-border-light: #f1f5f9;
+$post-max-width: 50rem; // ~800px
+
 strong {
-    color: #5F5F5F; /* Using $gray-dark from main.scss */
-    font-weight: 700; 
-    /* Inherits body font size - no explicit size needed */
+    color: $post-heading;
+    font-weight: 700;
 }
 
 time {
     display: block;
     text-align: center;
-    max-width: 40rem;
+    max-width: $post-max-width;
     margin-left: auto;
     margin-right: auto;
+    color: $post-muted;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .align-center {
@@ -34,15 +46,18 @@ time {
 .post-title {
     padding-top: 0;
     margin-top: 0;
+    margin-bottom: 1rem;
     text-align: center;
-    max-width: 40rem;
+    max-width: $post-max-width;
     margin-left: auto;
     margin-right: auto;
+    color: $post-heading;
+    line-height: 1.25;
 }
 
 @media (min-width: 900px) {
     .post-title {
-        font-size: 34px; /* scaled down to suit the narrower ~40rem prose measure */
+        font-size: 2.25rem;
     }
 
     .about-content {
@@ -72,46 +87,150 @@ time {
 }
 
 
+/* Blog post prose — light, readable layout aligned with ainativeteams.com */
 .post {
-    font-size: 19.9px;
-    padding: 0 5%;
-    color: #333; /* darker than $gray-dark for stronger body-text contrast */
-}
-
-/* Constrain prose to a comfortable reading measure (~66ch).
-   Block-level text elements stay narrow and centered; images/tweets stay full-width. */
-.post > p,
-.post > ul,
-.post > ol,
-.post > blockquote,
-.post > h1,
-.post > h2,
-.post > h3,
-.post > h4,
-.post > h5,
-.post > h6,
-.post > pre,
-.post > .table-wrapper {
-    max-width: 40rem;
+    max-width: $post-max-width;
     margin-left: auto;
     margin-right: auto;
-}
+    padding: 0 1rem 2rem;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: $post-text;
 
-/* Section headings, scaled to suit the narrower measure */
-.post > h2 {
-    font-size: 1.35em;
-}
+    @media (min-width: 768px) {
+        font-size: 1.25rem;
+        padding: 0 1.5rem 2rem;
+    }
 
-.post > h3 {
-    font-size: 1.15em;
-}
+    p {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+    }
 
-.post a {
-    color: $twitter-link;
-}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: $post-heading;
+        font-family: "Noto Sans", "Segoe UI", "Helvetica Neue", Helvetica, Roboto, FreeSans, sans-serif;
+    }
 
-.post img {
-    max-width: 100%
+    h2 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        line-height: 1.25;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.25;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h5,
+    h6 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-top: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    ul,
+    ol {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+        line-height: 1.625;
+    }
+
+    blockquote {
+        border-left: 4px solid #94a3b8;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: $post-muted;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        color: $post-accent;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus {
+            color: $post-accent-dark;
+        }
+    }
+
+    pre,
+    .highlight pre {
+        background-color: $post-bg-secondary;
+        border: 1px solid $post-border;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        color: #1e293b;
+    }
+
+    .highlight {
+        margin: 1.5rem 0;
+    }
+
+    /* Inline code only — not fenced blocks */
+    :not(pre) > code {
+        font-size: 0.9em;
+        background-color: $post-bg-secondary;
+        padding: 0.2em 0.4em;
+        border-radius: 0.25rem;
+        color: #1e293b;
+    }
+
+    pre code {
+        background-color: transparent;
+        padding: 0;
+        font-size: 0.875rem;
+        line-height: 1.625;
+        color: inherit;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 2rem auto;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid $post-border-light;
+        margin: 2.5rem 0;
+    }
+
+    .table-wrapper {
+        margin: 1.5rem 0;
+        overflow-x: auto;
+    }
 }
 
 #main-content {
@@ -125,7 +244,10 @@ time {
 
 .post-navigation {
     display: flex;
-    padding: 0 5%;
+    max-width: $post-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
 }
 
 .previous-post {
