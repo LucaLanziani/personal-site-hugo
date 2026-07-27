@@ -2,6 +2,7 @@
 title: "AI FOMO"
 date: 2026-03-06T17:29:17+02:00
 category: general
+lane: ai-engineering
 tags: [AI, FOMO, Hype, Pragmatism, DevCulture, Mindset]
 email: luca@lanziani.com
 description: "Please Stop Force-Feeding AI FOMO to Others!"

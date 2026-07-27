@@ -2,6 +2,7 @@
 title: "Development Environment"
 date: 2023-03-12T23:20:00+02:00
 category: PathToProduction, Intro, Release Management
+lane: platform-delivery
 tags: [PathToProduction, Intro, Release Management]
 email: luca@lanziani.com
 description: "Now that is a challenge..."

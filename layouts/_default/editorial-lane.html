@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="editorial-lane">
+    {{ partial "social.html" . }}
+    <header class="editorial-header">
+        <p class="home-eyebrow">Editorial lane</p>
+        <h1>{{ .Title }}</h1>
+        <p>{{ .Description }}</p>
+    </header>
+    <div class="post">
+        {{ .Content }}
+    </div>
+    {{ $pages := where site.RegularPages "Params.lane" .Params.lane }}
+    {{ $pages = where $pages "RelPermalink" "ne" .RelPermalink }}
+    {{ if gt (len $pages) 0 }}
+    <section class="lane-posts">
+        <h2>Writing in this lane</h2>
+        {{ range $pages }}
+        <article>
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            <p>{{ .Summary }}</p>
+            <time>{{ .Date.Format "January 2, 2006" }}</time>
+        </article>
+        {{ end }}
+    </section>
+    {{ end }}
+</div>
+{{ end }}

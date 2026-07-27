@@ -2,6 +2,7 @@
 title: "I was highly skeptical, but now I'm a believer."
 date: 2025-10-17T09:27:00+02:00
 category: general
+lane: ai-engineering
 tags: [AI]
 email: luca@lanziani.com
 description: "Am I now an AI believer?"

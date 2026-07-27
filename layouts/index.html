@@ -1,70 +1,27 @@
 {{ define "main" }}
-{{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
-{{ $paginator := .Paginate $pages }}
 <div class="article-content">
     {{ partial "social.html" . }}
-    <div class="description">
-        <p>{{ .Site.Params.Description | markdownify }}</p>
-    </div>
-
-    {{ range $paginator.Pages }}
-    <article>
-        <h2 class="list-title">
-            <a href="{{ .Permalink }}">
-                {{- $t := .Title -}}
-                {{- if gt (len $t) 55 -}}
-                    {{- printf "%s…%s" (substr $t 0 32 | strings.TrimRight " ") (substr $t -18 | strings.TrimLeft " ") -}}
-                {{- else -}}
-                    {{- $t -}}
-                {{- end -}}
-            </a>
-        </h2>
-        <div>
-            <p>{{ .Summary }}</p>
-            {{ if (and (.Site.Params.showReadMore) (.Truncated)) }}
-            <p><a href="{{ .RelPermalink }}">Read more...</a></p>
-            {{ end }}
+    <section class="home-hero" aria-labelledby="home-heading">
+        <p class="home-eyebrow">AI Engineering · Platform Engineering · Software Delivery</p>
+        <h1 id="home-heading">Make AI-assisted development improve delivery—not just coding speed.</h1>
+        <p class="home-lede">I help engineering teams design the workflows, platforms, quality systems, and ownership practices that make AI useful in production.</p>
+        <div class="home-actions">
+            <a class="home-button home-button-primary" href="{{ "/ai-engineering/" | relURL }}">Start with AI Engineering</a>
+            <a class="home-button home-button-secondary" href="{{ "/about/" | relURL }}">About Luca</a>
         </div>
-        <div class="post-footer">
-        <time>{{ .Date.Format "January 2, 2006" }}</time>
+        <p class="home-contact">Evaluating AI-assisted development or redesigning your engineering platform? <a href="{{ .Site.Params.Linkedin }}" target="_blank" rel="noopener">Let’s compare notes</a>.</p>
+    </section>
 
-        {{if .Params.tags}}
-            {{ range .Params.tags }}
-                <a class="tag" href="/tags/{{ . | urlize }}">#{{.}}</a>
-            {{ end }}
-        {{ end }}
-        </div>
-    </article>
+    {{ $cornerstone := site.GetPage "/ai-engineering/" }}
+    {{ with $cornerstone }}
+    <section class="cornerstone-card" aria-labelledby="cornerstone-heading">
+        <p class="home-eyebrow">The practical guide</p>
+        <h2 id="cornerstone-heading"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p>How to move from faster code generation to reliable, reviewable, governable software delivery.</p>
+        <a class="cornerstone-link" href="{{ .RelPermalink }}">Read the guide →</a>
+    </section>
     {{ end }}
 
-    <div class="paginator">
-        {{ if gt $paginator.TotalPages 1 }}
-        <p>Page {{ $paginator.PageNumber}} of {{ $paginator.TotalPages }}</p>
-        <div class="paginator-group">
-            {{ if $paginator.HasPrev }}
-            <a class="color-link" href="{{ $paginator.Prev.URL | relLangURL }}">
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                        <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                            <polygon id="Path" points="1.75929935 4.50000282 5.3292523 7.62371165 4.6707477 8.37628835 0.240700645 4.49999718 4.67081049 0.623709205 5.32930951 1.37629079"></polygon>
-                            <polygon id="Path" points="13 4 13 5 1 5 1 4"></polygon>
-                        </g>
-                </svg>
-                Newer
-            </a>
-            {{ end }}
-            {{ if $paginator.HasNext }}
-                <a class="color-link older" href="{{ $paginator.Next.URL | relLangURL }}">
-                    Older
-                    <svg width="13px" height="9px" viewBox="0 0 13 9" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-                            <g class="color-arrow" fill="#63BDA2" fill-rule="nonzero">
-                                <polygon points="7.6707477 1.37628835 8.3292523 0.623711653 12.7592994 4.50000282 8.32918951 8.37629079 7.67069049 7.62370921 11.2407006 4.49999718"></polygon>
-                                <polygon id="Path" points="0 5 0 4 12 4 12 5"></polygon>
-                            </g>
-                    </svg>
-                </a>
-            {{ end }}
-        </div>
-        {{ end }}
-    </div>
+    <p class="home-writing-link"><a href="{{ "/posts/" | relURL }}">Browse all writing →</a></p>
 </div>
 {{ end }}

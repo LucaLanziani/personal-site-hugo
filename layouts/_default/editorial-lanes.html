@@ -1,0 +1,60 @@
+{{ define "main" }}
+<div class="editorial-hub">
+    {{ partial "social.html" . }}
+    <header class="editorial-header">
+        <p>{{ .Description }}</p>
+        {{ .Content }}
+    </header>
+
+    {{ $lanes := slice
+        (dict "id" "ai-engineering" "title" "AI Engineering" "description" "How teams turn AI-assisted development into reliable, reviewable delivery." "url" "/ai-engineering/")
+        (dict "id" "platform-delivery" "title" "Platform & Delivery" "description" "The platforms, DevOps practices, and delivery systems that help teams ship with confidence." "url" "/platform-delivery/")
+        (dict "id" "experiments" "title" "Experiments & Learning" "description" "Hands-on projects and experiments that make the underlying tools and trade-offs concrete." "url" "/experiments/")
+    }}
+    <div class="lane-grid">
+        {{ range $lanes }}
+        {{ $lane := . }}
+        {{ $pages := where site.RegularPages "Params.lane" $lane.id }}
+        {{ $pages = where $pages "RelPermalink" "ne" $lane.url }}
+        <section class="lane-card">
+            <p class="home-eyebrow">{{ $lane.title }}</p>
+            <h2><a href="{{ $lane.url | relURL }}">{{ $lane.title }}</a></h2>
+            <p>{{ $lane.description }}</p>
+            {{ if gt (len $pages) 0 }}
+            <ul>
+                {{ range first 4 $pages }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ end }}
+            </ul>
+            {{ end }}
+        </section>
+        {{ end }}
+    </div>
+
+    {{ $recent := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    <section class="recent-writing" aria-labelledby="recent-writing-heading">
+        <div class="recent-writing-heading">
+            <h2 id="recent-writing-heading">Recent writing</h2>
+            <a href="{{ "/posts/" | relURL }}">Browse all writing →</a>
+        </div>
+
+        {{ range first 6 $recent }}
+        <article>
+            <h2 class="list-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p>{{ .Summary }}</p>
+            {{ if (and (.Site.Params.showReadMore) (.Truncated)) }}
+            <p><a href="{{ .RelPermalink }}">Read more...</a></p>
+            {{ end }}
+            <div class="post-footer">
+                <time>{{ .Date.Format "January 2, 2006" }}</time>
+                {{ with .Params.tags }}
+                    {{ range . }}
+                    <a class="tag" href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">#{{ . }}</a>
+                    {{ end }}
+                {{ end }}
+            </div>
+        </article>
+        {{ end }}
+    </section>
+</div>
+{{ end }}

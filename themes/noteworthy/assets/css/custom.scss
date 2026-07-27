@@ -12,6 +12,251 @@ img.about-me:hover {
     border-radius: 20%;
 }
 
+// Homepage conversion blocks
+.home-hero {
+    max-width: 52rem;
+    margin: 2.25rem auto 2.5rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: #f5f7fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+}
+
+.home-eyebrow {
+    margin: 0 0 0.75rem;
+    color: #359377;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.home-hero h1 {
+    max-width: 42rem;
+    margin: 0 auto 1rem;
+    color: #0f172a;
+    font-family: "Noto Sans", "Segoe UI", sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+}
+
+.home-lede {
+    max-width: 42rem;
+    margin: 0 auto 1.5rem;
+    color: #334155;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.home-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 0.7rem 1rem;
+    border-radius: 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.home-button-primary {
+    background: #359377;
+    color: white !important;
+}
+
+.home-button-primary:hover,
+.home-button-primary:focus {
+    background: #256b58;
+}
+
+.home-button-secondary {
+    border: 1px solid #359377;
+    color: #256b58 !important;
+}
+
+.home-button-secondary:hover,
+.home-button-secondary:focus {
+    background: white;
+}
+
+.home-contact {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.cornerstone-card {
+    max-width: 52rem;
+    margin: 0 auto 2.5rem;
+    padding: 1.5rem 2rem;
+    border-left: 4px solid #63bda2;
+    background: #fbfcfd;
+}
+
+.cornerstone-card h2 {
+    margin: 0.25rem 0 0.5rem;
+}
+
+.cornerstone-card h2 a {
+    color: #0f172a;
+}
+
+.cornerstone-card p:not(.home-eyebrow) {
+    margin: 0 0 0.75rem;
+}
+
+.cornerstone-link,
+.recent-writing-heading a {
+    color: #359377;
+    font-weight: 700;
+}
+
+.recent-writing-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    max-width: 52rem;
+    margin: 0 auto;
+}
+
+.recent-writing-heading h2 {
+    margin-bottom: 0.5rem;
+}
+
+.home-writing-link {
+    margin: 2rem auto 3rem;
+    text-align: center;
+}
+
+.home-writing-link a {
+    color: #359377;
+    font-weight: 700;
+}
+
+.recent-writing {
+    margin-top: 3rem;
+}
+
+@media (max-width: 600px) {
+    .home-hero {
+        margin-top: 1.5rem;
+        padding: 1.75rem 1rem;
+    }
+
+    .cornerstone-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .recent-writing-heading {
+        display: block;
+    }
+}
+
+// Editorial lane pages
+.editorial-hub,
+.editorial-lane {
+    max-width: 52rem;
+    margin: 0 auto;
+}
+
+.editorial-header {
+    margin: 2.5rem auto 2rem;
+    text-align: center;
+}
+
+.editorial-header h1 {
+    margin: 0 auto 0.75rem;
+    color: #0f172a;
+    font-family: "Noto Sans", "Segoe UI", sans-serif;
+}
+
+.editorial-header > p,
+.editorial-header > div {
+    max-width: 44rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.lane-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.lane-card {
+    padding: 1.25rem;
+    border: 1px solid #e2e8f0;
+    border-top: 4px solid #63bda2;
+    background: #fbfcfd;
+}
+
+.lane-card h2 {
+    margin: 0.25rem 0 0.5rem;
+}
+
+.lane-card h2 a,
+.lane-card li a {
+    color: #0f172a;
+}
+
+.lane-card ul {
+    margin-bottom: 0;
+    padding-left: 1.2rem;
+}
+
+.lane-card li {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.lane-posts a {
+    color: #359377;
+    font-weight: 700;
+}
+
+.lane-posts {
+    max-width: 50rem;
+    margin: 2rem auto;
+}
+
+.lane-posts h2 {
+    color: #0f172a;
+}
+
+.lane-posts article {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.lane-posts h3 {
+    margin: 0 0 0.35rem;
+}
+
+.lane-posts p {
+    margin: 0 0 0.35rem;
+}
+
+.lane-posts time {
+    text-align: left;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+    .lane-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 // Post readability palette (light theme, inspired by ainativeteams.com)
 $post-text: #334155;
 $post-heading: #0f172a;

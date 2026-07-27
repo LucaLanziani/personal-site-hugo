@@ -2,6 +2,7 @@
 title: "Building Jarvis"
 date: 2026-05-24T10:00:00+02:00
 category: general
+lane: experiments
 tags: [AI, agents, Go, learning]
 email: luca@lanziani.com
 description: "A private Go project where I learn how agent runtimes, LLM providers, and tool loops actually work."

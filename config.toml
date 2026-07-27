@@ -38,11 +38,10 @@ url = "/about/"
 weight = 2
 
 [[menu.main]]
-identifier = "social"
-name = "Social"
-url = "/social/"
+identifier = "writing"
+name = "Writing"
+url = "/writing/"
 weight = 3
-
 
 [markup]
   [markup.goldmark]

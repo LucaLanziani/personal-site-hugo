@@ -2,6 +2,7 @@
 title: "Testing the BMAD Method"
 date: 2025-10-04T10:58:44+02:00
 category: general
+lane: ai-engineering
 tags: [engineering]
 email: luca@lanziani.com
 description: "Weekend experiment with spec driven development"

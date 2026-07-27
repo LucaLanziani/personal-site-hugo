@@ -2,6 +2,7 @@
 title: "Path to Production - Intro"
 date: 2023-03-05T23:01:00+02:00
 category: PathToProduction, Intro, Release Management
+lane: platform-delivery
 tags: [PathToProduction, Intro, Release Management]
 email: luca@lanziani.com
 description: "Path to Production - start of a new series"

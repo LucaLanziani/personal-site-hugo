@@ -2,6 +2,7 @@
 title: "Monitoring - Alerting Dashboards"
 date: 2023-02-26T23:50:00+02:00
 category: Alerting, Dashboards, Monitoring, Observability
+lane: platform-delivery
 tags: [Alerting, Dashboards, Monitoring, Observability, SRE]
 email: luca@lanziani.com
 description: "Alerting Dashboards, stay on top of your alerts"

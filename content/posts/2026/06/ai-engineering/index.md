@@ -1,8 +1,9 @@
 ---
-title: "AI Engineering"
+title: "AI Engineering: From Faster Coding to Reliable Delivery"
 date: 2026-06-01T08:00:00+02:00
 publishDate: 2026-06-01T08:00:00+02:00
 category: general
+lane: ai-engineering
 tags: [AI Engineering, Platform Engineering, DevOps, AI-native SDLC, Spec Driven Development]
 email: luca@lanziani.com
 description: "AI Engineering is the design of workflows, platforms, quality systems, evaluations, governance, and delivery practices that make AI-assisted development useful in real organizations."
@@ -14,6 +15,15 @@ AI Engineering is not just prompting or model selection. It is the design of wor
 My angle is practical: AI makes coding faster, but organizations still need better specs, platforms, review systems, automation, governance, and delivery ownership to actually ship faster.
 
 <!--more-->
+
+This guide is for engineering leaders, platform teams, and developers who want to adopt AI without turning delivery into an unreviewable stream of generated changes.
+
+If you are deciding where to start, use this page as a map:
+
+- **Define better work** with the [spec template](#spec-template).
+- **Design the delivery path** with the [AI-native SDLC](#ai-native-sdlc) and [agentic workflow](#agentic-delivery-workflow).
+- **Review changes with evidence** using the [AI code review checklist](#ai-code-review-checklist).
+- **Prepare the platform and controls** with the [readiness assessment](#platform-readiness-assessment) and [governance checklist](#governance-checklist).
 
 ## What I Mean by AI Engineering
 
@@ -151,7 +161,7 @@ Minimum governance for AI-assisted delivery:
 - Clear accountability for merged code
 - Periodic review of model, tool, and workflow effectiveness
 
-## Recommended Reading
+## Continue from here
 
 - [AI FOMO](/posts/2026/03/change-the-message/)
 - [Building Jarvis](/posts/2026/05/building-jarvis/)
@@ -159,11 +169,4 @@ Minimum governance for AI-assisted delivery:
 - [Testing the BMAD Method](/posts/2025/10/testing-bmad/)
 - [Spec-Driven Development series](/series/spec-driven-development/)
 
-## Resources
-
-Useful starting points:
-
-- [AI FOMO](/posts/2026/03/change-the-message/)
-- [Building Jarvis](/posts/2026/05/building-jarvis/)
-- [Spec-Driven Development series](/series/spec-driven-development/)
-- [LinkedIn and GitHub profile copy](/resources/profile-copy/)
+If you are working through these questions in your own organization, [connect with me on LinkedIn](https://www.linkedin.com/in/lucalanziani/) or [send me an email](mailto:luca+site@lanziani.com).
