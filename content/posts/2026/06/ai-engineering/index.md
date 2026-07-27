@@ -33,8 +33,6 @@ The critical questions become:
 - Are security, dependency, and operational risks visible?
 - Can the team deploy and own the change?
 
-I wrote the longer version in [AI Made Developers Faster. Why Aren't You Shipping More?](/posts/2026/05/ai-made-developers-faster-why-arent-you-shipping-more/).
-
 ## The AI-Native SDLC {#ai-native-sdlc}
 
 An AI-native SDLC treats agents as part of the delivery workflow, not as an isolated coding tool.
@@ -155,7 +153,7 @@ Minimum governance for AI-assisted delivery:
 
 ## Recommended Reading
 
-- [AI Made Developers Faster. Why Aren't You Shipping More?](/posts/2026/05/ai-made-developers-faster-why-arent-you-shipping-more/)
+- [AI FOMO](/posts/2026/03/change-the-message/)
 - [Building Jarvis](/posts/2026/05/building-jarvis/)
 - [I Was Highly Skeptical, But Now I'm a Believer](/posts/2025/10/skeptical-to-believer/)
 - [Testing the BMAD Method](/posts/2025/10/testing-bmad/)
@@ -165,7 +163,7 @@ Minimum governance for AI-assisted delivery:
 
 Useful starting points:
 
-- [AI Made Developers Faster. Why Aren't You Shipping More?](/posts/2026/05/ai-made-developers-faster-why-arent-you-shipping-more/)
+- [AI FOMO](/posts/2026/03/change-the-message/)
 - [Building Jarvis](/posts/2026/05/building-jarvis/)
 - [Spec-Driven Development series](/series/spec-driven-development/)
 - [LinkedIn and GitHub profile copy](/resources/profile-copy/)

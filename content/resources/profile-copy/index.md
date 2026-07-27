@@ -27,7 +27,7 @@ I write and speak about:
 
 ## LinkedIn Featured Links
 
-- [AI Made Developers Faster. Why Aren't You Shipping More?](/posts/2026/05/ai-made-developers-faster-why-arent-you-shipping-more/)
+- [AI Engineering](/posts/2026/06/ai-engineering/)
 - [Building Jarvis](/posts/2026/05/building-jarvis/)
 
 ## GitHub Profile README
