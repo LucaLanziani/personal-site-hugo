@@ -1,7 +1,6 @@
 ---
 title: "About Luca Lanziani"
 description: "I help engineering teams adopt AI-assisted development that improves delivery—not just coding speed. Platform engineering, delivery systems, and practices that hold up in production."
-disableSocial: true
 ---
 
 ## Hi, I'm Luca
