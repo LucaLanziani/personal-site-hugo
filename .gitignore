@@ -31,8 +31,8 @@ Sessionx.vim
 .netrwhist
 *~
 
-# Auto-generated tag files
-tags
+# Auto-generated tag files (ctags at the repo root, not content/tags/)
+/tags
 
 # Persistent undo
 [._]*.un~
