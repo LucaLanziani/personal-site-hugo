@@ -1,6 +1,6 @@
 ---
 title: "About Luca Lanziani"
-description: "I help engineering organizations adopt AI-assisted development that improves how software actually gets delivered. Platform engineering, delivery systems, and practices that hold up in production."
+description: "I help engineering organizations adopt AI-assisted development that improves how software actually gets delivered. That means better specs, real review, automated evidence, and clear ownership once code is in production."
 ---
 
 ## Hi, I'm Luca
