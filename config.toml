@@ -7,7 +7,7 @@ paginate = 10
 [params]
 math = true
 mainSections = ["posts"]
-description = "I help engineering organizations adopt AI-assisted development in ways that improve delivery—not just coding speed. That means platform engineering, delivery systems, and practices that keep software shipping reliably."
+description = "I help engineering organizations adopt AI-assisted development in ways that improve how software actually gets delivered. That means platform engineering, delivery systems, and practices that keep software shipping reliably."
 homeTitle = "Luca Lanziani | AI Engineering & Platform Engineering"
 profilePicture = "images/profile.png"
 role = "Senior Technical Director, Nearform"
