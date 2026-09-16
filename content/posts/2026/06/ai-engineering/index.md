@@ -4,7 +4,7 @@ date: 2026-06-01T08:00:00+02:00
 publishDate: 2026-06-01T08:00:00+02:00
 category: general
 lane: ai-engineering
-tags: [AI Engineering, Platform Engineering, DevOps, AI-native SDLC, Spec Driven Development]
+tags: [AI Engineering, Platform Engineering, DevOps, AI-native PDLC, Spec Driven Development]
 email: luca@lanziani.com
 description: "AI Engineering is the design of workflows, platforms, quality systems, evaluations, governance, and delivery practices that make AI-assisted development useful in real organizations."
 series: [AI Engineering]
@@ -21,7 +21,7 @@ This guide is for engineering leaders, platform teams, and developers who want t
 If you are deciding where to start, use this page as a map:
 
 - **Define better work** with the [spec template](#spec-template).
-- **Design the delivery path** with the [AI-native SDLC](#ai-native-sdlc) and [agentic workflow](#agentic-delivery-workflow).
+- **Design the delivery path** with the [AI-native PDLC](#ai-native-pdlc) and [agentic workflow](#agentic-delivery-workflow).
 - **Review changes with evidence** using the [AI code review checklist](#ai-code-review-checklist).
 - **Prepare the platform and controls** with the [readiness assessment](#platform-readiness-assessment) and [governance checklist](#governance-checklist).
 
@@ -43,9 +43,9 @@ The critical questions become:
 - Are security, dependency, and operational risks visible?
 - Can the team deploy and own the change?
 
-## The AI-Native SDLC {#ai-native-sdlc}
+## The AI-Native PDLC {#ai-native-pdlc}
 
-An AI-native SDLC treats agents as part of the delivery workflow, not as an isolated coding tool.
+An AI-native PDLC treats agents as part of the delivery workflow, not as an isolated coding tool.
 
 ```text
 Intent

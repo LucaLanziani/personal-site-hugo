@@ -2,7 +2,7 @@
 <div class="wrap">
     <header class="page-head">
         <p class="eyebrow">{{ .Data.Singular | humanize | title }}</p>
-        <h1>{{ .Data.Term | humanize }}</h1>
+        <h1>{{ .Data.Term }}</h1>
         <p class="lede">{{ len .Pages }} article{{ if ne (len .Pages) 1 }}s{{ end }} filed under this {{ .Data.Singular }}.</p>
     </header>
     <div class="entry-list">
