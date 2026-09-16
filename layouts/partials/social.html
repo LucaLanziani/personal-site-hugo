@@ -1,0 +1,27 @@
+<div class="social-icons">
+    {{ with .Site.Params.linkedin }}
+    <a class="social-icon" href="{{ . }}" target="_blank" rel="noopener me" title="LinkedIn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.71h.05c.53-.95 1.83-1.96 3.77-1.96 4.03 0 4.78 2.53 4.78 5.82V21h-4v-5.5c0-1.31-.03-3-1.9-3-1.9 0-2.2 1.43-2.2 2.9V21h-4V9Z"/></svg>
+    </a>
+    {{ end }}
+    {{ with .Site.Params.github }}
+    <a class="social-icon" href="{{ . }}" target="_blank" rel="noopener me" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.9 3.17 9.06 7.57 10.53.55.1.75-.24.75-.53v-1.9c-3.08.67-3.73-1.48-3.73-1.48-.5-1.29-1.23-1.63-1.23-1.63-1-.69.08-.68.08-.68 1.11.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.5-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.56 0c2.12-1.44 3.05-1.14 3.05-1.14.61 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.07 5.47.4.35.76 1.03.76 2.08v3.08c0 .3.2.64.76.53a11.11 11.11 0 0 0 7.56-10.53C23.1 5.33 18.27.5 12 .5Z"/></svg>
+    </a>
+    {{ end }}
+    {{ with .Site.Params.twitter }}
+    <a class="social-icon" href="{{ . }}" target="_blank" rel="noopener me" title="X" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.53 3h3.06l-6.69 7.64L21.75 21h-5.98l-4.68-6.12L5.72 21H2.66l7.15-8.17L2.25 3h6.13l4.23 5.6L17.53 3Zm-1.07 16.2h1.7L7.63 4.7H5.8l10.66 14.5Z"/></svg>
+    </a>
+    {{ end }}
+    {{ with .Site.Params.email }}
+    <a class="social-icon" href="{{ . }}" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.38 7.6-5.13H4.4L12 12.38ZM4 8.4V17h16V8.4l-7.44 5.02a1 1 0 0 1-1.12 0L4 8.4Z"/></svg>
+    </a>
+    {{ end }}
+    {{ with site.Home.OutputFormats.Get "rss" }}
+    <a class="social-icon" href="{{ .Permalink }}" title="RSS" aria-label="RSS feed">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 10.2v3a7.8 7.8 0 0 1 7.8 7.8h3A10.8 10.8 0 0 0 3 10.2Zm0-6v3A13.8 13.8 0 0 1 16.8 21h3A16.8 16.8 0 0 0 3 4.2Z"/></svg>
+    </a>
+    {{ end }}
+</div>

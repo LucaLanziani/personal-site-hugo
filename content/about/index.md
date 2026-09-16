@@ -1,17 +1,17 @@
 ---
 title: "About Luca Lanziani"
-description: "I help engineering teams adopt AI-assisted development that improves delivery—not just coding speed. Platform engineering, delivery systems, and practices that hold up in production."
+description: "I help engineering organizations adopt AI-assisted development that improves delivery—not just coding speed. Platform engineering, delivery systems, and practices that hold up in production."
 ---
 
 ## Hi, I'm Luca
 
-I help engineering teams use AI in development in ways that actually improve delivery—not just how fast someone can write code.
+I help engineering organizations use AI in development in ways that actually improve delivery—not just how fast someone can write code.
 
 That work sits at the intersection of AI Engineering, Platform Engineering, and software delivery. I care about the full path from intent to production: specs, agent workflows, review, integration, testing, deployment, and who owns the result when it's live.
 
 ### What I Do
 
-I'm Head of DevOps and Platform Engineering at Nearform. I work across client delivery, platform strategy, and technical leadership—staying close enough to production that the advice still matches reality.
+I'm Senior Technical Director at Nearform. I work across client delivery, platform strategy, and technical leadership—staying close enough to production that the advice still matches reality.
 
 My platform and DevOps background is what I build on for AI Engineering work: workflows, development platforms, review systems, automation, and clear ownership so AI-assisted development is useful in real organizations—not just in demos.
 
