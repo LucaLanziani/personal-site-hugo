@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="wrap">
+    <header class="page-head">
+        <p class="eyebrow">Index</p>
+        <h1>{{ .Data.Plural | humanize | title }}</h1>
+        <p class="lede">Every {{ .Data.Singular }} used across the writing.</p>
+    </header>
+    <nav class="lane-nav" aria-label="{{ .Data.Plural }}">
+        {{ range .Data.Terms.Alphabetical }}
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span style="color:var(--faint)">{{ .Count }}</span></a>
+        {{ end }}
+    </nav>
+</div>
+{{ end }}

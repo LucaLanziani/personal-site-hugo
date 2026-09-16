@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="wrap">
+    <header class="page-head">
+        <p class="eyebrow"><a href="{{ "/writing/" | relURL }}">Writing</a></p>
+        <h1>Archives</h1>
+        <p class="lede">Everything published, newest first.</p>
+    </header>
+    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ range $pages.GroupByDate "2006" }}
+    <div class="year-group">
+        <h2 class="year-group__label">{{ .Key }}</h2>
+        <div class="entry-list">
+            {{ range .Pages }}
+            <article class="entry entry--compact">
+                <div class="entry__meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time></div>
+                <div><h3 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3></div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

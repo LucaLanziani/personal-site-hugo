@@ -1,27 +1,57 @@
 {{ define "main" }}
-<div class="article-content">
-    {{ partial "social.html" . }}
-    <section class="home-hero" aria-labelledby="home-heading">
-        <p class="home-eyebrow">AI Engineering · Platform Engineering · Software Delivery</p>
-        <h1 id="home-heading">Make AI-assisted development improve delivery, not just coding speed.</h1>
-        <p class="home-lede">I help engineering teams design the workflows, platforms, quality systems, and ownership practices that make AI useful in production.</p>
-        <div class="home-actions">
-            <a class="home-button home-button-primary" href="{{ "/ai-engineering/" | relURL }}">Start with AI Engineering</a>
-            <a class="home-button home-button-secondary" href="{{ "/about/" | relURL }}">About Luca</a>
+<div class="wrap">
+    <section class="intro">
+        <div>
+            <p class="eyebrow">{{ .Site.Params.role | default "AI Engineering · Platform Engineering · Software Delivery" }}</p>
+            <h1>Make AI-assisted development improve delivery, not just coding speed.</h1>
+            <p class="lede">I help engineering organizations design the workflows, platforms, quality systems, and ownership practices that make AI useful in production — not just in demos.</p>
+            <div class="intro__actions">
+                <a class="btn btn--primary" href="{{ "/writing/" | relURL }}">Read the writing</a>
+                <a class="btn btn--ghost" href="{{ "/about/" | relURL }}">About Luca</a>
+            </div>
         </div>
-        <p class="home-contact">Evaluating AI-assisted development or redesigning your engineering platform? <a href="{{ .Site.Params.Linkedin }}" target="_blank" rel="noopener">Let’s compare notes</a>.</p>
+        <img class="intro__portrait" src="{{ "/about/profile.png" | relURL }}" alt="Portrait of {{ .Site.Title }}" width="416" height="416" loading="eager" />
     </section>
 
-    {{ $cornerstone := site.GetPage "/ai-engineering/" }}
-    {{ with $cornerstone }}
-    <section class="cornerstone-card" aria-labelledby="cornerstone-heading">
-        <p class="home-eyebrow">The practical guide</p>
-        <h2 id="cornerstone-heading"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        <p>How to move from faster code generation to reliable, reviewable, governable software delivery.</p>
-        <a class="cornerstone-link" href="{{ .RelPermalink }}">Read the guide →</a>
+    <section class="section" aria-labelledby="focus-heading">
+        <div class="section__head">
+            <h2 id="focus-heading">What I work on</h2>
+            <a class="link-more" href="{{ "/writing/" | relURL }}">All writing &rarr;</a>
+        </div>
+        <div class="lane-grid">
+            {{ $lanes := partial "lanes.html" . }}
+            {{ range $lanes }}
+            {{ $lane := . }}
+            {{ $pages := where site.RegularPages "Params.lane" $lane.id }}
+            {{ $pages = where $pages "RelPermalink" "ne" $lane.url }}
+            <div class="lane">
+                <h3><a href="{{ $lane.url | relURL }}">{{ $lane.title | safeHTML }}</a></h3>
+                <p>{{ $lane.description | safeHTML }}</p>
+                {{ if gt (len $pages) 0 }}
+                <ul>
+                    {{ range first 3 $pages }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+
+    {{ $recent := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ if gt (len $recent) 0 }}
+    <section class="section" aria-labelledby="recent-heading">
+        <div class="section__head">
+            <h2 id="recent-heading">Recent writing</h2>
+            <a class="link-more" href="{{ "/posts/" | relURL }}">Browse the archive &rarr;</a>
+        </div>
+        <div class="entry-list">
+            {{ range first 5 $recent }}
+            {{ partial "entry.html" . }}
+            {{ end }}
+        </div>
     </section>
     {{ end }}
-
-    <p class="home-writing-link"><a href="{{ "/posts/" | relURL }}">Browse all writing →</a></p>
 </div>
 {{ end }}

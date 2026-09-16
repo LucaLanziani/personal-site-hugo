@@ -6,7 +6,7 @@ disableSocial: true
 
 ## LinkedIn Headline
 
-AI Engineering & Platform Engineering Leader | Head of DevOps & Platform Engineering at Nearform | AI-Native SDLC, DevOps, Platform Strategy
+AI Engineering & Platform Engineering Leader | Senior Technical Director at Nearform | AI-Native SDLC, DevOps, Platform Strategy
 
 ## LinkedIn About
 
@@ -14,7 +14,7 @@ I help engineering organizations adopt AI-assisted development without losing th
 
 AI can make developers faster, but teams only ship faster when the surrounding system improves too: clearer specs, better review workflows, stronger automation, safer platforms, faster feedback, and clear production ownership.
 
-As Head of DevOps and Platform Engineering at Nearform, I work across platform strategy, delivery systems, client engagements, distributed teams, and technical leadership. My current focus is the AI-native SDLC: how teams move from intent to spec, agent-assisted implementation, automated evidence, human review, deployment, and production feedback.
+As Senior Technical Director at Nearform, I work across platform strategy, delivery systems, client engagements, distributed teams, and technical leadership. My current focus is the AI-native SDLC: how teams move from intent to spec, agent-assisted implementation, automated evidence, human review, deployment, and production feedback.
 
 I write and speak about:
 

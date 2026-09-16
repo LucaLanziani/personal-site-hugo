@@ -1,0 +1,26 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="author" content="{{ .Site.Title }}" />
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | truncate 160 }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+  <title>{{ if .IsHome }}{{ .Site.Params.homeTitle | default .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
+  <link rel="manifest" href="{{ "manifest.json" | relURL }}" />
+  <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | relURL }}" color="#101720" />
+  <meta name="theme-color" content="#ffffff" />
+
+  {{ $style := resources.Get "css/site.scss" | toCSS (dict "outputStyle" "compressed") | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}" />
+
+  {{ with .OutputFormats.Get "RSS" }}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />
+  {{ end }}
+  {{- if not hugo.IsServer -}}{{ template "_internal/google_analytics.html" . }}{{- end -}}
+</head>
