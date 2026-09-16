@@ -7,9 +7,11 @@ paginate = 10
 [params]
 math = true
 mainSections = ["posts"]
-description = "I help engineering teams adopt AI-assisted development in ways that improve delivery—not just coding speed. That means platform engineering, delivery systems, and practices that keep software shipping reliably."
+description = "I help engineering organizations adopt AI-assisted development in ways that improve delivery—not just coding speed. That means platform engineering, delivery systems, and practices that keep software shipping reliably."
 homeTitle = "Luca Lanziani | AI Engineering & Platform Engineering"
 profilePicture = "images/profile.png"
+role = "Senior Technical Director, Nearform"
+location = "Italy"
 showReadMore = true
 frontpagePost = "I was highly skeptical, but now I'm a believer."  # Set to a post title to feature on the About page, or leave empty for most recent
 linkedin = "https://www.linkedin.com/in/lucalanziani/"
@@ -32,15 +34,15 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about/"
-weight = 2
-
-[[menu.main]]
 identifier = "writing"
 name = "Writing"
 url = "/writing/"
+weight = 2
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
 weight = 3
 
 [markup]

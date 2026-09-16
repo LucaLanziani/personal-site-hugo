@@ -1,0 +1,17 @@
+{{/* One row in a list of writing. Expects a Page. */}}
+<article class="entry">
+    <div class="entry__meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+    </div>
+    <div>
+        <h3 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p class="entry__summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 180 }}{{ end }}</p>
+        {{ with .Params.tags }}
+        <div class="entry__tags">
+            {{ range first 4 . }}
+            <a class="tag" href="{{ printf "/tags/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</article>

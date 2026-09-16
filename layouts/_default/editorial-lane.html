@@ -1,26 +1,28 @@
 {{ define "main" }}
-<div class="editorial-lane">
-    {{ partial "social.html" . }}
-    <header class="editorial-header">
-        <p class="home-eyebrow">Editorial lane</p>
+<div class="wrap">
+    <header class="page-head">
+        <p class="eyebrow"><a href="{{ "/writing/" | relURL }}">Writing</a></p>
         <h1>{{ .Title }}</h1>
-        <p>{{ .Description }}</p>
+        <p class="lede">{{ .Description }}</p>
     </header>
-    <div class="post">
-        {{ .Content }}
-    </div>
+
+    {{ with .Content }}
+    <div class="page-copy">{{ . }}</div>
+    {{ end }}
+
     {{ $pages := where site.RegularPages "Params.lane" .Params.lane }}
     {{ $pages = where $pages "RelPermalink" "ne" .RelPermalink }}
     {{ if gt (len $pages) 0 }}
-    <section class="lane-posts">
-        <h2>Writing in this lane</h2>
-        {{ range $pages }}
-        <article>
-            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            <p>{{ .Summary }}</p>
-            <time>{{ .Date.Format "January 2, 2006" }}</time>
-        </article>
-        {{ end }}
+    <section class="section" aria-labelledby="lane-posts-heading">
+        <div class="section__head">
+            <h2 id="lane-posts-heading">Writing in this lane</h2>
+            <a class="link-more" href="{{ "/writing/" | relURL }}">All topics &rarr;</a>
+        </div>
+        <div class="entry-list">
+            {{ range $pages }}
+            {{ partial "entry.html" . }}
+            {{ end }}
+        </div>
     </section>
     {{ end }}
 </div>

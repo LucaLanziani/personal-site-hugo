@@ -1,15 +1,22 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-<p>{{ .Description }}</p>
-
-<div class="tools-list">
-    {{ range .Pages }}
-    {{ if ne .File.TranslationBaseName "_index" }}
-    <div class="tool-item">
-        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        <p>{{ .Description }}</p>
+<div class="wrap">
+    <header class="page-head">
+        <p class="eyebrow">Tools</p>
+        <h1>{{ .Title }}</h1>
+        <p class="lede">{{ .Description }}</p>
+    </header>
+    <div class="entry-list">
+        {{ range .Pages }}
+        {{ if ne .File.TranslationBaseName "_index" }}
+        <article class="entry entry--compact">
+            <div class="entry__meta">Tool</div>
+            <div>
+                <h2 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                <p class="entry__summary">{{ .Description }}</p>
+            </div>
+        </article>
+        {{ end }}
+        {{ end }}
     </div>
-    {{ end }}
-    {{ end }}
 </div>
 {{ end }}

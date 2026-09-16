@@ -1,0 +1,24 @@
+<header class="site-header">
+    <div class="wrap site-header__inner">
+        <a class="brand" href="{{ "/" | relLangURL }}">
+            <span class="brand__name">{{ .Site.Title }}</span>
+            <span class="brand__role">AI &amp; Platform Engineering</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+            {{ $current := .RelPermalink }}
+            {{ range .Site.Menus.main }}
+            {{ $url := .URL | relLangURL }}
+            {{ $active := false }}
+            {{ if eq $url "/" }}
+                {{ $active = eq $current "/" }}
+            {{ else }}
+                {{ $active = hasPrefix $current $url }}
+            {{ end }}
+            {{ if and (eq .Identifier "writing") (or (hasPrefix $current "/posts/") (hasPrefix $current "/ai-engineering/") (hasPrefix $current "/platform-delivery/") (hasPrefix $current "/experiments/") (hasPrefix $current "/tags/") (hasPrefix $current "/series/") (hasPrefix $current "/archives/")) }}
+                {{ $active = true }}
+            {{ end }}
+            <a href="{{ $url }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{ end }}
+        </nav>
+    </div>
+</header>

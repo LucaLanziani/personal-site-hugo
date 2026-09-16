@@ -1,10 +1,40 @@
 {{ define "main" }}
-<div class="article-content">
-    {{ partial "about-intro.html" . }}
+<div class="wrap wrap--prose">
+    <header class="about-head">
+        <img class="about-head__portrait" src="{{ "/about/profile.png" | relURL }}" alt="Portrait of {{ .Site.Title }}" width="352" height="352" />
+        <div>
+            <p class="eyebrow">About</p>
+            <h1>{{ .Site.Title }}</h1>
+            <p class="lede">{{ .Description }}</p>
+            <dl class="about-facts">
+                <div><dt>Role</dt><dd>{{ .Site.Params.role | default "Head of DevOps &amp; Platform Engineering, Nearform" | safeHTML }}</dd></div>
+                <div><dt>Based in</dt><dd>{{ .Site.Params.location | default "Italy" }}</dd></div>
+                <div><dt>Remote since</dt><dd>2015</dd></div>
+            </dl>
+        </div>
+    </header>
 
-    <h1 class="post-title">{{ .Title }}</h1>
     <div class="post">
         {{ .Content }}
     </div>
+
+    {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+    {{ if .Site.Params.frontpagePost }}
+        {{ $featured := where $pages "Title" .Site.Params.frontpagePost }}
+        {{ if gt (len $featured) 0 }}{{ $pages = $featured }}{{ end }}
+    {{ end }}
+    {{ if gt (len $pages) 0 }}
+    <section class="section" aria-labelledby="start-here-heading">
+        <div class="section__head">
+            <h2 id="start-here-heading">Start here</h2>
+            <a class="link-more" href="{{ "/writing/" | relURL }}">All writing &rarr;</a>
+        </div>
+        <div class="entry-list">
+            {{ range first 1 $pages }}
+            {{ partial "entry.html" . }}
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
 </div>
 {{ end }}
