@@ -1,11 +1,11 @@
 ---
 title: "About Luca Lanziani"
-description: "I help engineering organizations adopt AI-assisted development that improves how software actually gets delivered. That means better specs, real review, automated evidence, and clear ownership once code is in production."
+description: "I help companies change how they work with AI, not just how fast they write code. That means new ways of working, clear ownership and governance, platforms that hold up under real use, and a way to measure whether any of it is actually working."
 ---
 
 ## Hi, I'm Luca
 
-I help engineering organizations use AI in development in ways that actually improve delivery. Writing code faster is the easy part. Getting that work reviewed, integrated, and shipped is where most teams get stuck.
+I help companies change how they work with AI, not just how fast they write code. Writing code faster is the easy part. Changing how the organization decides, reviews, owns, and measures the work is where most of them get stuck.
 
 That work sits at the intersection of AI Engineering, Platform Engineering, and software delivery. I care about the full path from intent to production: specs, agent workflows, review, integration, testing, deployment, and who owns the result when it's live.
 
@@ -23,6 +23,8 @@ I've worked remotely since 2015. That pushed me toward explicit process, written
 
 **Spec-driven development.** Specs as the interface between human intent and agent execution. Clearer specs mean less ambiguity, better output, and easier review.
 
+**Governance and measurement.** Adoption that nobody can govern or measure doesn't survive its first incident or its first budget review. Clear ownership, rules people can actually follow, and evidence that the change is working.
+
 **DevOps and delivery.** Small batches, clear ownership, automated checks, fast feedback, and production accountability. The fundamentals still matter.
 
 **Still writing code.** Management doesn't mean stepping away from the terminal. I stay hands-on, lately in Go, agent runtimes, LLM providers, and workflow experiments, so I don't lose touch with what teams face day to day.
@@ -33,6 +35,6 @@ I'm based in Italy. When I can, I play guitar and sing. It's how I unplug from t
 
 ### Let's Connect
 
-I'm always interested in connecting with people who care about making AI-assisted software delivery more reliable, governable, and production-ready. Whether you want to talk about AI Engineering, platform engineering, spec-driven development, remote leadership, or production delivery.
+I'm always interested in connecting with people who care about making AI-assisted software delivery more reliable, governable, and production-ready. Whether you want to talk about AI adoption and organizational change, AI Engineering, platform engineering, spec-driven development, remote leadership, or production delivery.
 
 Reach out on [LinkedIn](https://www.linkedin.com/in/lucalanziani/), [GitHub](https://github.com/LucaLanziani), or [email](mailto:luca+site@lanziani.com).

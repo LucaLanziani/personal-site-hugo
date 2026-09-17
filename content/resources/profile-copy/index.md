@@ -10,7 +10,7 @@ AI Engineering & Platform Engineering Leader | Senior Technical Director at Near
 
 ## LinkedIn About
 
-I help engineering organizations adopt AI-assisted development without losing the discipline required to ship reliable software. My work sits at the intersection of AI Engineering, Platform Engineering, DevOps, and software delivery.
+I help companies change how they work with AI, not just how fast they write code. That means new ways of working, clear ownership and governance, platforms that hold up under real use, and a way to measure whether any of it is actually working. My work sits at the intersection of AI Engineering, Platform Engineering, DevOps, and software delivery.
 
 AI can make developers faster, but teams only ship faster when the surrounding system improves too: clearer specs, better review workflows, stronger automation, safer platforms, faster feedback, and clear production ownership.
 
@@ -37,7 +37,7 @@ I write and speak about:
 
 I work at the intersection of AI Engineering, Platform Engineering, DevOps, and software delivery.
 
-My focus is helping engineering organizations turn AI-assisted development into reliable shipped software: better specs, safer agent workflows, stronger review systems, platform guardrails, delivery automation, and clear production ownership.
+My focus is helping companies turn AI-assisted development into reliable shipped software: better specs, safer agent workflows, stronger review systems, platform guardrails, delivery automation, governance people can follow, and clear production ownership.
 
 Current interests:
 
