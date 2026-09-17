@@ -28,6 +28,8 @@ The writing should feel:
 
 It is fine to say "I use this", "I wondered", "I tried", "I don't think", or "this is where it gets interesting". Luca's existing posts often work because they show the thought process behind a conclusion.
 
+Write as if explaining the work to a colleague. Use contractions and direct address when they sound natural. Use "I" for personal experience and opinions, and "we" for genuinely shared work or experience. Admit uncertainty rather than smoothing it away. Light self-deprecating humor, understated irony, and occasional parenthetical asides can help when they arise from the story; do not add them by formula.
+
 Avoid:
 
 - Influencer-style certainty
@@ -36,6 +38,9 @@ Avoid:
 - Over-polished corporate language
 - Fear-based language like "you will be left behind"
 - Claims that AI removes the need for engineering discipline
+- Stock catchphrases, rhetorical questions, or emoji added just to make a draft sound conversational
+
+Never use contrastive reframes like "This is not X, it's Y" or "It's not about X; it's about Y." State the point directly.
 
 ## Tone
 
@@ -70,6 +75,15 @@ Useful opening patterns:
 - "You may have heard of X. In recent years, a new term has emerged called Y."
 
 Avoid opening with long background, definitions, or broad market commentary unless it immediately connects to a delivery problem.
+
+Adapt the shape to the post:
+
+- **Technical posts:** Show the problem and the earlier state, then walk through the solution with working examples and the reasons behind decisions. Explain the outcome and remaining limits.
+- **Tutorials:** State the goal, give ordered steps and annotated commands or code, and keep the prose focused on what the reader needs to do.
+- **Personal stories and experiments:** Use specific scenes, choices, mistakes, and results. Connect the experience to a broader lesson only when the connection is earned.
+- **Series posts:** Link to earlier parts and make the next step clear when there is one. Keep terminology and structure consistent across the series.
+
+Use descriptive `##` headings and `###` subheadings where they help readers follow longer posts. A question or a sparingly used emoji can work as a heading when it fits the piece.
 
 ## Paragraphs and Rhythm
 
@@ -132,6 +146,8 @@ Good evidence:
 
 Avoid pretending to have broad quantitative proof unless the post actually includes data. Use phrases like "in my experience", "I suspect", "I found", or "this made me realize" when appropriate.
 
+Use specific numbers, dates, and versions when they help readers understand or reproduce a result. Name the tool or version when its behavior matters. Link to original documentation for technical claims and quote definitions only when their exact wording matters.
+
 ## Hype Control
 
 When discussing AI, keep the message pragmatic.
@@ -142,7 +158,7 @@ Use framing like:
 - "The model is only one component."
 - "The platform determines whether this can move responsibly."
 - "The human still owns the result."
-- "The goal is not bureaucracy. The goal is reducing ambiguity."
+- "The goal is to reduce ambiguity."
 
 Avoid:
 
@@ -184,6 +200,14 @@ Future AI Engineering content should usually connect to at least one of these pi
    - Workflow examples
    - Tool experiments
    - Implementation notes
+
+## Other Site Topics
+
+The same practical voice applies beyond AI Engineering:
+
+- **DevOps and infrastructure:** Start from a real operational problem, show how the solution evolved, and include configuration or commands when they make the lesson usable. Address scaling and ownership where relevant.
+- **Monitoring and observability:** Explain which decision a signal supports and why it matters. Use concrete requirements or examples rather than a feature inventory.
+- **Personal development:** Share specific memories, setbacks, and changes in perspective. Let the broader lesson follow from the experience.
 
 ## Titles
 
@@ -240,6 +264,20 @@ Good list uses:
 
 Keep list items parallel and specific. Avoid vague list items like "improve productivity" or "drive innovation".
 
+## Publishing and Technical Format
+
+Follow the post frontmatter and content workflow in [the content guide](docs/content-guide.md). Give published posts a useful description and relevant tags; add series metadata and images when applicable. Check image paths and write descriptive alt text.
+
+For longer posts, place `<!--more-->` after the introduction when you want to control the listing excerpt. Check the rendered excerpt before publishing. Short posts may work without a manual break.
+
+For technical examples:
+
+- Mark fenced code blocks with the appropriate language and explain non-obvious commands or configuration.
+- Prefer complete, working examples when readers are expected to follow along. Use comments where they clarify a step.
+- Put long outputs or secondary details in `<details><summary>` blocks when that keeps the main argument readable.
+- Use inline code for commands, filenames, and identifiers. Use bold or italics sparingly for emphasis.
+- Link related posts and use the site's Hugo shortcodes for supported embeds when they improve the explanation.
+
 ## Diagrams and Artifacts
 
 Use simple diagrams when explaining workflows.
@@ -281,12 +319,14 @@ Avoid generic CTAs like:
 
 Before publishing, check that the draft:
 
-- Makes the AI Engineering or delivery angle clear early.
-- Has a concrete problem, not just a theme.
-- Connects AI to specs, platforms, review, governance, or shipping.
+- Makes the central problem or observation clear early.
+- Grounds the point in a concrete example or experience.
+- Connects AI to specs, platforms, review, governance, or shipping when relevant.
 - Uses Luca's practical first-person voice where appropriate.
 - Avoids hype-heavy language.
 - Includes concrete examples, lists, diagrams, or artifacts.
+- Uses an excerpt break when a longer post needs a deliberate listing preview.
+- Checks code examples, links, image paths, and alt text where applicable.
 - Has a clear title and meta description.
 - Includes relevant tags and series metadata.
 - Links to `/posts/2026/06/ai-engineering/` or related posts when useful.
