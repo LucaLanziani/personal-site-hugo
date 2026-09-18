@@ -44,6 +44,7 @@ description: "Short description for SEO and social sharing"
 series: ["Series Name"]        # optional — groups posts together
 images:
   - "https://lanziani.com/static/YYYY/image.jpg"  # optional — OG/twitter card image
+imageAlt: "Description of the share image"  # optional — used by social previews
 ---
 ```
 
@@ -51,6 +52,7 @@ images:
 
 - **`<!--more-->`** — place this after the opening paragraph(s) when a longer post needs a deliberate listing excerpt. Check the rendered excerpt before publishing.
 - Set `draft: false` (or remove the `draft` key) before publishing.
+- Add a useful `description` and check that a share image resolves. The first `images` entry takes priority; page bundles can also use their first image automatically. Otherwise the site portrait is used.
 
 ### Post structure (recommended)
 
@@ -166,6 +168,7 @@ series: ["Spec Driven Development"]
 
 - [ ] `draft: false` (or key removed)
 - [ ] `description` filled in (used for SEO meta + OG tags)
+- [ ] Share image checked, with `imageAlt` when the image needs a specific description
 - [ ] Listing excerpt checked; add `<!--more-->` if a deliberate break helps
 - [ ] Tags added
 - [ ] Images uploaded to `content/static/YYYY/` if referenced

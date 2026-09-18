@@ -130,7 +130,7 @@ Of course, these weren't the only issues that this model was posing:
 5. support of a custom bash script
 6. which version of Terraform was ok to run on each stack/environment
 
-# Enter Terragrunt 
+## Enter Terragrunt
 
 **Thanks [Gruntwork.io](https://terragrunt.gruntwork.io/) 🙇**
 
