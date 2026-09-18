@@ -10,7 +10,25 @@
                 <a class="btn btn--ghost" href="{{ "/about/" | relURL }}">About Luca</a>
             </div>
         </div>
-        <img class="intro__portrait" src="{{ "/about/profile.png" | relURL }}" alt="Portrait of {{ .Site.Title }}" width="416" height="416" loading="eager" />
+        <div class="intro__portrait-group">
+            <button class="intro__portrait-toggle" type="button" aria-label="Portrait of {{ .Site.Title }}. Show LinkedIn QR code" aria-pressed="false" data-qr-label="LinkedIn QR code for {{ .Site.Title }}. Show portrait">
+                <span class="intro__portrait-card" aria-hidden="true">
+                    <span class="intro__portrait-face intro__portrait-face--front">
+                        <img src="{{ "/about/profile.png" | relURL }}" alt="" width="416" height="416" loading="eager" />
+                    </span>
+                    <span class="intro__portrait-face intro__portrait-face--back">
+                        <span class="intro__portrait-qr"></span>
+                        <span>Follow me on LinkedIn</span>
+                    </span>
+                </span>
+            </button>
+            <span class="intro__portrait-hint">Flip portrait for QR</span>
+            <a class="intro__portrait-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener me" aria-label="Let's connect on LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.71h.05c.53-.95 1.83-1.96 3.77-1.96 4.03 0 4.78 2.53 4.78 5.82V21h-4v-5.5c0-1.31-.03-3-1.9-3-1.9 0-2.2 1.43-2.2 2.9V21h-4V9Z"/></svg>
+                <span>Let's connect</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
     </section>
 
     <section class="section" aria-labelledby="focus-heading">
@@ -54,4 +72,9 @@
     </section>
     {{ end }}
 </div>
+{{ end }}
+
+{{ define "scripts" }}
+    {{ $portraitScript := resources.Get "js/home-portrait.js" | minify | fingerprint }}
+    <script src="{{ $portraitScript.RelPermalink }}" defer></script>
 {{ end }}
