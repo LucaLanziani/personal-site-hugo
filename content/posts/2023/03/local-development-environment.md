@@ -47,7 +47,7 @@ The machine I’m writing this blog post from is from 2017; specs below:
 
 This machine served me well for the past five years, and it still going strong, [but I had to adapt](https://lanziani.com/posts/2022/03/local-remote-workstation-setup/).
 
-# What’s the purpose of a this first stage?
+## What’s the purpose of a this first stage?
 
 The purpose should be pretty obvious, we need a place to transform our ideas into code.
 

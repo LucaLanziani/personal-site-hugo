@@ -28,7 +28,7 @@ Finally we close with who exactly is responsible for solving this puzzle? Brace 
 So sit back, relax, and prepare to be captivated by an exhilarating exploration of FinOps, cloud computing, and the secrets that lie beneath the surface.
 
 
-# This is the Everything Delivery podcast
+## This is the Everything Delivery podcast
 
 In this podcast we will discuss anything and everything that helps deliver value to clients while maintaining a healthy and happy Organization.
 

@@ -77,6 +77,8 @@ The `noteworthy` theme provides:
 
 Any file in `layouts/` overrides the equivalent file from the theme.
 
+The shared `layouts/partials/metadata.html` generates page titles, descriptions, canonical URLs, Open Graph and X cards, and JSON-LD. It uses the first `images` frontmatter entry, then the first page-bundle image, then the site portrait. `layouts/robots.txt` points crawlers to Hugo's sitemap. Paginated post and social archives have their own canonical URLs.
+
 ---
 
 ## Layout System

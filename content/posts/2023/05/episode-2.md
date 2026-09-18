@@ -34,7 +34,7 @@ We referenced a couple of articles during this episode.
 One was the recent news about Coinbase monitoring bill: https://thenewstack.io/datadogs-65m-bill-and-why-developers-should-care/
 The second was our take on FinOps: https://www.nearform.com/blog/is-finops-really-about-saving-money/
 
-# This is the Everything Delivery podcast
+## This is the Everything Delivery podcast
 
 In this podcast we will discuss anything and everything that helps deliver value to clients while maintaining a healthy and happy Organization.
 

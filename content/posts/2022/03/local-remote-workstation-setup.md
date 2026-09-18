@@ -17,7 +17,7 @@ The solution should work not just for text editing but also for GUI applications
 
 <!--more-->
 
-# Previous workflow
+## Previous workflow
 
 ## Code editing
 
@@ -43,7 +43,7 @@ Other applications are not multiplatform and won't work on all the OSes I use (L
 
 Moreover, I would prefer not to enter my service's credentials in all the laptops.
 
-# New workflow
+## New workflow
 
 ## Remote editing
 

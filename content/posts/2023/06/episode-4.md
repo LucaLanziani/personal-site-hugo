@@ -37,7 +37,7 @@ Understanding LLMS
 [Jay Alammar](https://jalammar.github.io/illustrated-transformer/)  
 [Visual Intro to Neural Networks](https://mlu-explain.github.io/neural-networks/)  
 
-# This is the Everything Delivery podcast
+## This is the Everything Delivery podcast
 
 In this podcast we will discuss anything and everything that helps deliver value to clients while maintaining a healthy and happy Organization.
 
