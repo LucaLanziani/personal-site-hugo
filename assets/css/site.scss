@@ -507,6 +507,16 @@ pre {
     color: var(--ink);
 }
 
+.intro__connect-mobile {
+    display: none;
+}
+
+.intro__connect-mobile svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+}
+
 /* -- Sections -------------------------------------------------------------- */
 
 .section {
@@ -1269,22 +1279,12 @@ thead th {
     }
 
     .intro__portrait-group {
-        order: -1;
-        width: 11rem;
+        display: none;
     }
 
-    .intro__portrait-toggle {
-        width: 11rem;
-        height: 11rem;
-    }
-
-    .intro__portrait-qr {
-        width: 7.2rem;
-        height: 7.2rem;
-    }
-
-    .intro__portrait-face--back span {
-        font-size: 0.68rem;
+    .intro__connect-mobile {
+        display: inline-flex;
+        gap: 0.35rem;
     }
 
     .lane-grid {
