@@ -1343,15 +1343,6 @@ thead th {
         font-size: 1.05rem;
     }
 
-    .post-nav {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .post-nav__item--next {
-        grid-column: 1;
-        text-align: left;
-    }
-
     .site-footer__inner {
         flex-direction: column;
         gap: 2rem;
