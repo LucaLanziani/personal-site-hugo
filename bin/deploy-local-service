@@ -1,0 +1,174 @@
+#!/bin/sh
+
+set -eu
+
+unit_name="personal-site-hugo-local.service"
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+project_root=$(CDPATH='' cd -- "$script_dir/.." && pwd)
+unit_template="$project_root/ops/$unit_name.in"
+user_unit_dir="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
+installed_unit="$user_unit_dir/$unit_name"
+sitesctl=/home/coding/sites-available/sitesctl
+reserved_port=$($sitesctl ports registered personal-site-preview | awk -F '\t' '{print $2}') || {
+    printf '%s\n' 'Reserve personal-site-preview through sitesctl first (see README.md).' >&2
+    exit 1
+}
+port="${LOCAL_PORT:-$reserved_port}"
+if [ "$port" != "$reserved_port" ]; then
+    printf '%s\n' 'LOCAL_PORT must match the central personal-site-preview reservation.' >&2
+    exit 1
+fi
+health_url="http://127.0.0.1:$port/"
+build_dir=""
+installed=0
+had_previous=0
+complete=0
+artifact_dir="$HOME/.local/lib/personal-site-hugo"
+artifact="$artifact_dir/hugo"
+was_active=0
+was_enabled=0
+
+# shellcheck disable=SC2329 # Invoked by the traps below.
+cleanup() {
+    status=$?
+    trap - EXIT HUP INT TERM
+
+    if [ "$installed" -eq 1 ] && [ "$complete" -eq 0 ]; then
+        printf '%s\n' "Deployment failed; restoring the previous user unit." >&2
+        if [ "$had_previous" -eq 1 ]; then
+            install -m 0644 "$build_dir/previous.service" "$installed_unit"
+        else
+            systemctl --user stop "$unit_name" >/dev/null 2>&1 || true
+            rm -f "$installed_unit"
+        fi
+        if [ -f "$build_dir/previous-hugo" ]; then
+            mv -f "$build_dir/previous-hugo" "$artifact"
+        else
+            rm -f "$artifact"
+        fi
+        if [ "$was_enabled" -eq 0 ]; then
+            systemctl --user disable "$unit_name" >/dev/null 2>&1 || true
+        fi
+        systemctl --user daemon-reload || true
+        if [ "$was_active" -eq 1 ]; then
+            systemctl --user restart "$unit_name" || true
+        else
+            systemctl --user stop "$unit_name" >/dev/null 2>&1 || true
+        fi
+    fi
+
+    if [ -n "$build_dir" ] && [ -d "$build_dir" ]; then
+        rm -rf "$build_dir"
+    fi
+
+    exit "$status"
+}
+trap cleanup EXIT HUP INT TERM
+
+case "$port" in
+    ''|*[!0-9]*)
+        printf '%s\n' "LOCAL_PORT must be a number between 1024 and 65535." >&2
+        exit 2
+        ;;
+esac
+if [ "$port" -lt 1024 ] || [ "$port" -gt 65535 ]; then
+    printf '%s\n' "LOCAL_PORT must be a number between 1024 and 65535." >&2
+    exit 2
+fi
+
+if [ ! -f "$unit_template" ]; then
+    printf '%s\n' "Missing unit template: $unit_template" >&2
+    exit 1
+fi
+
+hugo_bin=$(command -v hugo || true)
+if [ -z "$hugo_bin" ] || [ ! -x "$hugo_bin" ]; then
+    printf '%s\n' "Hugo is not installed or is not on PATH." >&2
+    exit 1
+fi
+hugo_bin=$(readlink -f "$hugo_bin")
+case "$hugo_bin" in
+    */shims/hugo) hugo_bin=$(asdf which hugo) ;;
+esac
+
+systemctl --user show-environment >/dev/null
+install -d -m 0700 "$artifact_dir"
+exec 9>"$artifact_dir/deploy.lock"
+flock -x 9
+build_dir=$(mktemp -d "$artifact_dir/.deploy.XXXXXX")
+mkdir -p "$build_dir/site" "$build_dir/cache"
+install -m 0755 "$hugo_bin" "$build_dir/hugo"
+hugo_bin="$build_dir/hugo"
+
+printf '%s\n' "Validating a draft-inclusive Hugo build..."
+HUGO_RESOURCEDIR="$build_dir/resources" HUGO_CACHEDIR="$build_dir/cache" "$hugo_bin" \
+    --source "$project_root" \
+    --destination "$build_dir/site" \
+    --baseURL / \
+    --buildDrafts \
+    --cleanDestinationDir
+
+listener=$(ss -H -ltnp "sport = :$port")
+if [ -n "$listener" ]; then
+    main_pid=$(systemctl --user show "$unit_name" --property MainPID --value 2>/dev/null || true)
+    case "$listener" in
+        *"pid=$main_pid,"*) ;;
+        *)
+            printf '%s\n' "Port $port is already in use by another listener." >&2
+            exit 1
+            ;;
+    esac
+fi
+
+escape_sed_replacement() {
+    printf '%s' "$1" | sed 's/[&|]/\\&/g'
+}
+
+project_root_escaped=$(escape_sed_replacement "$project_root")
+hugo_bin_escaped=$(escape_sed_replacement "$artifact")
+sed \
+    -e "s|@PROJECT_ROOT@|$project_root_escaped|g" \
+    -e "s|@HUGO_BIN@|$hugo_bin_escaped|g" \
+    -e "s|@PORT@|$port|g" \
+    "$unit_template" > "$build_dir/$unit_name"
+
+install -d -m 0700 "$user_unit_dir"
+if [ -f "$installed_unit" ]; then
+    cp "$installed_unit" "$build_dir/previous.service"
+    had_previous=1
+fi
+systemctl --user is-active --quiet "$unit_name" && was_active=1
+systemctl --user is-enabled --quiet "$unit_name" && was_enabled=1
+if [ -f "$artifact" ]; then
+    cp -p "$artifact" "$build_dir/previous-hugo"
+fi
+
+staged_unit="$user_unit_dir/.$unit_name.$$"
+install -m 0644 "$build_dir/$unit_name" "$staged_unit"
+installed=1
+mv -f "$build_dir/hugo" "$artifact"
+mv -f "$staged_unit" "$installed_unit"
+
+systemctl --user daemon-reload
+systemctl --user enable "$unit_name" >/dev/null
+systemctl --user restart "$unit_name"
+
+attempt=0
+while [ "$attempt" -lt 30 ]; do
+    if ! systemctl --user is-active --quiet "$unit_name"; then
+        if systemctl --user is-failed --quiet "$unit_name"; then
+            printf '%s\n' "$unit_name entered the failed state." >&2
+            exit 1
+        fi
+    elif curl --fail --silent --show-error --max-time 2 "$health_url" > "$build_dir/health.html" &&
+        rg -q '<title>Luca Lanziani' "$build_dir/health.html"; then
+        complete=1
+        printf '%s\n' "Local preview is active and healthy at $health_url"
+        exit 0
+    fi
+    attempt=$((attempt + 1))
+    sleep 0.5
+done
+
+printf '%s\n' "Timed out waiting for $health_url" >&2
+exit 1

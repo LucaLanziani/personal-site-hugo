@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+UNIT=personal-site-hugo-local.service
+SITESCTL=/home/coding/sites-available/sitesctl
+
+endpoint() {
+    local port
+    port=$("$SITESCTL" ports registered personal-site-preview | awk -F '\t' '{print $2}')
+    printf 'http://127.0.0.1:%s/\n' "$port"
+}
+health() {
+    local attempt page
+    page=$(mktemp)
+    for ((attempt=0; attempt<30; attempt++)); do
+        if systemctl --user is-active --quiet "$UNIT" &&
+            curl --fail --silent --max-time 2 "$(endpoint)" > "$page" &&
+            rg -q '<title>Luca Lanziani' "$page"; then
+            rm -f "$page"
+            printf 'Preview ready: %s\n' "$(endpoint)"
+            return 0
+        fi
+        if systemctl --user is-failed --quiet "$UNIT"; then break; fi
+        sleep 1
+    done
+    rm -f "$page"
+    printf 'Preview failed its health check; inspect ./bin/servicectl logs\n' >&2
+    return 1
+}
+[[ $# -le 1 ]] || { printf 'Expected one command\n' >&2; exit 2; }
+case "${1:-status}" in
+    install|deploy) exec "$ROOT/bin/deploy-local-service" ;;
+    start|restart) systemctl --user "${1}" "$UNIT"; health ;;
+    stop) systemctl --user stop "$UNIT" ;;
+    status) systemctl --user --no-pager --full status "$UNIT" ;;
+    logs) journalctl --user -u "$UNIT" -f ;;
+    url) endpoint ;;
+    health) health ;;
+    -h|--help|help)
+        printf 'Usage: ./bin/servicectl {install|deploy|start|stop|restart|status|logs|url|health}\n'
+        ;;
+    *) printf 'Unknown command: %s\n' "$1" >&2; exit 2 ;;
+esac

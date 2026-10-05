@@ -1,0 +1,20 @@
+[Unit]
+Description=Personal site Hugo local preview
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=@PROJECT_ROOT@
+ExecStart=@HUGO_BIN@ server --bind 127.0.0.1 --port @PORT@ --baseURL / --appendPort=false --buildDrafts --disableFastRender --renderToMemory
+Restart=always
+RestartSec=3s
+RuntimeDirectory=personal-site-hugo
+Environment=HUGO_CACHEDIR=%t/personal-site-hugo/cache
+Environment=HUGO_RESOURCEDIR=%t/personal-site-hugo/resources
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target

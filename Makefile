@@ -1,4 +1,4 @@
-.PHONY: help dev build clean serve new draft production install
+.PHONY: help dev build clean serve new draft production install deploy-local local-status local-logs
 
 # Default target
 help:
@@ -11,6 +11,9 @@ help:
 	@echo "  make draft       - Create a new draft post (requires TITLE and optionally DATE)"
 	@echo "  make new         - Create a new post (requires TITLE and optionally DATE)"
 	@echo "  make install     - Install/update Hugo dependencies"
+	@echo "  make deploy-local - Install/restart the persistent local preview"
+	@echo "  make local-status - Show the local preview service status"
+	@echo "  make local-logs   - Follow the local preview service logs"
 
 # Start development server with drafts
 dev:
@@ -61,3 +64,13 @@ install:
 	else \
 		echo "Not a git repository, skipping submodule update"; \
 	fi
+
+# Install or update the persistent user-level preview service.
+deploy-local:
+	./bin/deploy-local-service
+
+local-status:
+	systemctl --user --no-pager --full status personal-site-hugo-local.service
+
+local-logs:
+	journalctl --user --unit personal-site-hugo-local.service --follow

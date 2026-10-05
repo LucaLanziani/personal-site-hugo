@@ -17,6 +17,10 @@
 personal-site-hugo/
 ├── config.toml               # Main Hugo configuration
 ├── Makefile                  # Developer shortcuts (dev, build, new, etc.)
+├── bin/
+│   └── deploy-local-service    # Validated user-service installation and health check
+├── ops/
+│   └── personal-site-hugo-local.service.in  # systemd user-unit template
 ├── migrate_linkedin_posts.py # Script to import LinkedIn exports into content/social/
 ├── WRITING_GUIDELINES.md     # Editorial direction, voice, and format
 │
