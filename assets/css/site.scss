@@ -991,6 +991,117 @@ thead th {
     border-left-color: var(--accent);
 }
 
+/* -- Focus mode ------------------------------------------------------------ */
+
+.focus-mode {
+    --body: var(--ink);
+}
+
+.focus-mode .site-main {
+    padding-top: 25vh;
+    padding-bottom: 50vh;
+}
+
+// Keep the middle half sharp, with soft transitions above and below it.
+// The overlay lets the reading area cut across long paragraphs and code blocks.
+.focus-mode::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    backdrop-filter: blur(1.5px);
+    background: rgba(255, 255, 255, 0.4);
+    mask-image: linear-gradient(to bottom,
+        #000, #000 calc(25% - 3rem), transparent 25%,
+        transparent 75%, #000 calc(75% + 3rem), #000);
+}
+
+@media print, (forced-colors: active) {
+    .focus-mode::after {
+        display: none;
+    }
+}
+
+@media print {
+    .focus-mode .site-main {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
+}
+
+.reading-controls:not([hidden]) {
+    display: inline-flex;
+}
+
+.focus-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.focus-toggle:hover,
+.focus-toggle[aria-pressed="true"] {
+    color: var(--accent-dark);
+    background: var(--tint);
+}
+
+.focus-toggle svg {
+    flex-shrink: 0;
+}
+
+@media (pointer: coarse) {
+    .focus-toggle {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+.focus-mode .site-header,
+.focus-mode .site-footer,
+.focus-mode .toc,
+.focus-mode .post-meta > :not(.reading-time),
+.focus-mode .reading-time__label,
+.focus-mode .post-end {
+    display: none;
+}
+
+.focus-mode .post-meta {
+    margin: 0;
+}
+
+.focus-mode .article-layout {
+    display: block;
+    max-width: calc(var(--prose) + var(--gutter) * 2);
+}
+
+.focus-mode .reading-controls {
+    position: fixed;
+    top: 0.5rem;
+    right: var(--gutter);
+    z-index: 10;
+    margin: 0;
+    background: var(--page);
+}
+
 /* -- Article footer -------------------------------------------------------- */
 
 .post-end {
@@ -1395,6 +1506,7 @@ thead th {
 @media print {
     .site-header,
     .site-footer,
+    .reading-controls:not([hidden]),
     .post-nav {
         display: none;
     }
