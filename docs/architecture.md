@@ -130,3 +130,24 @@ This is intentional for the Tools section: each tool is a self-contained single-
 Files placed under `content/static/` are served at `/static/` on the live site (not the Hugo `static/` root). This is a Hugo "content" directory for assets, distinct from the theme's static folder.
 
 Example: `content/static/2025/split_brain.jpg` → `https://lanziani.com/static/2025/split_brain.jpg`
+
+## Offline article reading
+
+Articles expose an opt-in download icon next to focus mode. `assets/js/offline.js`
+collects the selected article's HTML and local assets; `static/offline-worker.js`
+stores a complete snapshot only after all dependencies download successfully.
+Shared assets are stored once, with per-document references for removal. The
+`/saved/` page remains available after the final article is removed. Visiting an
+article or registering the worker does not save its content.
+
+Online requests use the network; offline requests fall back to saved snapshots.
+Snapshots survive site deployments and remain as downloaded until removed and
+saved again. External media is online-only. HTTPS (or localhost) and browser
+storage access are required; clearing site data removes downloads.
+
+The math partial normalizes the theme's inconsistent font URLs before publishing
+a fingerprinted stylesheet, allowing all local font dependencies to be downloaded.
+
+Run the browser regression test against a static Hugo build (not a live-reload
+server): `SITE_URL=http://localhost:8765 node tests/offline.mjs`. It requires
+Playwright; `PLAYWRIGHT_MODULE` can specify an existing installation's entrypoint.

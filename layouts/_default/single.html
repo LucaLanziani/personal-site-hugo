@@ -24,6 +24,12 @@
                             </svg>
                             <span class="focus-toggle__label visually-hidden">Focus mode</span>
                         </button>
+                        <button class="focus-toggle offline-toggle" type="button" aria-pressed="false" title="Save for offline" aria-label="Save for offline" hidden>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+                                <path class="offline-download" d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />
+                                <path class="offline-check" d="m5 12 4 4L19 6" />
+                            </svg>
+                        </button>
                     </span>
                     {{ end }}
                 </span>
@@ -32,6 +38,7 @@
                 <span>{{ range first 1 . }}<a href="{{ printf "/series/%s/" (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</span>
                 {{ end }}
             </p>
+            {{ if eq .Section "posts" }}<p class="offline-status" role="status" hidden></p>{{ end }}
             <h1>{{ .Title }}</h1>
             {{ with .Description }}
             {{ $opening := $.Plain | plainify | truncate 90 "" }}

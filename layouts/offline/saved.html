@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="wrap wrap--prose">
+    <header class="post-header"><h1>{{ .Title }}</h1></header>
+    <p>Articles saved on this browser and device. Use the download icon beside an article’s focus-mode button to save it.</p>
+    <p class="offline-status" role="status">Loading saved articles…</p>
+    <ul class="saved-articles" id="saved-articles"></ul>
+    <p class="offline-note">External media and links need a connection. Clearing browser data removes saved articles.</p>
+    <noscript>Enable JavaScript to save and open offline articles.</noscript>
+</div>
+{{ end }}

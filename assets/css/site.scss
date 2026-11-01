@@ -1039,6 +1039,7 @@ thead th {
 
 .reading-controls:not([hidden]) {
     display: inline-flex;
+    gap: 0.35rem;
 }
 
 .focus-toggle {
@@ -1514,4 +1515,34 @@ thead th {
     body {
         font-size: 11pt;
     }
+}
+
+/* Explicit, per-article offline downloads. */
+.offline-toggle[hidden],
+.offline-toggle .offline-check,
+.offline-toggle[aria-pressed="true"] .offline-download {
+    display: none;
+}
+.offline-toggle[aria-pressed="true"] .offline-check { display: block; }
+.offline-toggle:disabled { cursor: wait; opacity: 0.55; }
+.offline-status, .offline-note { color: var(--muted); font-size: 0.875rem; }
+.saved-articles { padding: 0; list-style: none; }
+.saved-articles li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--muted);
+}
+.saved-articles a { overflow-wrap: anywhere; }
+.saved-articles button {
+    flex-shrink: 0;
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    font: inherit;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    cursor: pointer;
 }

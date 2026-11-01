@@ -1,0 +1,8 @@
+{{ if or .Params.math .Site.Params.math }}
+{{/* The theme mixes fonts/ and ../fonts/ URLs; normalize them to its actual font directory. */}}
+{{ $css := readFile "themes/noteworthy/static/css/katex.min.css" | replaceRE `url\((\.\./)?fonts/` "url(/fonts/" }}
+{{ $math := resources.FromString "css/katex.css" $css | fingerprint }}
+<link rel="stylesheet" href="{{ $math.RelPermalink }}">
+<script src="{{ "js/katex.min.js" | relURL }}" defer></script>
+<script src="{{ "js/auto-render.min.js" | relURL }}" defer onload="renderMathInElement(document.body);"></script>
+{{ end }}
