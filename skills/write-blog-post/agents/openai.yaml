@@ -1,0 +1,6 @@
+interface:
+  display_name: "Write Blog Post"
+  short_description: "Draft and revise posts for Luca Lanziani’s blog"
+  default_prompt: "Use $write-blog-post to draft or revise a post for Luca Lanziani’s blog using the site’s writing and publishing guides."
+policy:
+  allow_implicit_invocation: true
