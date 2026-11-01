@@ -4,6 +4,17 @@ All editorial content lives under `content/`. This guide covers every content ty
 
 ---
 
+## Article translations
+
+English is the default language; Italian is also configured. To publish a translated
+article, place files with the same base name together, for example
+`content/posts/2026/11/example.md` (English) and `example.it.md` (Italian).
+Give each file its own translated title, description, and content. Set `draft` on
+each version independently; only published versions appear in the language links.
+For page bundles use `index.md` and `index.it.md` in the same bundle. Add further
+languages under `[languages]` in `config.toml` before using their filename suffix.
+Each version has its own URL and must be saved separately for offline reading.
+
 ## Blog Posts (`content/posts/`)
 
 Posts are organised by year and month:

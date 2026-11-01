@@ -44,7 +44,9 @@
 {{ if eq .Kind "404" }}<meta name="robots" content="noindex, follow" />{{ end }}
 <link rel="canonical" href="{{ $canonical }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content="{{ replace .Language.Locale "-" "_" }}" />
+{{ range .Translations }}<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
+{{ end }}
 <meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}" />
 <meta property="og:title" content="{{ $title }}" />
 <meta property="og:description" content="{{ $description }}" />

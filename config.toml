@@ -4,6 +4,17 @@ title = "Luca Lanziani"
 theme = "noteworthy"
 paginate = 10
 enableRobotsTXT = true
+defaultContentLanguage = "en"
+
+[languages.en]
+label = "English"
+locale = "en-US"
+weight = 1
+
+[languages.it]
+label = "Italiano"
+locale = "it-IT"
+weight = 2
 
 [params]
 math = true

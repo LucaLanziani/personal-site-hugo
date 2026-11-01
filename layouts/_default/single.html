@@ -32,6 +32,13 @@
                         </button>
                     </span>
                     {{ end }}
+                    {{ if and (eq .Section "posts") .IsTranslated }}
+                    <nav class="article-languages" aria-label="Article language">
+                        {{ range .AllTranslations }}
+                        <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}"{{ if eq .Language.Lang $.Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+                        {{ end }}
+                    </nav>
+                    {{ end }}
                 </span>
                 {{ with .Params.series }}
                 <span class="post-meta__dot">&middot;</span>

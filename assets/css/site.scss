@@ -1546,3 +1546,9 @@ thead th {
     text-decoration: underline;
     cursor: pointer;
 }
+
+/* Links remain usable without JavaScript. */
+.article-languages { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; }
+.article-languages a { color: var(--muted); }
+.article-languages a[aria-current="page"] { color: var(--accent-dark); font-weight: 700; }
+.reading-time { flex-wrap: wrap; white-space: normal; }
