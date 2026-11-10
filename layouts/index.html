@@ -18,9 +18,14 @@
         <div class="intro__portrait-group">
             <button class="intro__portrait-toggle" type="button" aria-label="Portrait of {{ .Site.Title }}. Show LinkedIn QR code" aria-pressed="false" data-qr-label="LinkedIn QR code for {{ .Site.Title }}. Show portrait">
                 <span class="intro__portrait-card" aria-hidden="true">
-                    <span class="intro__portrait-face intro__portrait-face--front">
-                        <img src="{{ "/about/profile.png" | relURL }}" alt="" width="416" height="416" loading="eager" />
-                    </span>
+                    {{ $portrait := ((index hugo.Sites 0).GetPage "/about").Resources.GetMatch "profile.png" }}
+                    {{ $portraitSmall := $portrait.Resize "208x webp q85" }}
+                    {{ $portraitLarge := $portrait.Resize "416x webp q85" }}
+                    <picture class="intro__portrait-face intro__portrait-face--front">
+                        {{/* Match the hidden portrait breakpoint without fetching an invisible image. */}}
+                        <source media="(max-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
+                        <img src="{{ $portraitSmall.RelPermalink }}" srcset="{{ $portraitSmall.RelPermalink }} 208w, {{ $portraitLarge.RelPermalink }} 416w" sizes="13rem" alt="" width="208" height="208" loading="eager" />
+                    </picture>
                     <span class="intro__portrait-face intro__portrait-face--back">
                         <span class="intro__portrait-qr"></span>
                         <span>Follow me on LinkedIn</span>

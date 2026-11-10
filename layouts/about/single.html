@@ -1,7 +1,10 @@
 {{ define "main" }}
 <div class="wrap wrap--prose">
     <header class="about-head">
-        <img class="about-head__portrait" src="{{ "/about/profile.png" | relURL }}" alt="Portrait of {{ .Site.Title }}" width="352" height="352" />
+        {{ $portrait := .Resources.GetMatch "profile.png" }}
+        {{ $portraitSmall := $portrait.Resize "136x webp q85" }}
+        {{ $portraitLarge := $portrait.Resize "272x webp q85" }}
+        <img class="about-head__portrait" src="{{ $portraitSmall.RelPermalink }}" srcset="{{ $portraitSmall.RelPermalink }} 136w, {{ $portraitLarge.RelPermalink }} 272w" sizes="(max-width: 720px) 7.5rem, 8.5rem" alt="Portrait of {{ .Site.Title }}" width="136" height="136" />
         <div>
             <p class="eyebrow">About</p>
             <h1>{{ .Site.Title }}</h1>

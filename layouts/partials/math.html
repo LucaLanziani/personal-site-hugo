@@ -1,4 +1,7 @@
-{{ if or .Params.math .Site.Params.math }}
+{{/* Inspect rendered content, so escaped Markdown and shortcode output match what KaTeX sees.
+     Keep the existing page-level opt-in for math supplied outside the page content. */}}
+{{ $hasDelimiters := or (strings.Contains .Content "$$") (strings.Contains .Content `\(`) (strings.Contains .Content `\[`) }}
+{{ if or .Params.math (and .Site.Params.math .IsPage $hasDelimiters) }}
 {{/* The theme mixes fonts/ and ../fonts/ URLs; normalize them to its actual font directory. */}}
 {{ $css := readFile "themes/noteworthy/static/css/katex.min.css" | replaceRE `url\((\.\./)?fonts/` "url(/fonts/" }}
 {{ $math := resources.FromString "css/katex.css" $css | fingerprint }}

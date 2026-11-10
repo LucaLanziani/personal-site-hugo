@@ -7,7 +7,7 @@
 | Static site generator | [Hugo](https://gohugo.io/) |
 | Theme | [Noteworthy](https://github.com/kimcc/hugo-theme-noteworthy) (git submodule) |
 | Hosting | Deployed as static files (CNAME: `lanziani.com`) |
-| Math rendering | KaTeX (enabled via `params.math = true`) |
+| Math rendering | KaTeX (when enabled globally, loaded only on pages containing supported math delimiters, or explicitly enabled with page-level `math: true`) |
 
 ---
 
@@ -147,6 +147,12 @@ storage access are required; clearing site data removes downloads.
 
 The math partial normalizes the theme's inconsistent font URLs before publishing
 a fingerprinted stylesheet, allowing all local font dependencies to be downloaded.
+With the site's math support enabled, it checks rendered page content for KaTeX's
+supported `$$`, `\(`, and `\[` delimiters before loading the math assets. Pages can
+also retain the existing `math: true` frontmatter opt-in. Detection is conservative:
+delimiters shown as code may load KaTeX unnecessarily, but ordinary listings and
+pages without math do not pay for the renderer. Saved math articles include their
+renderer, stylesheet, and local font dependencies as before.
 
 Run the browser regression test against a static Hugo build (not a live-reload
 server): `SITE_URL=http://localhost:8765 node tests/offline.mjs`. It requires
