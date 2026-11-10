@@ -41,7 +41,7 @@ try {
     for (const width of [1280, 390, 320]) {
         await page.setViewportSize({ width, height: 900 });
         await page.evaluate(() => document.fonts.ready);
-        const focus = await page.locator('.focus-toggle:not(.offline-toggle)').boundingBox();
+        const focus = await page.getByRole('button', { name: 'Focus mode', exact: true }).boundingBox();
         const offline = await toggle.boundingBox();
         assert(Math.abs(focus.y - offline.y) < 2, 'Controls must align');
         assert(offline.x >= focus.x + focus.width - 1, 'Offline icon follows focus mode');

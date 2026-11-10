@@ -1,0 +1,87 @@
+// Run against a static build; uses the same Playwright environment as offline.mjs.
+import assert from 'node:assert/strict';
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const browser = await chromium.launch({ headless: true, executablePath: process.env.BROWSER_EXECUTABLE });
+const base = process.env.SITE_URL || 'http://localhost:8765';
+const first = '/posts/2026/06/ai-engineering/';
+const second = '/posts/2023/03/path-to-production/';
+try {
+    const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true });
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(error.message));
+    await page.goto(base + first);
+    await page.evaluate(() => document.fonts.ready);
+    const details = page.locator('.toc-mobile');
+    await details.locator('summary').tap();
+    assert(await details.evaluate(element => element.open));
+    const link = details.locator('a').nth(1);
+    const target = await link.getAttribute('href');
+    await link.tap();
+    await page.waitForURL('**' + target);
+    const uniqueIDs = await page.evaluate(() => {
+        const ids = [...document.querySelectorAll('[id]')].map(element => element.id);
+        return ids.length === new Set(ids).size;
+    });
+    assert(uniqueIDs, 'Desktop and mobile contents must not duplicate navigation IDs');
+    await page.goto(base + first);
+    const toggle = page.getByRole('button', { name: 'Text size', exact: true });
+    const panel = page.getByRole('group', { name: 'Text size' });
+    const bodySize = () => page.locator('.post').evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+    const normal = await bodySize();
+    await toggle.tap();
+    await panel.getByRole('button', { name: 'Increase text size' }).click();
+    assert((await bodySize()) > normal, 'Text-size control must enlarge actual article text');
+    assert.equal(await panel.locator('output').innerText(), '110%');
+    await page.keyboard.press('Escape');
+    assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+    assert(await toggle.evaluate(element => element === document.activeElement));
+    await page.goto(base + second);
+    await page.waitForFunction(() => parseFloat(getComputedStyle(document.querySelector('.post')).fontSize) > 18);
+    await page.reload();
+    await page.getByRole('button', { name: 'Text size', exact: true }).click();
+    assert.equal(await page.locator('.reader-size-value').innerText(), '110%', 'Selection survives navigation/reload');
+    await page.keyboard.press('Escape');
+    await page.goto(base + first);
+    await page.getByRole('button', { name: 'Focus mode', exact: true }).click();
+    await page.getByRole('button', { name: 'Text size', exact: true }).click();
+    await page.keyboard.press('Escape');
+    assert(await page.locator('body').evaluate(element => element.classList.contains('focus-mode')), 'First Escape closes preferences before exiting focus mode');
+    await page.keyboard.press('Escape');
+    assert(!await page.locator('body').evaluate(element => element.classList.contains('focus-mode')));
+    const offline = page.locator('.offline-toggle');
+    await offline.waitFor({ state: 'visible' });
+    await offline.click();
+    await page.waitForFunction(() => document.querySelector('.offline-toggle').getAttribute('aria-pressed') === 'true');
+    await context.setOffline(true);
+    await page.reload();
+    await page.getByRole('button', { name: 'Text size', exact: true }).click();
+    assert.equal(await page.locator('.reader-size-value').innerText(), '110%');
+    await page.getByRole('button', { name: 'Increase text size' }).click();
+    assert.equal(await page.locator('.reader-size-value').innerText(), '120%', 'Controls work offline');
+    await page.getByRole('button', { name: 'Reset text size' }).click();
+    assert.equal(await page.locator('.reader-size-value').innerText(), '100%');
+    assert.deepEqual(errors, []);
+    await context.close();
+
+    const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+    const plain = await noJS.newPage();
+    await plain.goto(base + first);
+    await plain.locator('.toc-mobile summary').click();
+    assert(await plain.locator('.toc-mobile').evaluate(element => element.open));
+    assert(await plain.locator('.toc-mobile a').first().isVisible(), 'Contents remain useful without JavaScript');
+    assert(!await plain.locator('.reader-toggle').isVisible());
+    await noJS.close();
+
+    const denied = await browser.newContext();
+    await denied.addInitScript(() => { Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage denied'); } }); });
+    const restricted = await denied.newPage();
+    await restricted.goto(base + first);
+    await restricted.getByRole('button', { name: 'Text size', exact: true }).click();
+    await restricted.getByRole('button', { name: 'Increase text size' }).click();
+    assert.equal(await restricted.locator('.reader-size-value').innerText(), '110%', 'Storage denial must not disable reading controls');
+    await denied.close();
+    console.log('PASS: mobile contents, unique anchors, text resizing, persistence, Escape/focus, offline controls, no-JS and denied storage.');
+} finally {
+    await browser.close();
+}

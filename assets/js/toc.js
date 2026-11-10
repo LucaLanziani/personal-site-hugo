@@ -1,9 +1,9 @@
 // Marks the table-of-contents entry for the section currently being read.
 (function () {
-    var toc = document.querySelector('.toc');
-    if (!toc) return;
+    var tocs = document.querySelectorAll('.toc, .toc-mobile');
+    if (!tocs.length) return;
 
-    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.toc a[href^="#"], .toc-mobile a[href^="#"]'));
     var entries = [];
     links.forEach(function (link) {
         var heading = document.getElementById(decodeURIComponent(link.getAttribute('href').slice(1)));
@@ -11,21 +11,22 @@
     });
     if (!entries.length) return;
 
-    var offset = 140; // just below the sticky header
     var active = null;
     var ticking = false;
 
     function update() {
         ticking = false;
+        var offset = (document.querySelector('.site-header')?.getBoundingClientRect().bottom || 0) + 24;
         var found = entries[0];
         for (var i = 0; i < entries.length; i++) {
             if (entries[i].heading.getBoundingClientRect().top <= offset) found = entries[i];
-            else break;
         }
-        if (found === active) return;
-        if (active) active.link.removeAttribute('aria-current');
-        found.link.setAttribute('aria-current', 'true');
-        active = found;
+        if (found.heading === active) return;
+        entries.forEach(function (entry) {
+            if (entry.heading === found.heading) entry.link.setAttribute('aria-current', 'location');
+            else entry.link.removeAttribute('aria-current');
+        });
+        active = found.heading;
     }
 
     function schedule() {

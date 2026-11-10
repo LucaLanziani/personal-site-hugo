@@ -131,7 +131,19 @@ Files placed under `content/static/` are served at `/static/` on the live site (
 
 Example: `content/static/2025/split_brain.jpg` → `https://lanziani.com/static/2025/split_brain.jpg`
 
-## Offline article reading
+## Article reading controls and offline reading
+
+Articles with at least two sections expose native collapsible contents below the
+title on screens narrower than 1200px. The desktop contents rail remains available
+on wider screens. Both sets of links point to the same article headings, with
+distinct navigation IDs; the mobile disclosure works without JavaScript.
+
+The article's **Aa** button opens text-size controls (100–140%, in 10% steps).
+`assets/js/reader-settings.js` stores the selection in localStorage on this device
+and applies it across articles, including offline snapshots. Storage failures leave
+the controls usable for the current visit. Browser text zoom remains available.
+Escape closes the controls before exiting focus mode, and Reset restores 100%.
+Existing saved snapshots retain their downloaded interface until saved again.
 
 Articles expose an opt-in download icon next to focus mode. `assets/js/offline.js`
 collects the selected article's HTML and local assets; `static/offline-worker.js`
@@ -157,3 +169,5 @@ renderer, stylesheet, and local font dependencies as before.
 Run the browser regression test against a static Hugo build (not a live-reload
 server): `SITE_URL=http://localhost:8765 node tests/offline.mjs`. It requires
 Playwright; `PLAYWRIGHT_MODULE` can specify an existing installation's entrypoint.
+`SITE_URL=http://localhost:8765 node tests/reader.mjs` checks contents navigation,
+text-size persistence, focus-mode dismissal, offline controls, and blocked storage.

@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "assets/css/site.scss"
+        ],
+        "createdAt": "2026-11-08T13:08:15.201Z",
+        "reason": "Agent audit: the sole finding is .post blockquote border-left, an intentional semantic quotation marker, not a card accent."
+      }
+    ]
+  }
+}

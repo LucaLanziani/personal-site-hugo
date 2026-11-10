@@ -88,7 +88,8 @@ self.addEventListener('fetch', event => {
     if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
     event.respondWith((async () => {
         try {
-            const response = await fetch(event.request);
+            // A visited or removed article in the HTTP cache is not an offline download.
+            const response = await fetch(event.request, event.request.mode === 'navigate' ? { cache: 'no-store' } : undefined);
             if (response.status < 500) return response;
         } catch (_) { /* Offline: fall through to explicitly downloaded content. */ }
         const cache = await caches.open(ASSETS);
